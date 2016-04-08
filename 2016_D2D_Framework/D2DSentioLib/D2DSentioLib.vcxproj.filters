@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{09c31bfd-4963-4dd6-8a37-7afc0f2bc3d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{55011021-4c83-4dca-b968-0314ba57a68a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Extension">
+      <UniqueIdentifier>{b8dac98e-67dd-4fca-aea4-d3b97c163dab}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SentioD2D.h" />
+    <ClInclude Include="UsingLibrary.h" />
+    <ClInclude Include="Utility\Macro.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="System\BagicNode.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Types.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\StringUtil.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\MathUtil.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Random.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SentioD2D.cpp" />
+    <ClCompile Include="System\BagicNode.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Types.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\StringUtil.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\MathUtil.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Random.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
