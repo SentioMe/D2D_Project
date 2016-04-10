@@ -32,6 +32,12 @@
     <ClInclude Include="Utility\Random.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="System\Label.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Sprite.h">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SentioD2D.cpp" />
@@ -49,6 +55,12 @@
     </ClCompile>
     <ClCompile Include="Utility\Random.cpp">
       <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Sprite.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Label.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

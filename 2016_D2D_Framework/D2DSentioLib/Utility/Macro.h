@@ -22,3 +22,5 @@
 	protected: varType varName;\
 	public : inline varType Get##funcName(void) const {return varName;}\
 	public : inline void Set##funcName(varType var) {varName = var;}
+
+#define Alloc(varType, varName) varType* varName = new (std::nothrow) varType()

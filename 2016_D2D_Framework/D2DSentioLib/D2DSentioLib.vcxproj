@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClInclude Include="SentioD2D.h" />
     <ClInclude Include="System\BagicNode.h" />
+    <ClInclude Include="System\Label.h" />
+    <ClInclude Include="System\Sprite.h" />
     <ClInclude Include="System\Types.h" />
     <ClInclude Include="UsingLibrary.h" />
     <ClInclude Include="Utility\Macro.h" />
@@ -34,6 +36,8 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SentioD2D.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="System\BagicNode.cpp" />
+    <ClCompile Include="System\Label.cpp" />
+    <ClCompile Include="System\Sprite.cpp" />
     <ClCompile Include="System\Types.cpp" />
     <ClCompile Include="Utility\MathUtil.cpp" />
     <ClCompile Include="Utility\Random.cpp" />

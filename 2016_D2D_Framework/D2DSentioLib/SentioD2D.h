@@ -13,6 +13,9 @@ DirectX 2D 개발환경을 구축하는 정적 라이브러리 HeaderFile
 //###################################################################
 
 #include "Utility\Macro.h"
+#include "Utility\Random.h"
+#include "Utility\MathUtil.h"
+#include "Utility\StringUtil.h"
 
 //###################################################################
 //System

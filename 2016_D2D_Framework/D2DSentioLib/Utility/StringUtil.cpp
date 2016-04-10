@@ -64,7 +64,29 @@ namespace DXLib
 		return output;
 	}
 
-	void StringUtil::TrimWString(OUT std::wstring & output_, OPTIONAL bool left_, OPTIONAL bool right_)
+
+	std::string StringUtil::Format(const char * format_, ...)
+	{
+#define STRING_MAX_BUFFER_SIZE 1024
+		std::string ret;
+
+		va_list ap;
+		va_start(ap, format_);
+
+		char* buf = (char*)malloc(STRING_MAX_BUFFER_SIZE);
+		if (buf != nullptr)
+		{
+			vsnprintf(buf, STRING_MAX_BUFFER_SIZE, format_, ap);
+			ret = buf;
+			free(buf);
+		}
+
+		va_end(ap);
+
+		return ret;
+	}
+
+	void StringUtil::Trim(OUT std::wstring & output_, OPTIONAL bool left_, OPTIONAL bool right_)
 	{
 		static const std::wstring delimiter = L"\t\r\n";
 
@@ -79,7 +101,7 @@ namespace DXLib
 		}
 	}
 
-	void StringUtil::TrimString(OUT std::string & output_, OPTIONAL bool left_, OPTIONAL bool right_)
+	void StringUtil::Trim(OUT std::string & output_, OPTIONAL bool left_, OPTIONAL bool right_)
 	{
 		static const std::string delimiter = "\t\r\n";
 
