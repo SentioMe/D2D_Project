@@ -20,9 +20,6 @@
     <ClInclude Include="System\BagicNode.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="System\Types.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="Utility\StringUtil.h">
       <Filter>Utility</Filter>
     </ClInclude>
@@ -38,13 +35,13 @@
     <ClInclude Include="System\Sprite.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\GenericUtil.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SentioD2D.cpp" />
     <ClCompile Include="System\BagicNode.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="System\Types.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Utility\StringUtil.cpp">
@@ -61,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="System\Label.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\GenericUtil.cpp">
+      <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

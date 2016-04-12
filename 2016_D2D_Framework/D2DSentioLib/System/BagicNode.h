@@ -6,7 +6,7 @@ namespace DXLib
 	{
 	public:
 		BagicNode(void)
-			: _parent(nullptr), _isActive(false), 
+			: _parent(nullptr), _isAlive(true), _isActive(false),
 			_name(StringUtil::STRING_EMPTY), _tag(0)
 		{
 			this->_children.clear();
@@ -20,24 +20,27 @@ namespace DXLib
 		static BagicNode* Create(void);
 		
 		bool Initialize(void);
-		void Release(bool removeChild = true);
+		void Release(bool isDestroyImmediate_ = true);
 
 		/** C# style Define description function*/
 		virtual std::string ToString(void) const;
 
-		BagicNode* AddChild(BagicNode* child_);
-		bool RemoveChild(BagicNode* child_);
+		void SetParent(BagicNode* parent_);
+		bool RemoveChild(BagicNode* child_, bool isDestroyImmediate_ = true);
 
+		inline void RequestDestroy(void) { this->_isAlive = false; }
+		inline bool IsAlive(void) { return _isAlive; }
 
-	private:
+	protected:
+		void _AddChild(BagicNode* child_);
 
-
-		BagicNode* _parent;
+	protected:
+		bool _isAlive;
 		std::vector<BagicNode*> _children;
-
-		Decl(bool, _isActive, IsActive);
-		Decl(std::string, _name, Name);
-		Decl(int, _tag, Tag);
+		PROPERTY_GET(BagicNode*, _parent, Parent);
+		PROPERTY(bool, _isActive, IsActive);
+		PROPERTY(std::string, _name, Name);
+		PROPERTY(int, _tag, Tag);
 	};
 
 

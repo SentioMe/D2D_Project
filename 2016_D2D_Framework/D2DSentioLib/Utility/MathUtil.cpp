@@ -1,5 +1,4 @@
 #include "SentioD2D.h"
-#include "StringUtil.h"
 #include "MathUtil.h"
 
 namespace DXLib

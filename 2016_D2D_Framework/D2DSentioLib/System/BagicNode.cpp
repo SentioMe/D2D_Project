@@ -12,7 +12,7 @@ namespace DXLib
 			할당 실패에 대한 예외처리가 어려워진다
 			이 때문에 std::nothrow로 할당시켜 false로 판단할 수 있게 한다
 		*/
-		Alloc(BagicNode, newNode);
+		ALLOCATE(BagicNode, newNode);
 		
 		if (false == newNode || false == newNode->Initialize())
 		{
@@ -27,7 +27,7 @@ namespace DXLib
 		return false;
 	}
 
-	void BagicNode::Release(bool removeChild)
+	void BagicNode::Release(bool isDestroyImmediate_)
 	{
 		/*if (true == removeChild)
 		{
@@ -49,16 +49,38 @@ namespace DXLib
 			"%s_Node (Tag : %d)", this->_name.c_str(), this->_tag);
 	}
 
-	BagicNode* BagicNode::AddChild(BagicNode* child_)
-	{
-		assert(child_ != nullptr, "Parameter 'child_' is null!");
-		this->_children.push_back(child_);
 
-		return child_;
+	void BagicNode::SetParent(BagicNode* parent_)
+	{
+		assert(parent_ != nullptr, "Parameter 'parent_' is null!");
+
+		if (nullptr != this->_parent)
+		{
+			if (this->_parent == parent_)
+				return;
+
+			this->_parent->RemoveChild(this, false);
+		}
+
+		this->_parent = parent_;
+		this->_parent->_AddChild(this);
 	}
 
-	bool BagicNode::RemoveChild(BagicNode* child_)
+	
+	bool BagicNode::RemoveChild(BagicNode* child_, bool isDestroyImmediate_)
 	{
+		if (true == isDestroyImmediate_)
+		{
+			SAFE_DELETE(child_);
+		}
+
 		return false;
+	}
+
+	void BagicNode::_AddChild(BagicNode* child_)
+	{
+		assert(child_ != nullptr, "Parameter 'child_' is null!");
+
+		this->_children.push_back(child_);
 	}
 }

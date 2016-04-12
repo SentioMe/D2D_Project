@@ -18,9 +18,17 @@
 //#########################################################################
 //(Variable, Getter, Setter) Synthesize
 //#########################################################################
-#define Decl(varType, varName, funcName)\
+#define PROPERTY(varType, varName, funcName)\
 	protected: varType varName;\
 	public : inline varType Get##funcName(void) const {return varName;}\
-	public : inline void Set##funcName(varType var) {varName = var;}
+	public : inline void Set##funcName(const varType& var) {varName = var;}
 
-#define Alloc(varType, varName) varType* varName = new (std::nothrow) varType()
+#define PROPERTY_GET(varType, varName, funcName)\
+	protected: varType varName;\
+	public : inline varType Get##funcName(void) const {return varName;}
+
+#define PROPERTY_SET(varType, varName, funcName)\
+	protected: varType varName;\
+	public : inline void Set##funcName(const varType& var) {varName = var;}
+
+#define ALLOCATE(varType, varName) varType* varName = new (std::nothrow) varType()

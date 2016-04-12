@@ -16,11 +16,11 @@ DirectX 2D 개발환경을 구축하는 정적 라이브러리 HeaderFile
 #include "Utility\Random.h"
 #include "Utility\MathUtil.h"
 #include "Utility\StringUtil.h"
+#include "Utility\GenericUtil.h"
 
 //###################################################################
 //System
 //####################################################################
-#include "System\Types.h"
 #include "System\BagicNode.h"
 
 //###################################################################
