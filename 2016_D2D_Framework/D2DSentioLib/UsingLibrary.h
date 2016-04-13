@@ -1,25 +1,25 @@
-#pragma once
+ï»¿#pragma once
+
 
 /**
-@brief
-³», ¿ÜºÎÀûÀ¸·Î »ç¿ëµÇ´Â ¶óÀÌºê·¯¸®µéÀ» È£ÃâÇÑ´Ù
+@briefã€€æ±ç”¨çš„ã«ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ¼é”ã‚’å«ã‚ã‚‹ã€‚
 */
 
-#include <Windows.h>		//Window¸¦ ±¸¼ºÇÏ±â À§ÇÑ ±âº» Çì´õ ÆÄÀÏ
-#include <D2D1.h>			//Direct 2D¸¦ »ç¿ëÇÏ±â À§ÇÑ Çì´õ ÆÄÀÏ
+#include <Windows.h>		//for Create a Window
+#include <D2D1.h>			//for Use to Direct2D
 
-#include <stdlib.h>			//Standard Library Çì´õ ÆÄÀÏ
-#include <malloc.h>			//¸Ş¸ğ¸® Á¦¾î °ü·Ã Çì´õ ÆÄÀÏ
-#include <memory.h>			//Buffer Á¦¾î °ü·Ã Çì´õ ÆÄÀÏ
-#include <tchar.h>			//¹®ÀÚ¿­ Ã³¸® Á¦¾î °ü·Ã Çì´õ ÆÄÀÏ
+#include <stdlib.h>			//for Use to stanard library
+#include <malloc.h>			//for Control by memory
+#include <memory.h>			//for Control by buffer
+#include <tchar.h>			//for Control by string
 
-#include <string>			//StringÇüÀ» Æ÷ÇÔÇÏ´Â Çì´õ ÆÄÀÏ
+#include <string>			//for Use to string class
 
-#include <sstream>			//String Á¦¾î °ü·Ã Çì´õ ÆÄÀÏ
-#include <fstream>			//File Á¦¾î °ü·Ã Çì´õ ÆÄÀÏ
+#include <sstream>			//for Control by string
+#include <fstream>			//for Control by file
 
-#include <vector>			//STL_Vector¸¦ Æ÷ÇÔÇÏ´Â Çì´õ ÆÄÀÏ
-#include <map>				//STL_MapÀ» Æ÷ÇÔÇÏ´Â Çì´õ ÆÄÀÏ
+#include <vector>			//for Use to vector class
+#include <map>				//for Use to map class
 
-#include <cassert>			//ÄÄÆÄÀÏ ½Ã°£¿¡ Âü, °ÅÁşÀ» ÆÇ´ÜÇÏ´Â CASSERT °ü·Ã Çì´õ ÆÄÀÏ
-#include <assert.h>			//½ÇÇà ½Ã°£¿¡ Âü, °ÅÁşÀ» ÆÇ´ÜÇÏ´Â ASSERT °ü·Ã Çì´õ ÆÄÀÏ
+#include <cassert>			//for Use to CASSERT (Check error when compile)
+#include <assert.h>			//for Use to ASSERT (Check error when exequte)

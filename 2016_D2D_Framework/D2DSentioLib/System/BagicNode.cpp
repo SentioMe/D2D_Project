@@ -3,15 +3,11 @@
 
 namespace DXLib
 {
+	typedef BagicNode::NodeContainer NodeContainer;
+
+
 	BagicNode* BagicNode::Create(void)
 	{
-		/**
-		@brief
-			c++에서 동적할당 시, 실패하면 std::bad_alloc이 리턴된다
-			이 값은 true/false같은 자료형이 아니므로
-			할당 실패에 대한 예외처리가 어려워진다
-			이 때문에 std::nothrow로 할당시켜 false로 판단할 수 있게 한다
-		*/
 		ALLOCATE(BagicNode, newNode);
 		
 		if (false == newNode || false == newNode->Initialize())
@@ -24,12 +20,12 @@ namespace DXLib
 
 	bool BagicNode::Initialize(void)
 	{
-		return false;
+		return true;
 	}
-
+#pragma region Virtual Function
 	void BagicNode::Release(bool isDestroyImmediate_)
 	{
-		/*if (true == removeChild)
+		if (true == isDestroyImmediate_)
 		{
 			for (BagicNode* child : _children)
 			{
@@ -38,8 +34,6 @@ namespace DXLib
 		}
 
 		this->_children.clear();
-*/
-
 
 	}
 
@@ -48,8 +42,9 @@ namespace DXLib
 		return StringUtil::Format(
 			"%s_Node (Tag : %d)", this->_name.c_str(), this->_tag);
 	}
+#pragma endregion
 
-
+#pragma region Node Function
 	void BagicNode::SetParent(BagicNode* parent_)
 	{
 		assert(parent_ != nullptr, "Parameter 'parent_' is null!");
@@ -66,15 +61,90 @@ namespace DXLib
 		this->_parent->_AddChild(this);
 	}
 
-	
 	bool BagicNode::RemoveChild(BagicNode* child_, bool isDestroyImmediate_)
 	{
+		NodeContainerIter childIter;
+		if (GenericUtil::TryGetIterator(this->_children, child_, childIter))
+		{
+			this->_children.erase(childIter);
+		}
+
 		if (true == isDestroyImmediate_)
 		{
 			SAFE_DELETE(child_);
 		}
-
+		
 		return false;
+	}
+
+	BagicNode* BagicNode::FindChild(const std::string& name_)
+	{
+		if (this->_children.empty())
+			return nullptr;
+
+		size_t size = this->_children.size();
+
+		for (size_t i = 0; i < size; ++i)
+		{
+			if (this->_children[i]->GetName() == name_)
+			{
+				return _children[i];
+			}
+		}
+
+		return nullptr;
+	}
+
+	BagicNode* BagicNode::FindChild(int tag_)
+	{
+		if (this->_children.empty())
+			return nullptr;
+
+		size_t size = this->_children.size();
+
+		for (size_t i = 0; i < size; ++i)
+		{
+			if (this->_children[i]->GetTag() == tag_)
+			{
+				return _children[i];
+			}
+		}
+
+		return nullptr;
+	}
+
+	NodeContainer& BagicNode::FindChildren(const std::string& name_)
+	{
+		NodeContainer children;
+
+		size_t size = this->_children.size();
+
+		for (size_t i = 0; i < size; ++i)
+		{
+			if (this->_children[i]->GetName() == name_)
+			{
+				children.push_back(this->_children[i]);
+			}
+		}
+
+		return children;
+	}
+
+	NodeContainer& BagicNode::FindChildren(int tag_)
+	{
+		NodeContainer children;
+
+		size_t size = this->_children.size();
+
+		for (size_t i = 0; i < size; ++i)
+		{
+			if (this->_children[i]->GetTag() == tag_)
+			{
+				children.push_back(this->_children[i]);
+			}
+		}
+
+		return children;
 	}
 
 	void BagicNode::_AddChild(BagicNode* child_)
@@ -83,4 +153,5 @@ namespace DXLib
 
 		this->_children.push_back(child_);
 	}
+#pragma endregion
 }

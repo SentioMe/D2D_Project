@@ -1,7 +1,15 @@
-#pragma once
+﻿#pragma once
 
+/**
+@namespace DXLib
+@brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
+*/
 namespace DXLib
 {
+	/**
+	@class Random
+	@brief 乱数を派生してくれる静的関数の集まり
+	*/
 	class Random
 	{
 	public:

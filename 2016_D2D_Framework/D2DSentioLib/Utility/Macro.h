@@ -1,34 +1,42 @@
-#pragma once
+ï»¿#pragma once
 
 //#########################################################################
-//Safe Macro
-//#########################################################################
+#pragma region Safe Macro
 
-//ÇØ´ç ÂüÁ¶°¡ À¯È¿ÇÒ ¶§, ´ë»óÀÇ ¸Ş¸ğ¸®¸¦ ÇØÁ¦ÇÏ°í nullptr·Î ´ëÀÔÇÑ´Ù
+/** å‚ç…§ã—ã¦ã‚‹å¯¾è±¡ãŒæœ‰åŠ¹ãªã‚‰ã°ã€ãã®ãƒ¡ãƒ¢ãƒªãƒ¼ã‚’è§£é™¤ã—ã¦nullptrã‚’ä»£å…¥ã—ã¾ã™ã€‚*/
 #define SAFE_DELETE(p)				if(p){delete p; p = nullptr;}
-//ÇØ´ç ÂüÁ¶°¡ À¯È¿ÇÒ ¶§, ´ë»ó ¹è¿­ÀÇ ¸Ş¸ğ¸®¸¦ ÇØÁ¦ÇÏ°í nullptr·Î ´ëÀÔÇÑ´Ù
+/** å‚ç…§ã—ã¦ã‚‹é…åˆ—ãŒæœ‰åŠ¹ãªã‚‰ã°ã€ãã®ãƒ¡ãƒ¢ãƒªãƒ¼ã‚’è§£é™¤ã—ã¦nullptrã‚’ä»£å…¥ã—ã¾ã™ã€‚*/
 #define SAFE_DELETE_ARRAY(p)		if(p){delete[] p; p = nullptr;}
-//ÇØ´ç ÂüÁ¶°¡ À¯È¿ÇÒ ¶§, ´ë»óÀÇ ¸Ş¸ğ¸® ÂüÁ¶ ¼ö¸¦ °¨¼Ò½ÃÅ°°í, nullptr·Î ´ëÀÔÇÑ´Ù
+/** å‚ç…§ã—ã¦ã‚‹COMã®å¯¾è±¡ãŒæœ‰åŠ¹ãªã‚‰ã°ã€ãã®ãƒ¡ãƒ¢ãƒªãƒ¼ã‚’è§£é™¤ã—ã¦ï¼ˆãƒ¡ãƒ¢ãƒªãƒ¼ã®å‚ç…§ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚’æ¸›å°‘ã™ã‚‹ï¼‰nullptrã‚’ä»£å…¥ã—ã¾ã™ã€‚*/
 #define SAFE_RELEASE(p)				if(p){p->Release(); p = nullptr;}
-//ÇØ´ç ÂüÁ¶°¡ À¯È¿ÇÒ ¶§, ´ë»óÀ¸·ÎºÎÅÍ ÁöÁ¤ ÇÔ¼ö¸¦ ½ÇÇà½ÃÅ²´Ù
+/** å‚ç…§ã—ã¦ã‚‹å¯¾è±¡ãŒæœ‰åŠ¹ãªã‚‰ã°ã€æŒ‡å®šã—ãŸå‘½ä»¤ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚*/
 #define SAFE_OPERATE(p, Methode)	if(p){p->Methode();}
 
+#pragma endregion
+//#########################################################################
 
 
 //#########################################################################
-//(Variable, Getter, Setter) Synthesize
-//#########################################################################
+#pragma region Variable-Getter-Setter Synthesize : Create Property Macro
+
+
 #define PROPERTY(varType, varName, funcName)\
 	protected: varType varName;\
-	public : inline varType Get##funcName(void) const {return varName;}\
-	public : inline void Set##funcName(const varType& var) {varName = var;}
+	public : inline const varType Get##funcName(void) const {return varName;}\
+	public : inline void Set##funcName(varType var) {varName = var;}
 
 #define PROPERTY_GET(varType, varName, funcName)\
 	protected: varType varName;\
-	public : inline varType Get##funcName(void) const {return varName;}
+	public : inline const varType Get##funcName(void) const {return varName;}
 
 #define PROPERTY_SET(varType, varName, funcName)\
 	protected: varType varName;\
-	public : inline void Set##funcName(const varType& var) {varName = var;}
+	public : inline void Set##funcName(varType var) {varName = var;}
 
+/** @warning
+C++ã§ã®å‹•çš„ãªãƒ¡ãƒ¢ãƒªãƒ¼ã®å‰²ã‚Šå½“ã¦ã«å¤±æ•—ã—ãŸå ´åˆã€std::bad_allocã¨å€¤ãŒè¿”ã•ã‚Œã€çœŸå½ã‚’åˆ¤æ–­ã™ã‚‹ã“ã¨ãŒã§ããªããªã‚‹ã€‚
+ãã®ãŸã‚ã«std::nothrowã‚’å®£è¨€ã—ã¦å¤±æ•—ã—ãŸå ´åˆã€falseãŒè¿”ã•ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹ã€‚*/
 #define ALLOCATE(varType, varName) varType* varName = new (std::nothrow) varType()
+
+#pragma endregion
+//#########################################################################
