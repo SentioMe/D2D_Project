@@ -33,10 +33,11 @@
 	protected: varType varName;\
 	public : inline void Set##funcName(varType var) {varName = var;}
 
+#pragma endregion
+//#########################################################################
+
+
 /** @warning
 C++での動的なメモリーの割り当てに失敗した場合、std::bad_allocと値が返され、真偽を判断することができなくなる。
 そのためにstd::nothrowを宣言して失敗した場合、falseが返されるようにする。*/
 #define ALLOCATE(varType, varName) varType* varName = new (std::nothrow) varType()
-
-#pragma endregion
-//#########################################################################

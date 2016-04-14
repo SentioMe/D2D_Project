@@ -10,6 +10,18 @@
     <Filter Include="Extension">
       <UniqueIdentifier>{b8dac98e-67dd-4fca-aea4-d3b97c163dab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Scene">
+      <UniqueIdentifier>{e6f004fb-0494-4837-8683-95f8e71ebc3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Sprite">
+      <UniqueIdentifier>{75c36eca-f7db-45e3-8402-09ad996cfcd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Label">
+      <UniqueIdentifier>{56d251c0-756c-4adb-a1f9-f888eee00219}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\Abstraction">
+      <UniqueIdentifier>{d4b95917-24e0-4167-9285-6c0d489d7edb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SentioD2D.h" />
@@ -20,7 +32,28 @@
     <ClInclude Include="System\BagicNode.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\StringUtil.h">
+    <ClInclude Include="System\Sprite\Sprite.h">
+      <Filter>System\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Label\Label.h">
+      <Filter>System\Label</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Scene\Scene.h">
+      <Filter>System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Scene\SceneLoader.h">
+      <Filter>System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Sprite\Texture.h">
+      <Filter>System\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Sprite\TextureCashe.h">
+      <Filter>System\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Abstraction\Singleton.h">
+      <Filter>Utility\Abstraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\GenericUtil.h">
       <Filter>Utility</Filter>
     </ClInclude>
     <ClInclude Include="Utility\MathUtil.h">
@@ -29,13 +62,7 @@
     <ClInclude Include="Utility\Random.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="System\Label.h">
-      <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="System\Sprite.h">
-      <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\GenericUtil.h">
+    <ClInclude Include="Utility\StringUtil.h">
       <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,7 +71,25 @@
     <ClCompile Include="System\BagicNode.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\StringUtil.cpp">
+    <ClCompile Include="System\Sprite\Sprite.cpp">
+      <Filter>System\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Label\Label.cpp">
+      <Filter>System\Label</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Scene\Scene.cpp">
+      <Filter>System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Scene\SceneLoader.cpp">
+      <Filter>System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Sprite\Texture.cpp">
+      <Filter>System\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Sprite\TextureCashe.cpp">
+      <Filter>System\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\GenericUtil.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
     <ClCompile Include="Utility\MathUtil.cpp">
@@ -53,13 +98,7 @@
     <ClCompile Include="Utility\Random.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
-    <ClCompile Include="System\Sprite.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="System\Label.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility\GenericUtil.cpp">
+    <ClCompile Include="Utility\StringUtil.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>

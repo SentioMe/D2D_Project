@@ -21,9 +21,14 @@
   <ItemGroup>
     <ClInclude Include="SentioD2D.h" />
     <ClInclude Include="System\BagicNode.h" />
-    <ClInclude Include="System\Label.h" />
-    <ClInclude Include="System\Sprite.h" />
+    <ClInclude Include="System\Label\Label.h" />
+    <ClInclude Include="System\Scene\Scene.h" />
+    <ClInclude Include="System\Scene\SceneLoader.h" />
+    <ClInclude Include="System\Sprite\Sprite.h" />
+    <ClInclude Include="System\Sprite\Texture.h" />
+    <ClInclude Include="System\Sprite\TextureCashe.h" />
     <ClInclude Include="UsingLibrary.h" />
+    <ClInclude Include="Utility\Abstraction\Singleton.h" />
     <ClInclude Include="Utility\GenericUtil.h" />
     <ClInclude Include="Utility\Macro.h" />
     <ClInclude Include="Utility\MathUtil.h" />
@@ -36,8 +41,12 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SentioD2D.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="System\BagicNode.cpp" />
-    <ClCompile Include="System\Label.cpp" />
-    <ClCompile Include="System\Sprite.cpp" />
+    <ClCompile Include="System\Label\Label.cpp" />
+    <ClCompile Include="System\Scene\Scene.cpp" />
+    <ClCompile Include="System\Scene\SceneLoader.cpp" />
+    <ClCompile Include="System\Sprite\Sprite.cpp" />
+    <ClCompile Include="System\Sprite\Texture.cpp" />
+    <ClCompile Include="System\Sprite\TextureCashe.cpp" />
     <ClCompile Include="Utility\GenericUtil.cpp" />
     <ClCompile Include="Utility\MathUtil.cpp" />
     <ClCompile Include="Utility\Random.cpp" />
