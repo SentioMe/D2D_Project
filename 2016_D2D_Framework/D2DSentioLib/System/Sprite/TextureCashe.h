@@ -6,16 +6,14 @@
 */
 namespace DXLib
 {
-	class TextureCashe
+	class TextureCashe sealed : public Singleton<TextureCashe>
 	{
-	public:
+	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		TextureCashe(void)
 		{
-
 		}
-		~TextureCashe(void)
+		~TextureCashe(void) override
 		{
-
 		}
 	};
 

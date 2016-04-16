@@ -10,7 +10,7 @@ namespace DXLib
 	@class Random
 	@brief 乱数を派生してくれる静的関数の集まり
 	*/
-	class Random
+	class Random sealed
 	{
 	public:
 		static int GetInt(void);

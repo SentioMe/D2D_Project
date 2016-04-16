@@ -10,7 +10,7 @@ namespace DXLib
 	@class GenericUtil
 	@brief テンプレートを使って作成された静的関数の集まり
 	*/
-	class GenericUtil
+	class GenericUtil sealed
 	{
 	public:
 

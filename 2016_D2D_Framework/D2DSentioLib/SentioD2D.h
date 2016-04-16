@@ -5,12 +5,13 @@
 @brief　Direct2Dの開発環境を提供する静的ライブラリーのファイル
 */
 
-
+#include "LibConfig.h"
 #include "UsingLibrary.h"
 
 //###################################################################
 #pragma region Utility
 #include "Utility\Abstraction\Singleton.h"
+#include "Utility\Abstraction\IUpdatable.h"
 #include "Utility\Macro.h"
 #include "Utility\Random.h"
 #include "Utility\MathUtil.h"

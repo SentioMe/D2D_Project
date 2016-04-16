@@ -10,7 +10,7 @@ namespace DXLib
 	@class StringUtil
 	@brief 文字列の使う事をサポートする静的関数の集まり
 	*/
-	class StringUtil
+	class StringUtil sealed
 	{
 	public:
 //#########################################################

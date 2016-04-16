@@ -16,22 +16,23 @@ namespace DXLib
 		typedef std::vector<BagicNode*> NodeContainer;
 		typedef std::vector<BagicNode*>::iterator NodeContainerIter;
 
+	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		BagicNode(void)
 			: _parent(nullptr), _isAlive(true), _isActive(false),
 			_name(StringUtil::STRING_EMPTY), _tag(0)
 		{
 			this->_children.clear();
 		}
-		~BagicNode(void)
+		virtual~BagicNode(void)
 		{
 			this->Release();
 		}
 
 	public:
 		/** cocos2Dの方法で、割り当てます。*/
-		static BagicNode* Create(void);
+		static BagicNode* Create(const std::string& name_ = StringUtil::STRING_EMPTY);
 		/** @warning 初期化の関数はパラメータが様様なので, 仮想関数で取り扱いして再定義する事を禁止します。*/
-		bool Initialize(void);
+		bool Initialize(const std::string& name_);
 
 //#########################################################################
 #pragma region Virtual Function
@@ -41,7 +42,7 @@ namespace DXLib
 		virtual void Release(bool isDestroyImmediate_ = true);
 
 		/** C#の方法で、記述を定義します。*/
-		virtual std::string ToString(void) const;
+		virtual std::string& ToString(void) const;
 #pragma endregion
 //#########################################################################
 

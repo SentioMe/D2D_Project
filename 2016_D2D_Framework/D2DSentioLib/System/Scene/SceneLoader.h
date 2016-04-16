@@ -6,23 +6,33 @@
 */
 namespace DXLib
 {
-	class SceneLoader : Singleton<SceneLoader>
+	class SceneLoader sealed : public Singleton<SceneLoader>, public IUpdatable
 	{
-	private:
+	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		SceneLoader(void)
+			: _runningScene(nullptr)
 		{
 		}
 		~SceneLoader(void) override
 		{
 		}
 
+
 	public:
-		Scene* ReplaceScene(const Scene* scene_);
-		Scene* PushScene(const Scene* scene_);
+		void Update(float deltaTime) override;
+
+		void ReplaceScene(const Scene* scene_);
+		void PushScene(const Scene* scene_);
 		void PopScene(void);
 
+		
+
 	private:
-		Scene* _currentScene;
+		Scene* _nextScene;
+		std::stack<Scene*> _sceneStack;
+		std::map<std::string, Scene*> _sceneMap; 
+		
+		PROPERTY_GET(Scene*, _runningScene, CurrentScene);
 	};
 	
 }

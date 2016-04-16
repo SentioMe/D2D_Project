@@ -65,6 +65,10 @@
     <ClInclude Include="Utility\StringUtil.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\Abstraction\IUpdatable.h">
+      <Filter>Utility\Abstraction</Filter>
+    </ClInclude>
+    <ClInclude Include="LibConfig.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SentioD2D.cpp" />

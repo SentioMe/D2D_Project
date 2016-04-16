@@ -8,12 +8,12 @@ namespace DXLib
 {
 	class Sprite : public BagicNode
 	{
-	public:
+	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		Sprite(void)
 		{
 
 		}
-		~Sprite(void)
+		virtual ~Sprite(void) override
 		{
 
 		}

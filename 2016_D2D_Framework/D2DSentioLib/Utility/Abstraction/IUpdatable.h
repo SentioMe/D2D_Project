@@ -6,17 +6,8 @@
 */
 namespace DXLib
 {
-	class Label : public BagicNode
+	__interface IUpdatable
 	{
-	SL_CONSTRUCTOR_ACCESS_LEVEL:
-		Label(void)
-		{
-
-		}
-		virtual ~Label(void) override
-		{
-
-		}
+	void Update(float deltaTime);
 	};
-
 }

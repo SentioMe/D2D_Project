@@ -6,11 +6,11 @@ namespace DXLib
 	typedef BagicNode::NodeContainer NodeContainer;
 
 
-	BagicNode* BagicNode::Create(void)
+	BagicNode* BagicNode::Create(const std::string& name_)
 	{
 		ALLOCATE(BagicNode, newNode);
 		
-		if (false == newNode || false == newNode->Initialize())
+		if (false == newNode || false == newNode->Initialize(name_))
 		{
 			SAFE_DELETE(newNode);
 		}
@@ -18,8 +18,9 @@ namespace DXLib
 		return newNode;
 	}
 
-	bool BagicNode::Initialize(void)
+	bool BagicNode::Initialize(const std::string& name_)
 	{
+		this->_name = name_;
 		return true;
 	}
 #pragma region Virtual Function
@@ -37,7 +38,7 @@ namespace DXLib
 
 	}
 
-	std::string BagicNode::ToString(void) const
+	std::string& BagicNode::ToString(void) const
 	{
 		return StringUtil::Format(
 			"%s_Node (Tag : %d)", this->_name.c_str(), this->_tag);

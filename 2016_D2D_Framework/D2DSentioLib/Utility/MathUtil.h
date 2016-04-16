@@ -10,7 +10,7 @@ namespace DXLib
 	@class MathUtil
 	@brief 算術の演算をサポートする静的関数の集まり
 	*/
-	class MathUtil
+	class MathUtil sealed
 	{
 	public:
 //#########################################################

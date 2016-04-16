@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include <assert.h>
-
+#include "LibConfig.h"
 /**
 @namespace DXLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
@@ -13,7 +13,7 @@ namespace DXLib
 	private:
 		static T* _instance;
 
-	protected:
+	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		Singleton(void)
 		{
 

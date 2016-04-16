@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LibConfig.h" />
     <ClInclude Include="SentioD2D.h" />
     <ClInclude Include="System\BagicNode.h" />
     <ClInclude Include="System\Label\Label.h" />
@@ -28,6 +29,7 @@
     <ClInclude Include="System\Sprite\Texture.h" />
     <ClInclude Include="System\Sprite\TextureCashe.h" />
     <ClInclude Include="UsingLibrary.h" />
+    <ClInclude Include="Utility\Abstraction\IUpdatable.h" />
     <ClInclude Include="Utility\Abstraction\Singleton.h" />
     <ClInclude Include="Utility\GenericUtil.h" />
     <ClInclude Include="Utility\Macro.h" />
