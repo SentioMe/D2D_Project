@@ -9,3 +9,12 @@
 2016_D2D_Framework/ipch/D2DSENTIOLIB-8bf86b9a/D2DSENTIOLIB-e2b6484f.ipch
 2016_D2D_Framework/D2DTestPart/Debug/D2DTestPart.tlog/D2DTestPart.lastbuildstate
 2016_D2D_Framework/2016_D2D_Framework.sdf
+*.obj
+*.tlog
+*.log
+*.ipch
+2016_D2D_Framework/x64/Debug/D2DSentioLib.lib
+2016_D2D_Framework/D2DSentioLib/x64/Debug/vc120.pdb
+2016_D2D_Framework/D2DSentioLib/x64/Debug/vc120.idb
+2016_D2D_Framework/D2DSentioLib/x64/Debug/D2DSentioLib.pch
+2016_D2D_Framework/2016_D2D_Framework.v12.suo
