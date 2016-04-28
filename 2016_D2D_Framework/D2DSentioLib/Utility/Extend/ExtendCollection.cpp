@@ -1,5 +1,5 @@
 #include "SentioD2D.h"
-#include "GenericUtil.h"
+#include "ExtendCollection.h"
 
 namespace DXLib
 {

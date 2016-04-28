@@ -7,10 +7,10 @@
 namespace DXLib
 {
 	/**
-	@class StringUtil
+	@class ExtendString
 	@brief 文字列の使う事をサポートする静的関数の集まり
 	*/
-	class StringUtil sealed
+	class ExtendString sealed
 	{
 	public:
 //#########################################################
@@ -24,12 +24,10 @@ namespace DXLib
 #pragma region Convert Methode
 
 		/** wstringタイプの文字列の変数を stringタイプで変換します。*/
-		static void WStringToString(OUT std::string& output_, IN const std::wstring& input_);
-		static const std::string WStringToString(IN const std::wstring& input_);
+		static const std::string& WStringToString(const std::wstring& input);
 
 		/** stringタイプの文字列の変数を wstringタイプで変換します。*/
-		static void StringToWString(OUT std::wstring& output_, IN const std::string& input_);
-		static const std::wstring StringToWString(IN const std::string& input_);
+		static const std::wstring& StringToWString(const std::string& input);
 
 #pragma endregion
 //#########################################################
@@ -38,11 +36,11 @@ namespace DXLib
 #pragma region Adjust Methode
 
 		/** 文字列の形式に合わせて、伝達されたパラメータ達を一つの文字列でへんかんします。*/
-		static std::string Format(const char* format_, ...);
+		static std::string Format(const char* format, ...);
 
 		/** 文字列の両断から必要ない空白を削除します。*/
-		static void Trim(OUT std::wstring& output_, OPTIONAL bool left_ = true, OPTIONAL bool right_ = true);
-		static void Trim(OUT std::string& output_, OPTIONAL bool left_ = true, OPTIONAL bool right_ = true);
+		static void Trim(OUT std::wstring& output, OPTIONAL bool left = true, OPTIONAL bool right = true);
+		static void Trim(OUT std::string& output, OPTIONAL bool left = true, OPTIONAL bool right = true);
 
 #pragma endregion
 //#########################################################

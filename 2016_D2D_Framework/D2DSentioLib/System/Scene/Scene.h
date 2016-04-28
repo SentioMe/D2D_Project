@@ -19,15 +19,15 @@ namespace DXLib
 		}
 	public:
 		/** cocos2Dの方法で、割り当てます。*/
-		static Scene* Create(const std::string& name_ = StringUtil::STRING_EMPTY);
+		static Scene* Create(const std::string& name = ExtendString::STRING_EMPTY);
 		/** @warning 初期化の関数はパラメータが様様なので, 仮想関数で取り扱いして再定義する事を禁止します。*/
-		bool Initialize(const std::string& name_);
+		bool Initialize(const std::string& name);
 
 		//#########################################################################
 #pragma region Virtual Function
 		/** メンバーのメモリーを解除します。
 		@param　bool isDestroyImmediate_ trueならば、子供のノード達を破壊します。（基本 ： true）*/
-		virtual void Release(bool isDestroyImmediate_ = true) override;
+		virtual void Release(bool isDestroyImmediate = true) override;
 
 		/** C#の方法で、記述を定義します。*/
 		virtual std::string& ToString(void) const override;

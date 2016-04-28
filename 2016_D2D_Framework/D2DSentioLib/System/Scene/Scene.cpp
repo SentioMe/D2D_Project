@@ -6,16 +6,17 @@ namespace DXLib
 
 
 #pragma region Virtual Function
-	void Scene::Release(bool isDestroyImmediate_)
+	void Scene::Release(bool isDestroyImmediate)
 	{
-		BagicNode::Release(isDestroyImmediate_);
+		BagicNode::Release(isDestroyImmediate);
 		
 	}
 
 	std::string& Scene::ToString(void) const
 	{
-		return StringUtil::Format(
+		return ExtendString::Format(
 			"%s_Node (Tag : %d)", this->_name.c_str(), this->_tag);
 	}
+
 #pragma endregion
 }

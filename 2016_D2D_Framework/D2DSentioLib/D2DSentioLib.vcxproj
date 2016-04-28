@@ -19,8 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Director.h" />
     <ClInclude Include="LibConfig.h" />
     <ClInclude Include="SentioD2D.h" />
+    <ClInclude Include="Share\tinyxml2.h" />
     <ClInclude Include="System\BagicNode.h" />
     <ClInclude Include="System\Label\Label.h" />
     <ClInclude Include="System\Scene\Scene.h" />
@@ -29,19 +31,24 @@
     <ClInclude Include="System\Sprite\Texture.h" />
     <ClInclude Include="System\Sprite\TextureCashe.h" />
     <ClInclude Include="UsingLibrary.h" />
-    <ClInclude Include="Utility\Abstraction\IUpdatable.h" />
-    <ClInclude Include="Utility\Abstraction\Singleton.h" />
-    <ClInclude Include="Utility\GenericUtil.h" />
+    <ClInclude Include="Utility\Abstract\IUpdatable.h" />
+    <ClInclude Include="Utility\Abstract\IXMLSerializable.h" />
+    <ClInclude Include="Utility\Abstract\Singleton.h" />
+    <ClInclude Include="Utility\Extend\ExtendCollection.h" />
+    <ClInclude Include="Utility\Extend\ExtendMath.h" />
+    <ClInclude Include="Utility\Extend\ExtendString.h" />
     <ClInclude Include="Utility\Macro.h" />
-    <ClInclude Include="Utility\MathUtil.h" />
     <ClInclude Include="Utility\Random.h" />
-    <ClInclude Include="Utility\StringUtil.h" />
+    <ClInclude Include="Utility\XMLSerializer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Director.cpp" />
     <ClCompile Include="SentioD2D.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SentioD2D.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Share\tinyxml2.cpp" />
     <ClCompile Include="System\BagicNode.cpp" />
     <ClCompile Include="System\Label\Label.cpp" />
     <ClCompile Include="System\Scene\Scene.cpp" />
@@ -49,10 +56,11 @@
     <ClCompile Include="System\Sprite\Sprite.cpp" />
     <ClCompile Include="System\Sprite\Texture.cpp" />
     <ClCompile Include="System\Sprite\TextureCashe.cpp" />
-    <ClCompile Include="Utility\GenericUtil.cpp" />
-    <ClCompile Include="Utility\MathUtil.cpp" />
+    <ClCompile Include="Utility\Extend\ExtendCollection.cpp" />
+    <ClCompile Include="Utility\Extend\ExtendMath.cpp" />
+    <ClCompile Include="Utility\Extend\ExtendString.cpp" />
     <ClCompile Include="Utility\Random.cpp" />
-    <ClCompile Include="Utility\StringUtil.cpp" />
+    <ClCompile Include="Utility\XMLSerializer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6FEEE1CB-885B-4977-91EC-9D6A6B6AED92}</ProjectGuid>
@@ -77,7 +85,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -109,6 +117,10 @@
     <IncludePath>$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -124,11 +136,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>SentioD2D.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

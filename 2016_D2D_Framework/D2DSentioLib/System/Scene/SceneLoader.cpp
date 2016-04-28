@@ -3,10 +3,10 @@
 
 namespace DXLib
 {
-	void SceneLoader::ReplaceScene(const Scene * scene_)
+	void SceneLoader::ReplaceScene(const Scene * scene)
 	{
 	}
-	void SceneLoader::PushScene(const Scene * scene_)
+	void SceneLoader::PushScene(const Scene * scene)
 	{
 	}
 	void SceneLoader::PopScene(void)

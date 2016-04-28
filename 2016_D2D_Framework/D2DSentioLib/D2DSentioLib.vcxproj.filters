@@ -7,9 +7,6 @@
     <Filter Include="System">
       <UniqueIdentifier>{55011021-4c83-4dca-b968-0314ba57a68a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Extension">
-      <UniqueIdentifier>{b8dac98e-67dd-4fca-aea4-d3b97c163dab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="System\Scene">
       <UniqueIdentifier>{e6f004fb-0494-4837-8683-95f8e71ebc3d}</UniqueIdentifier>
     </Filter>
@@ -19,7 +16,13 @@
     <Filter Include="System\Label">
       <UniqueIdentifier>{56d251c0-756c-4adb-a1f9-f888eee00219}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utility\Abstraction">
+    <Filter Include="Share">
+      <UniqueIdentifier>{c74eb70e-5bbb-4c71-b2d1-b078fc422ff2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\Extend">
+      <UniqueIdentifier>{80e079de-7ce9-4765-8a72-ce506e249f0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\Abstract">
       <UniqueIdentifier>{d4b95917-24e0-4167-9285-6c0d489d7edb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -50,25 +53,35 @@
     <ClInclude Include="System\Sprite\TextureCashe.h">
       <Filter>System\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Abstraction\Singleton.h">
-      <Filter>Utility\Abstraction</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\GenericUtil.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\MathUtil.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Utility\Random.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\StringUtil.h">
+    <ClInclude Include="LibConfig.h" />
+    <ClInclude Include="Director.h" />
+    <ClInclude Include="Share\tinyxml2.h">
+      <Filter>Share</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\XMLSerializer.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Abstraction\IUpdatable.h">
-      <Filter>Utility\Abstraction</Filter>
+    <ClInclude Include="Utility\Abstract\IUpdatable.h">
+      <Filter>Utility\Abstract</Filter>
     </ClInclude>
-    <ClInclude Include="LibConfig.h" />
+    <ClInclude Include="Utility\Abstract\Singleton.h">
+      <Filter>Utility\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Abstract\IXMLSerializable.h">
+      <Filter>Utility\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Extend\ExtendCollection.h">
+      <Filter>Utility\Extend</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Extend\ExtendMath.h">
+      <Filter>Utility\Extend</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Extend\ExtendString.h">
+      <Filter>Utility\Extend</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SentioD2D.cpp" />
@@ -93,17 +106,24 @@
     <ClCompile Include="System\Sprite\TextureCashe.cpp">
       <Filter>System\Sprite</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\GenericUtil.cpp">
-      <Filter>Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility\MathUtil.cpp">
-      <Filter>Utility</Filter>
-    </ClCompile>
     <ClCompile Include="Utility\Random.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\StringUtil.cpp">
+    <ClCompile Include="Director.cpp" />
+    <ClCompile Include="Share\tinyxml2.cpp">
+      <Filter>Share</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\XMLSerializer.cpp">
       <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Extend\ExtendCollection.cpp">
+      <Filter>Utility\Extend</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Extend\ExtendMath.cpp">
+      <Filter>Utility\Extend</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Extend\ExtendString.cpp">
+      <Filter>Utility\Extend</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

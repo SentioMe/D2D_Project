@@ -6,11 +6,11 @@ namespace DXLib
 	typedef BagicNode::NodeContainer NodeContainer;
 
 
-	BagicNode* BagicNode::Create(const std::string& name_)
+	BagicNode* BagicNode::Create(const std::string& name)
 	{
 		ALLOCATE(BagicNode, newNode);
 		
-		if (false == newNode || false == newNode->Initialize(name_))
+		if (false == newNode || false == newNode->Initialize(name))
 		{
 			SAFE_DELETE(newNode);
 		}
@@ -18,15 +18,15 @@ namespace DXLib
 		return newNode;
 	}
 
-	bool BagicNode::Initialize(const std::string& name_)
+	bool BagicNode::Initialize(const std::string& name)
 	{
-		this->_name = name_;
+		this->_name = name;
 		return true;
 	}
 #pragma region Virtual Function
-	void BagicNode::Release(bool isDestroyImmediate_)
+	void BagicNode::Release(bool isDestroyImmediate)
 	{
-		if (true == isDestroyImmediate_)
+		if (true == isDestroyImmediate)
 		{
 			for (BagicNode* child : _children)
 			{
@@ -40,45 +40,46 @@ namespace DXLib
 
 	std::string& BagicNode::ToString(void) const
 	{
-		return StringUtil::Format(
+		return ExtendString::Format(
 			"%s_Node (Tag : %d)", this->_name.c_str(), this->_tag);
 	}
 #pragma endregion
 
 #pragma region Node Function
-	void BagicNode::SetParent(BagicNode* parent_)
+	void BagicNode::SetParent(BagicNode* parent)
 	{
-		assert(parent_ != nullptr, "Parameter 'parent_' is null!");
+		assert(parent != nullptr, "Parameter 'parent_' is null!");
 
 		if (nullptr != this->_parent)
 		{
-			if (this->_parent == parent_)
+			if (this->_parent == parent)
 				return;
 
 			this->_parent->RemoveChild(this, false);
 		}
 
-		this->_parent = parent_;
+		this->_parent = parent;
 		this->_parent->_AddChild(this);
 	}
 
-	bool BagicNode::RemoveChild(BagicNode* child_, bool isDestroyImmediate_)
+	bool BagicNode::RemoveChild(BagicNode* child, bool isDestroyImmediate)
 	{
 		NodeContainerIter childIter;
-		if (GenericUtil::TryGetIterator(this->_children, child_, childIter))
+		if (ExtendCollection::TryGetIterator(this->_children, child, childIter))
 		{
 			this->_children.erase(childIter);
+			if (true == isDestroyImmediate)
+			{
+				SAFE_DELETE(child);
+			}
+
+			return true;
 		}
 
-		if (true == isDestroyImmediate_)
-		{
-			SAFE_DELETE(child_);
-		}
-		
 		return false;
 	}
 
-	BagicNode* BagicNode::FindChild(const std::string& name_)
+	BagicNode* BagicNode::FindChild(const std::string& name)
 	{
 		if (this->_children.empty())
 			return nullptr;
@@ -87,7 +88,7 @@ namespace DXLib
 
 		for (size_t i = 0; i < size; ++i)
 		{
-			if (this->_children[i]->GetName() == name_)
+			if (this->_children[i]->GetName() == name)
 			{
 				return _children[i];
 			}
@@ -96,7 +97,7 @@ namespace DXLib
 		return nullptr;
 	}
 
-	BagicNode* BagicNode::FindChild(int tag_)
+	BagicNode* BagicNode::FindChild(int tag)
 	{
 		if (this->_children.empty())
 			return nullptr;
@@ -105,7 +106,7 @@ namespace DXLib
 
 		for (size_t i = 0; i < size; ++i)
 		{
-			if (this->_children[i]->GetTag() == tag_)
+			if (this->_children[i]->GetTag() == tag)
 			{
 				return _children[i];
 			}
@@ -114,7 +115,7 @@ namespace DXLib
 		return nullptr;
 	}
 
-	NodeContainer& BagicNode::FindChildren(const std::string& name_)
+	NodeContainer& BagicNode::FindChildren(const std::string& name)
 	{
 		NodeContainer children;
 
@@ -122,7 +123,7 @@ namespace DXLib
 
 		for (size_t i = 0; i < size; ++i)
 		{
-			if (this->_children[i]->GetName() == name_)
+			if (this->_children[i]->GetName() == name)
 			{
 				children.push_back(this->_children[i]);
 			}
@@ -131,7 +132,7 @@ namespace DXLib
 		return children;
 	}
 
-	NodeContainer& BagicNode::FindChildren(int tag_)
+	NodeContainer& BagicNode::FindChildren(int tag)
 	{
 		NodeContainer children;
 
@@ -139,7 +140,7 @@ namespace DXLib
 
 		for (size_t i = 0; i < size; ++i)
 		{
-			if (this->_children[i]->GetTag() == tag_)
+			if (this->_children[i]->GetTag() == tag)
 			{
 				children.push_back(this->_children[i]);
 			}
@@ -148,11 +149,11 @@ namespace DXLib
 		return children;
 	}
 
-	void BagicNode::_AddChild(BagicNode* child_)
+	void BagicNode::_AddChild(BagicNode* child)
 	{
-		assert(child_ != nullptr, "Parameter 'child_' is null!");
+		assert(child != nullptr, "Parameter 'child' is null!");
 
-		this->_children.push_back(child_);
+		this->_children.push_back(child);
 	}
 #pragma endregion
 }

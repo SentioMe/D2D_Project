@@ -7,10 +7,10 @@
 namespace DXLib
 {
 	/**
-	@class MathUtil
+	@class ExtendMath
 	@brief 算術の演算をサポートする静的関数の集まり
 	*/
-	class MathUtil sealed
+	class ExtendMath sealed
 	{
 	public:
 //#########################################################
@@ -28,11 +28,20 @@ namespace DXLib
 //#########################################################
 #pragma region Convert Methode
 
-		static float DegreeToRadian(float degree_);
-		static float RadianToDegree(float radian_);
+		static float DegreeToRadian(float degree);
+		static float RadianToDegree(float radian);
 
 #pragma endregion
 //#########################################################
 
+//#########################################################
+#pragma region Rect Support Methode
+		static float GetRectWidth(const RECT& rect);
+		static float GetRectHeight(const RECT& rect);
+		static float GetRectCenterPositionX(const RECT& rect);
+		static float GetRectCenterPositionY(const RECT& rect);
+#pragma endregion
+//#########################################################
+		
 	};
 }

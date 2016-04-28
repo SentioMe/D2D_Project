@@ -21,8 +21,8 @@ namespace DXLib
 	public:
 		void Update(float deltaTime) override;
 
-		void ReplaceScene(const Scene* scene_);
-		void PushScene(const Scene* scene_);
+		void ReplaceScene(const Scene* scene);
+		void PushScene(const Scene* scene);
 		void PopScene(void);
 
 		

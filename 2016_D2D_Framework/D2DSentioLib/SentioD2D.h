@@ -10,13 +10,17 @@
 
 //###################################################################
 #pragma region Utility
-#include "Utility\Abstraction\Singleton.h"
-#include "Utility\Abstraction\IUpdatable.h"
+#include "Utility\Abstract\Singleton.h"
+#include "Utility\Abstract\IUpdatable.h"
+#include "Utility\Abstract\IXMLSerializable.h"
+
+#include "Utility\Extend\ExtendMath.h"
+#include "Utility\Extend\ExtendString.h"
+#include "Utility\Extend\ExtendCollection.h"
+
 #include "Utility\Macro.h"
 #include "Utility\Random.h"
-#include "Utility\MathUtil.h"
-#include "Utility\StringUtil.h"
-#include "Utility\GenericUtil.h"
+#include "Utility\XMLSerializer.h"
 #pragma endregion
 //###################################################################
 

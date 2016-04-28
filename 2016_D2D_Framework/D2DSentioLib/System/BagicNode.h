@@ -4,8 +4,10 @@
 @namespace DXLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
+
 namespace DXLib
 {
+	
 	/**
 	@class BagicNode
 	@brief シーングラフをなす様様のノード達の原型
@@ -19,7 +21,7 @@ namespace DXLib
 	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		BagicNode(void)
 			: _parent(nullptr), _isAlive(true), _isActive(false),
-			_name(StringUtil::STRING_EMPTY), _tag(0)
+			_name(ExtendString::STRING_EMPTY), _tag(0)
 		{
 			this->_children.clear();
 		}
@@ -30,16 +32,16 @@ namespace DXLib
 
 	public:
 		/** cocos2Dの方法で、割り当てます。*/
-		static BagicNode* Create(const std::string& name_ = StringUtil::STRING_EMPTY);
+		static BagicNode* Create(const std::string& name = ExtendString::STRING_EMPTY);
 		/** @warning 初期化の関数はパラメータが様様なので, 仮想関数で取り扱いして再定義する事を禁止します。*/
-		bool Initialize(const std::string& name_);
+		bool Initialize(const std::string& name);
 
 //#########################################################################
 #pragma region Virtual Function
 
 		/** メンバーのメモリーを解除します。
 		@param　bool isDestroyImmediate_ trueならば、子供のノード達を破壊します。（基本 ： true）*/
-		virtual void Release(bool isDestroyImmediate_ = true);
+		virtual void Release(bool isDestroyImmediate = true);
 
 		/** C#の方法で、記述を定義します。*/
 		virtual std::string& ToString(void) const;
@@ -51,10 +53,10 @@ namespace DXLib
 
 		/** このノードの親のノードを設定します。
 		すでに親のノードが有れば、そのノードの子供のノードの集まりから削除します。*/
-		void SetParent(BagicNode* parent_);
+		void SetParent(BagicNode* parent);
 		/** 子供のノードの集まりから伝達されたノードを削除します。
 		@see BagicNode::Release(bool) ブーリアンの事はこの関数を参照してください。*/
-		bool RemoveChild(BagicNode* child_, bool isDestroyImmediate_ = true);
+		bool RemoveChild(BagicNode* child, bool isDestroyImmediate = true);
 		/** このノードをシーングラフから削除しろ、とリクエストします。
 		ノードはリクエストがあったフレームの次のフレームで削除します。*/
 		inline void RequestDestroy(void) { this->_isAlive = false; }
@@ -63,16 +65,16 @@ namespace DXLib
 		/** 子供のノードの集まりから指定した名前のノードを探して返されします。*/
 		BagicNode* FindChild(const std::string& name_);
 		/** 子供のノードの集まりから指定したタグのノードを探して返されします。*/
-		BagicNode* FindChild(int tag_);
+		BagicNode* FindChild(int tag);
 		/** 子供のノードの集まりから指定した名前のノード達を探して返されします。*/
 		NodeContainer& FindChildren(const std::string& name_);
 		/** 子供のノードの集まりから指定したタグのノード達を探して返されします。*/
-		NodeContainer& FindChildren(int tag_);
+		NodeContainer& FindChildren(int tag);
 
 	protected:
 		/** 伝達されたノードを子供のノードの集まりに追加します。
 		@warning　この関数は例外処理をするために使用されます。*/
-		void _AddChild(BagicNode* child_);
+		void _AddChild(BagicNode* child);
 
 #pragma endregion
 //#########################################################################
