@@ -6,8 +6,9 @@
 */
 namespace DXLib
 {
-	__interface IUpdatable
+	class IUpdatable
 	{
-	void Update(float deltaTime);
+	public:
+		virtual void Update(float deltaTime) = 0;
 	};
 }

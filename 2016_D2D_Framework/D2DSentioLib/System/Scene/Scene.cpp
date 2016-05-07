@@ -12,7 +12,7 @@ namespace DXLib
 		
 	}
 
-	std::string& Scene::ToString(void) const
+	const std::string& Scene::ToString(void) const
 	{
 		return ExtendString::Format(
 			"%s_Node (Tag : %d)", this->_name.c_str(), this->_tag);

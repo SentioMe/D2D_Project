@@ -6,9 +6,13 @@
 */
 namespace DXLib
 {
-	__interface IXMLSerializable
+	class XMLSerializer;
+	class IXMLSerializable
 	{
-		bool Serialize(const char* path);
-		IXMLSerializable* Deserialize(const char path);
+	public:
+		virtual bool Serialize(const char* filePath) { return true; }
+		virtual bool Serialize(XMLSerializer* serializer)  { return true; }
+		virtual bool Deserialize(const char* filePath) { return true; }
+		virtual bool Deserialize(XMLSerializer* serializer)  { return true; }
 	};
 }

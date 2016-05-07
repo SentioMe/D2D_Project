@@ -15,6 +15,8 @@
 #pragma warning (disable: 4018)		//4018 意味 : 符号付きの値と無い値のマッチングに対しての警告
 #pragma warning (disable: 4311)		//4311 意味 : DWORD刑みたいな64Bitの値の移植性に対しての警告
 #pragma warning (disable: 4312)		//4312 意味 : DWORD刑みたいな64Bitの値の移植性に対しての警告
+#pragma warning (disable: 4002)		//4002 意味 : assertのマクロのパラメータが多過ぎな事に対しての警告
+#pragma warning (disable: 4172)		//4172 意味 : ローカルのアドレスを返されした事に対しての警告
 #endif
 #pragma endregion
 

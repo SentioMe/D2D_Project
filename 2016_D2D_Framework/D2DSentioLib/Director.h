@@ -31,8 +31,7 @@ namespace DXLib
 		
 
 	protected:
-		bool _CreateD2DDevice(const HWND hWnd);
-
+		bool _CreateD2DDevice(const HWND hWnd);;
 	private:
 		PROPERTY_GET(ID2D1Factory*, _d2dFactory, D2DFactory);
 		PROPERTY_GET(ID2D1HwndRenderTarget*, _renderTarget, RenderTarget);

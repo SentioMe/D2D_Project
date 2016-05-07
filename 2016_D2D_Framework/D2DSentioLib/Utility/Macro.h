@@ -22,12 +22,12 @@
 
 #define PROPERTY(varType, varName, funcName)\
 	protected: varType varName;\
-	public : inline const varType Get##funcName(void) const {return varName;}\
+	public : inline varType Get##funcName(void) const {return varName;}\
 	public : inline void Set##funcName(varType var) {varName = var;}
 
 #define PROPERTY_GET(varType, varName, funcName)\
 	protected: varType varName;\
-	public : inline const varType Get##funcName(void) const {return varName;}
+	public : inline varType Get##funcName(void) const {return varName;}
 
 #define PROPERTY_SET(varType, varName, funcName)\
 	protected: varType varName;\

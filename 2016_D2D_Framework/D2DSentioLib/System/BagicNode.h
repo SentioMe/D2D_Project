@@ -44,7 +44,7 @@ namespace DXLib
 		virtual void Release(bool isDestroyImmediate = true);
 
 		/** C#の方法で、記述を定義します。*/
-		virtual std::string& ToString(void) const;
+		virtual const std::string& ToString(void) const;
 #pragma endregion
 //#########################################################################
 

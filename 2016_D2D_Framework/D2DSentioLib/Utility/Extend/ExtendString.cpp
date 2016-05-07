@@ -29,7 +29,7 @@ namespace DXLib
 
 //#########################################################
 #pragma region Adjust Methode
-	std::string ExtendString::Format(const char * format, ...)
+	const std::string& ExtendString::Format(const char * format, ...)
 	{
 #define STRING_MAX_BUFFER_SIZE 1024
 		std::string ret;

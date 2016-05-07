@@ -36,7 +36,7 @@ namespace DXLib
 #pragma region Adjust Methode
 
 		/** 文字列の形式に合わせて、伝達されたパラメータ達を一つの文字列でへんかんします。*/
-		static std::string Format(const char* format, ...);
+		static const std::string& Format(const char* format, ...);
 
 		/** 文字列の両断から必要ない空白を削除します。*/
 		static void Trim(OUT std::wstring& output, OPTIONAL bool left = true, OPTIONAL bool right = true);

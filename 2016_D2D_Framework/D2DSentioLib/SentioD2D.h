@@ -9,6 +9,12 @@
 #include "UsingLibrary.h"
 
 //###################################################################
+#pragma region Share
+#include "Share\tinyxml2.h"
+#pragma endregion
+//###################################################################
+
+//###################################################################
 #pragma region Utility
 #include "Utility\Abstract\Singleton.h"
 #include "Utility\Abstract\IUpdatable.h"

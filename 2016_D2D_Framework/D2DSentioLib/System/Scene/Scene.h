@@ -30,7 +30,7 @@ namespace DXLib
 		virtual void Release(bool isDestroyImmediate = true) override;
 
 		/** C#の方法で、記述を定義します。*/
-		virtual std::string& ToString(void) const override;
+		virtual const std::string& ToString(void) const override;
 #pragma endregion
 		//#########################################################################
 	

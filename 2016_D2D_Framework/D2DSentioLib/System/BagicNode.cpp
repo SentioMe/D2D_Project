@@ -38,7 +38,7 @@ namespace DXLib
 
 	}
 
-	std::string& BagicNode::ToString(void) const
+	const std::string& BagicNode::ToString(void) const
 	{
 		return ExtendString::Format(
 			"%s_Node (Tag : %d)", this->_name.c_str(), this->_tag);

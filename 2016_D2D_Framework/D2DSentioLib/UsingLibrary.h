@@ -13,13 +13,14 @@
 #include <memory.h>			//for Control by buffer
 #include <tchar.h>			//for Control by string
 
-#include <string>			//for Use to string class
+#include <string>			//for Use to string
 
 #include <sstream>			//for Control by string
 #include <fstream>			//for Control by file
 
-#include <vector>			//for Use to vector class
-#include <map>				//for Use to map class
+#include <vector>			//for Use to vector container
+#include <map>				//for Use to map container
+#include <stack>			//for Use to stack container
 
 #include <cassert>			//for Use to CASSERT (Check error when compile)
 #include <assert.h>			//for Use to ASSERT (Check error when exequte)
