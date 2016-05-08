@@ -60,6 +60,8 @@ namespace DXLib
 		/** このノードをシーングラフから削除しろ、とリクエストします。
 		ノードはリクエストがあったフレームの次のフレームで削除します。*/
 		inline void RequestDestroy(void) { this->_isAlive = false; }
+		/** 伝達されたノードをシーングラフから削除しろ、とリクエストします。*/
+		inline static void RequestDestroy(BagicNode* node){ node->RequestDestroy(); }
 		/** このノードが生存しているか確認するため使用されます。*/
 		inline bool IsAlive(void) { return _isAlive; }
 		/** 子供のノードの集まりから指定した名前のノードを探して返されします。*/
@@ -71,6 +73,9 @@ namespace DXLib
 		/** 子供のノードの集まりから指定したタグのノード達を探して返されします。*/
 		NodeContainer& FindChildren(int tag);
 
+		/** ToString(void)を呼べる事でノードを文字列で変換します。*/
+		operator const char*();
+
 	protected:
 		/** 伝達されたノードを子供のノードの集まりに追加します。
 		@warning　この関数は例外処理をするために使用されます。*/
@@ -78,6 +83,7 @@ namespace DXLib
 
 #pragma endregion
 //#########################################################################
+
 	protected:
 		bool _isAlive;
 		NodeContainer _children;

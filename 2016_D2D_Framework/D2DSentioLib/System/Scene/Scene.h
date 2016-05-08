@@ -34,6 +34,7 @@ namespace DXLib
 #pragma endregion
 		//#########################################################################
 	
+
 	protected:
 		//PROPERTY(Camera* _defaultCamera, Camera);
 

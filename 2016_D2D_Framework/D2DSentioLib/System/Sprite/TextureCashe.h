@@ -6,7 +6,8 @@
 */
 namespace DXLib
 {
-	class TextureCashe sealed : public Singleton<TextureCashe>
+	class TextureCashe sealed :
+		public Singleton<TextureCashe>, public IXMLSerializable
 	{
 	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		TextureCashe(void)
@@ -15,6 +16,17 @@ namespace DXLib
 		~TextureCashe(void) override
 		{
 		}
+
+	public:
+
+//#########################################################################
+#pragma region Serialize Function
+		bool Serialize(const char* filePath){ return true; }
+		bool Serialize(XMLSerializer* serializer){ return true; }
+		bool Deserialize(const char* filePath){ return true; }
+		bool Deserialize(XMLSerializer* serializer){ return true; }
+#pragma endregion
+//#########################################################################
 	};
 
 }

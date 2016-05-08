@@ -6,7 +6,8 @@
 */
 namespace DXLib
 {
-	class SceneLoader sealed : public Singleton<SceneLoader>, public IUpdatable
+	class SceneLoader sealed : 
+		public Singleton<SceneLoader>, public IUpdatable
 	{
 	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		SceneLoader(void)

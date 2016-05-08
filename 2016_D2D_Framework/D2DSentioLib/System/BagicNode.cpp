@@ -5,7 +5,6 @@ namespace DXLib
 {
 	typedef BagicNode::NodeContainer NodeContainer;
 
-
 	BagicNode* BagicNode::Create(const std::string& name)
 	{
 		ALLOCATE(BagicNode, newNode);
@@ -155,5 +154,6 @@ namespace DXLib
 
 		this->_children.push_back(child);
 	}
+
 #pragma endregion
 }

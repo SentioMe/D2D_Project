@@ -10,6 +10,11 @@ namespace DXLib
 
 #define XML_ROOT "Root"
 
+	/**
+	@class XMLSerializer
+	@brief XMLの形式でSerializeをするClass
+			Share\tinyxml2を使います。
+	*/
 	class XMLSerializer sealed
 	{
 	public:
