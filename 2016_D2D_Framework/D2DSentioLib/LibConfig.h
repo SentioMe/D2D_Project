@@ -22,7 +22,7 @@
 
 #pragma region Enable constructor call
 #ifndef SL_ENABLE_NEW_OPERATOR
-#define SL_ENABLE_NEW_OPERATOR 0
+#define SL_ENABLE_NEW_OPERATOR 1
 #endif
 
 #ifndef SL_CONSTRUCTOR_ACCESS_LEVEL

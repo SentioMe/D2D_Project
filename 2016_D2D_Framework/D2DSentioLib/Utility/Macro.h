@@ -19,19 +19,31 @@
 //#########################################################################
 #pragma region Variable-Getter-Setter Synthesize : Create Property Macro
 
-
-#define PROPERTY(varType, varName, funcName)\
+#define Property(varType, varName, funcName)\
 	protected: varType varName;\
-	public : inline varType Get##funcName(void) const {return varName;}\
-	public : inline void Set##funcName(varType var) {varName = var;}
+	public : inline const varType& Get##funcName(void) {return varName;}\
+	public : inline void Set##funcName(const varType& var) {varName = var;}
 
-#define PROPERTY_GET(varType, varName, funcName)\
+#define PropertyReadonly(varType, varName, funcName)\
 	protected: varType varName;\
-	public : inline varType Get##funcName(void) const {return varName;}
+	public : inline const varType& Get##funcName(void) {return varName;}
 
-#define PROPERTY_SET(varType, varName, funcName)\
+#define PropertyWriteonly(varType, varName, funcName)\
 	protected: varType varName;\
-	public : inline void Set##funcName(varType var) {varName = var;}
+	public : inline void Set##funcName(const varType& var) {varName = var;}
+
+#define PtrProperty(varType, varName, funcName)\
+	protected: varType* varName;\
+	public : inline const varType* Get##funcName(void) const {return varName;}\
+	public : inline void Set##funcName(varType* var) {varName = var;}
+
+#define PtrPropertyReadonly(varType, varName, funcName)\
+	protected: varType* varName;\
+	public : inline const varType* Get##funcName(void) const {return varName;}
+
+#define PtrPropertyWriteonly(varType, varName, funcName)\
+	protected: varType* varName;\
+	public : inline void Set##funcName(varType* var) {varName = var;}
 
 #pragma endregion
 //#########################################################################

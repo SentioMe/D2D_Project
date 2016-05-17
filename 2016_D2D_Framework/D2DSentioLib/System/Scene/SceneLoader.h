@@ -33,7 +33,7 @@ namespace DXLib
 		std::stack<Scene*> _sceneStack;
 		std::map<std::string, Scene*> _sceneMap; 
 		
-		PROPERTY_GET(Scene*, _runningScene, CurrentScene);
+		PtrPropertyReadonly(Scene, _runningScene, CurrentScene);
 	};
 	
 }

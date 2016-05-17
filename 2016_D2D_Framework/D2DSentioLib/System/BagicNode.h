@@ -87,10 +87,10 @@ namespace DXLib
 	protected:
 		bool _isAlive;
 		NodeContainer _children;
-		PROPERTY_GET(BagicNode*, _parent, Parent);
-		PROPERTY(bool, _isActive, IsActive);
-		PROPERTY(std::string, _name, Name);
-		PROPERTY(int, _tag, Tag);
+		PtrPropertyReadonly(BagicNode, _parent, Parent);
+		Property(bool, _isActive, IsActive);
+		Property(std::string, _name, Name);
+		Property(int, _tag, Tag);
 	};
 
 

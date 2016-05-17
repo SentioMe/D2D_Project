@@ -32,7 +32,8 @@
 
 //###################################################################
 #pragma region System
-
+#include "System\Director.h"
+#include "System\Application.h"
 #include "System\BagicNode.h"
 
 #include "System\Sprite\Texture.h"

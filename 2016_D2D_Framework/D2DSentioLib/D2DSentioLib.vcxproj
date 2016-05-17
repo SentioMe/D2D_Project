@@ -19,11 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Director.h" />
     <ClInclude Include="LibConfig.h" />
     <ClInclude Include="SentioD2D.h" />
     <ClInclude Include="Share\tinyxml2.h" />
+    <ClInclude Include="System\Application.h" />
     <ClInclude Include="System\BagicNode.h" />
+    <ClInclude Include="System\Director.h" />
     <ClInclude Include="System\Label\Label.h" />
     <ClInclude Include="System\Scene\Scene.h" />
     <ClInclude Include="System\Scene\SceneLoader.h" />
@@ -42,14 +43,15 @@
     <ClInclude Include="Utility\XMLSerializer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Director.cpp" />
     <ClCompile Include="SentioD2D.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SentioD2D.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Share\tinyxml2.cpp" />
+    <ClCompile Include="System\Application.cpp" />
     <ClCompile Include="System\BagicNode.cpp" />
+    <ClCompile Include="System\Director.cpp" />
     <ClCompile Include="System\Label\Label.cpp" />
     <ClCompile Include="System\Scene\Scene.cpp" />
     <ClCompile Include="System\Scene\SceneLoader.cpp" />
