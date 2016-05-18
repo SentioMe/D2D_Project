@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#include "Test.h"
+
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 					   _In_opt_ HINSTANCE hPrevInstance,
 					   _In_ LPTSTR lpCmdLine,
@@ -8,5 +10,10 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-	return 0;
+	//DXLib::Application app;
+	//app.SetRenderingFrameCount(60);
+	
+	Test test;
+
+	return test.RunTest();
 }

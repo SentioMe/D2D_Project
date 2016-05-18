@@ -1,5 +1,8 @@
 ﻿#pragma once
 
+#ifndef __MACRO_H__
+#define __MACRO_H__
+
 //#########################################################################
 #pragma region Safe Macro
 
@@ -53,3 +56,5 @@
 C++での動的なメモリーの割り当てに失敗した場合、std::bad_allocと値が返され、真偽を判断することができなくなる。
 そのためにstd::nothrowを宣言して失敗した場合、falseが返されるようにする。*/
 #define ALLOCATE(varType, varName) varType* varName = new (std::nothrow) varType()
+
+#endif //!__MACRO_H__

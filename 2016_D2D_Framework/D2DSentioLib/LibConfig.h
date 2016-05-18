@@ -1,5 +1,8 @@
 ﻿#pragma once
 
+#ifndef __LIB_CONFIG_H__
+#define __LIB_CONFIG_H__
+
 /**
 @brief　プリプロセッサを使ってライブラリーの設定を定義する。
 */
@@ -34,3 +37,5 @@
 #endif
 
 #pragma endregion
+
+#endif //!__LIB_CONFIG_H__

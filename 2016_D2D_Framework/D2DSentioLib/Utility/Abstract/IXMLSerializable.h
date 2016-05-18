@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#ifndef __DXLIB_IXMLSERIALIZABLE_H__
+#define __DXLIB_IXMLSERIALIZABLE_H__
 /**
 @namespace DXLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
@@ -24,3 +26,4 @@ namespace DXLib
 		bool Deserialize(XMLSerializer* serializer);
 	};
 }
+#endif //!__DXLIB_IXMLSERIALIZABLE_H__

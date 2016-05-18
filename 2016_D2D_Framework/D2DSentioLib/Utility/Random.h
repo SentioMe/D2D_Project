@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#ifndef __DXLIB_RANDOM_H__
+#define __DXLIB_RANDOM_H__
 /**
 @namespace DXLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
@@ -21,3 +23,4 @@ namespace DXLib
 		static float RangeFloat(float min, float max);
 	};
 }
+#endif //!__DXLIB_RANDOM_H__

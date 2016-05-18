@@ -1,5 +1,8 @@
 ﻿#pragma once
 
+
+#ifndef __DXLIB_APPLICATION_H__
+#define __DXLIB_APPLICATION_H__
 /**
 @namespace DXLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
@@ -13,7 +16,7 @@ namespace DXLib
 	};
 
 	class Application sealed :
-		public Singleton<Application>, public IXMLSerializable
+		public Singleton<Application>
 	{
 	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		Application(void)
@@ -36,3 +39,5 @@ namespace DXLib
 	};
 
 }
+
+#endif //!__DXLIB_APPLICATION_H__

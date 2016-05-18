@@ -18,3 +18,7 @@
 2016_D2D_Framework/D2DSentioLib/x64/Debug/vc120.idb
 2016_D2D_Framework/D2DSentioLib/x64/Debug/D2DSentioLib.pch
 2016_D2D_Framework/2016_D2D_Framework.v12.suo
+*.idb
+2016_D2D_Framework/D2DTestPart/x64/Debug/vc120.pdb
+*.pch
+2016_D2D_Framework/x64/Debug/D2DTestPart.pdb

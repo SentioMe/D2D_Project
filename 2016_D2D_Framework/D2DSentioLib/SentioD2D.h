@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#ifndef __SENTIO_D2D_H__
+#define __SENTIO_D2D_H__
 
 /**
 @brief　Direct2Dの開発環境を提供する静的ライブラリーのファイル
@@ -34,6 +36,7 @@
 #pragma region System
 #include "System\Director.h"
 #include "System\Application.h"
+
 #include "System\BagicNode.h"
 
 #include "System\Sprite\Texture.h"
@@ -52,3 +55,5 @@
 #pragma region Extension
 #pragma endregion
 //###################################################################
+
+#endif //!__SENTIO_D2D_H__

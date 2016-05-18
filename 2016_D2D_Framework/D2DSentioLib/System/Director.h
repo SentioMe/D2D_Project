@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 
+#ifndef __DXLIB_DIRECTOR_H__
+#define __DXLIB_DIRECTOR_H__
 /**
 @namespace DXLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
@@ -38,3 +40,5 @@ namespace DXLib
 	};
 
 }
+
+#endif //!__DXLIB_DIRECTOR_H__

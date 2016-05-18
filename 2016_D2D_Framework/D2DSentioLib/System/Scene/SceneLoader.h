@@ -1,4 +1,8 @@
 ﻿#pragma once
+
+#ifndef __DXLIB_SCENE_LOADER_H__
+#define __DXLIB_SCENE_LOADER_H__
+
 #include <stack>
 /**
 @namespace DXLib
@@ -37,3 +41,4 @@ namespace DXLib
 	};
 	
 }
+#endif //!__DXLIB_SCENE_LOADER_H__

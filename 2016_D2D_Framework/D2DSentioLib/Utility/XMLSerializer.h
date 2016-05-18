@@ -1,5 +1,8 @@
 ﻿#pragma once
-#include <typeinfo.h>
+
+#ifndef __DXLIB_XML_SERIALIZER_H__
+#define __DXLIB_XML_SERIALIZER_H__
+
 /**
 @namespace DXLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
@@ -138,3 +141,5 @@ namespace DXLib
 		_levelStack.pop();
 	}
 }
+
+#endif //!__DXLIB_XML_SERIALIZER_H__

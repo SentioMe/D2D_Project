@@ -1,4 +1,8 @@
 ﻿#pragma once
+
+#ifndef __DXLIB_SINGLETON_H__
+#define __DXLIB_SINGLETON_H__
+
 #include <assert.h>
 #include "LibConfig.h"
 /**
@@ -40,6 +44,8 @@ namespace DXLib
 	{
 		assert(!_instance && "A instance of singleton is already created");
 		_instance = new (std::nothrow) T();
+
+		return _instance;
 	}
 
 	template<typename T>
@@ -64,3 +70,5 @@ namespace DXLib
 		return *_instance;
 	}
 }
+
+#endif //!__DXLIB_SINGLETON_H__

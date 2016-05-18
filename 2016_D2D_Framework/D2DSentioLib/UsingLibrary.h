@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#ifndef __USING_LIBRARY_H__
+#define __USING_LIBRARY_H__
 
 /**
 @brief　汎用的に使用しているライブラリー達を含める。
@@ -24,3 +26,5 @@
 
 #include <cassert>			//for Use to CASSERT (Check error when compile)
 #include <assert.h>			//for Use to ASSERT (Check error when exequte)
+
+#endif //!__USING_LIBRARY_H__
