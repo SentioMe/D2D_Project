@@ -22,3 +22,7 @@
 2016_D2D_Framework/D2DTestPart/x64/Debug/vc120.pdb
 *.pch
 2016_D2D_Framework/x64/Debug/D2DTestPart.pdb
+2016_D2D_Framework/2016_D2D_Framework.opensdf
+2016_D2D_Framework/x64/Debug/D2DTestPart.exe
+2016_D2D_Framework/x64/Debug/D2DTestPart.ilk
+2016_D2D_Framework/D2DTestPart/D2DTestPart.vcxproj.user

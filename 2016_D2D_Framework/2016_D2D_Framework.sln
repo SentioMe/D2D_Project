@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D2DSentioLib", "D2DSentioLib\D2DSentioLib.vcxproj", "{6FEEE1CB-885B-4977-91EC-9D6A6B6AED92}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D2DTestPart", "D2DTestPart\D2DTestPart.vcxproj", "{D00E90D2-88D6-44DC-BBE3-6E9771773004}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6FEEE1CB-885B-4977-91EC-9D6A6B6AED92} = {6FEEE1CB-885B-4977-91EC-9D6A6B6AED92}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

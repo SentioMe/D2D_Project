@@ -38,8 +38,8 @@ namespace DXLib
 	{
 		assert(hWnd && "Device Error! Perhaps, you didn't pass a handle by window");
 
-
-		if (FAILED(::D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &this->_d2dFactory)))
+		
+		if (FAILED(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &this->_d2dFactory)))
 		{
 			SAFE_RELEASE(_d2dFactory);
 			assert("Device Error! Failed to create a factory");

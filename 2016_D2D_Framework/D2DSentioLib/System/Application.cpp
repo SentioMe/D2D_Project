@@ -14,7 +14,7 @@ namespace DXLib
 
 		QueryPerformanceCounter(&last);
 
-		Director& director = Director::Instance();
+		auto director = Director::Create();
 
 		while (true)
 		{
@@ -24,7 +24,7 @@ namespace DXLib
 			{
 				last.QuadPart = now.QuadPart - (now.QuadPart % _renderingInterval.QuadPart);
 
-				director.Run();
+				director->Run();
 			}
 			else
 			{
@@ -33,7 +33,7 @@ namespace DXLib
 
 		}
 
-		director.Destroy();
+		director->Destroy();
 
 		return 0;
 	}

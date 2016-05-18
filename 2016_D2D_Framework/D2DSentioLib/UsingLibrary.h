@@ -9,6 +9,7 @@
 
 #include <Windows.h>		//for Create a Window
 #include <D2D1.h>			//for Use to Direct2D
+#pragma comment(lib, "d2d1")
 
 #include <stdlib.h>			//for Use to stanard library
 #include <malloc.h>			//for Control by memory
