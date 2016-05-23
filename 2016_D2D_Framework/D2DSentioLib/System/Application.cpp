@@ -3,17 +3,36 @@
 
 namespace DXLib
 {
-	static void PVRFrameEnableControlWindow(bool bEnable);
+	Application::Application(void)
+		: _isRunning(false), _hInstance(nullptr), _hWnd(nullptr), _appCaptionMode(AppCaptionMode::NONE)
+	{
+		Singleton::_Overwrite(this);
+
+		memset(&_renderingInterval, 0, sizeof(LARGE_INTEGER));
+		_resourceRootPath.clear();
+	}
+
+	Application::~Application(void)
+	{
+	}
+
+	bool Application::Initialize(const std::string& resourceRootPath, const std::string& configDataPath)
+	{
+		this->_resourceRootPath = resourceRootPath;
+
+		XMLSerializer* serializer = XMLSerializer::Load(ExtendString::Format("%s/%s", _resourceRootPath.c_str(), configDataPath.c_str()).c_str());
+
+		return _OnInitialize();
+	}
 
 	int Application::Run(void)
 	{
-		PVRFrameEnableControlWindow(false);
+		return 0;
 
 		LARGE_INTEGER last;
 		LARGE_INTEGER now;
 
 		QueryPerformanceCounter(&last);
-
 		auto director = Director::Create();
 
 		while (true)
@@ -38,46 +57,98 @@ namespace DXLib
 		return 0;
 	}
 
-	void Application::SetRenderingFrameCount(int frameCount)
+	void Application::SetRenderingFrame(float frame)
 	{
-		float interval = 1.0f / (float)frameCount;
+		float interval = 1.0f / frame;
 		LARGE_INTEGER frequency;
 		QueryPerformanceFrequency(&frequency);
 		_renderingInterval.QuadPart = (LONGLONG)(interval * frequency.QuadPart);
 	}
 
 
-	static void PVRFrameEnableControlWindow(bool bEnable)
+	void Application::ShowCursor(bool isShow)
 	{
-		HKEY hKey = 0;
+		int cursorCount = 0;
 
-		// Open PVRFrame control key, if not exist create it.
-		if (ERROR_SUCCESS != RegCreateKeyExW(HKEY_CURRENT_USER,
-			L"Software\\Imagination Technologies\\PVRVFRame\\STARTUP\\",
-			0,
-			0,
-			REG_OPTION_NON_VOLATILE,
-			KEY_ALL_ACCESS,
-			0,
-			&hKey,
-			nullptr))
+		/**
+		@note :
+			WINAPI::ShowCursor(bool) =>
+			true를 넘기면 CursorCount를 1씩 증가시키고, 0이상이라면 출력
+			false를 넘기면 CursorCount를 1씩 감소시키고, 0미만이라면 미출력
+
+		*/
+
+		if (isShow)
 		{
-			return;
+			do
+			{
+				cursorCount = ::ShowCursor(isShow);
+			} while (cursorCount < 0);
+		}
+		else
+		{
+			do
+			{
+				cursorCount = ::ShowCursor(isShow);
+			} while (cursorCount > -1);
+		}
+	}
+
+	LRESULT CALLBACK _WinProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
+	{
+
+		Application* instance = Application::Instance();
+
+		switch (Msg)
+		{
+		case WM_ACTIVATE:
+		{
+			if (LOWORD(wParam) == WA_INACTIVE)
+			{
+				ClipCursor(0);
+			}
+			else
+			{
+				RECT rc = const_cast<Rect&>(instance->GetClippingRect());
+
+				if (!IsRectEmpty(&rc))
+					ClipCursor(&rc);
+
+				/*if (!IsRectEmpty())
+					ClipCursor(&_rect);*/
+			}
+		}
+		break;
+		case WM_SYSCOMMAND:
+		{
+		}
+		break;
+		case WM_MOUSEMOVE:
+		{
+		}
+		break;
+		case WM_MOUSEWHEEL:
+		{
+		}
+		break;
+		case WM_KEYDOWN:
+		{
+			if (wParam == VK_ESCAPE)
+				PostQuitMessage(0);
+		}
+		break;
+		case WM_DESTROY:
+		{
+			PostQuitMessage(0);
+		}
+		break;
 		}
 
-		const WCHAR* wszValue = L"hide_gui";
-		const WCHAR* wszNewData = (bEnable) ? L"NO" : L"YES";
-		WCHAR wszOldData[256] = { 0 };
-		DWORD   dwSize = sizeof(wszOldData);
-		LSTATUS status = RegQueryValueExW(hKey, wszValue, 0, nullptr, (LPBYTE)wszOldData, &dwSize);
-		if (ERROR_FILE_NOT_FOUND == status              // the key not exist
-			|| (ERROR_SUCCESS == status                 // or the hide_gui value is exist
-			&& 0 != wcscmp(wszNewData, wszOldData)))    // but new data and old data not equal
-		{
-			dwSize = sizeof(WCHAR) * (wcslen(wszNewData) + 1);
-			RegSetValueEx(hKey, wszValue, 0, REG_SZ, (const BYTE *)wszNewData, dwSize);
-		}
+		LRESULT result = 0;
 
-		RegCloseKey(hKey);
+		if (result == 0)
+			result = DefWindowProc(hWnd, Msg, wParam, lParam);
+
+		return result;
 	}
 }

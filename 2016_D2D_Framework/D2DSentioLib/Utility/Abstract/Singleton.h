@@ -26,12 +26,15 @@ namespace DXLib
 		{
 		}
 
+	protected:
+		void _Overwrite(T* instance);
+
 	public:
 		static T* Create(void);
 
-		static bool Destroy(void);
+		bool Destroy(void);
 
-		static T& Instance(void);
+		static T* Instance(void);
 
 
 	};
@@ -40,9 +43,19 @@ namespace DXLib
 	T*  Singleton<T>::_instance = nullptr;
 
 	template<typename T>
+	void Singleton<T>::_Overwrite(T* instance)
+	{
+		if (_instance != nullptr)
+			_instance->Destroy();
+
+		assert(instance != nullptr && "Passed instance is null");
+		_instance = instance;
+	}
+
+	template<typename T>
 	T* Singleton<T>::Create(void)
 	{
-		assert(!_instance && "A instance of singleton is already created");
+		assert(_instance == nullptr && "A instance of singleton is already created");
 		_instance = new (std::nothrow) T();
 
 		return _instance;
@@ -53,7 +66,7 @@ namespace DXLib
 	{
 		if (!_instance)
 		{
-			assert(_instance && "A instance of singleton is already destroyed");
+			assert(_instance != nullptr && "A instance of singleton is already destroyed");
 			return false;
 		}
 
@@ -64,10 +77,10 @@ namespace DXLib
 	}
 
 	template<typename T>
-	T& Singleton<T>::Instance(void)
+	T* Singleton<T>::Instance(void)
 	{
-		assert(_instance && "Maybe, You didn't create this singleton class or, This class was destroyed by your called methode");
-		return *_instance;
+		assert(_instance != nullptr && "Maybe, You didn't create this singleton class or, This class was destroyed by your called methode");
+		return _instance;
 	}
 }
 

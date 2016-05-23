@@ -25,17 +25,13 @@ namespace DXLib
 		/** @warning 初期化の関数はパラメータが様様なので, 仮想関数で取り扱いして再定義する事を禁止します。*/
 		bool Initialize(const std::string& name);
 
-		//#########################################################################
-#pragma region Virtual Function
-		/** メンバーのメモリーを解除します。
-		@param　bool isDestroyImmediate_ trueならば、子供のノード達を破壊します。（基本 ： true）*/
-		virtual void Release(bool isDestroyImmediate = true) override;
-
 		/** C#の方法で、記述を定義します。*/
 		virtual const std::string& ToString(void) const override;
-#pragma endregion
-		//#########################################################################
 	
+	protected:
+		/** メンバーのメモリーを解除します。
+		@param　bool isDestroyImmediate_ trueならば、子供のノード達を破壊します。（基本 ： true）*/
+		virtual void _OnRelease(void) override;
 
 	protected:
 		//PROPERTY(Camera* _defaultCamera, Camera);

@@ -20,7 +20,7 @@ namespace DXLib
 	bool BagicNode::Initialize(const std::string& name)
 	{
 		this->_name = name;
-		return true;
+		return _OnInitialize();
 	}
 #pragma region Virtual Function
 	void BagicNode::Release(bool isDestroyImmediate)
@@ -35,6 +35,7 @@ namespace DXLib
 
 		this->_children.clear();
 
+		_OnRelease();
 	}
 
 	const std::string& BagicNode::ToString(void) const

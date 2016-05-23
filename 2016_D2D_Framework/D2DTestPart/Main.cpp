@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "TestApplication.h"
 
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 					   _In_opt_ HINSTANCE hPrevInstance,
@@ -8,9 +9,12 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-	auto app = DXLib::Application::Create();
-	app->SetRenderingFrameCount(60);
+	TestApplication app;
 
-	return app->Run();
+	auto appInstance = DXLib::Application::Instance();
+	appInstance->Run();
+	appInstance = nullptr;
+
+	return 0;
 
 }

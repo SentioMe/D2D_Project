@@ -25,6 +25,9 @@
     <Filter Include="Utility\Abstract">
       <UniqueIdentifier>{d4b95917-24e0-4167-9285-6c0d489d7edb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Data">
+      <UniqueIdentifier>{87c60d88-a8f4-41da-bb83-91f8069fc7f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SentioD2D.h" />
@@ -87,6 +90,18 @@
     <ClInclude Include="System\Director.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="System\Data\MasterData.h">
+      <Filter>System\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Data\Vector2.h">
+      <Filter>System\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Data\Size.h">
+      <Filter>System\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Data\Rect.h">
+      <Filter>System\Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SentioD2D.cpp" />
@@ -134,6 +149,18 @@
     </ClCompile>
     <ClCompile Include="System\Director.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Data\MasterData.cpp">
+      <Filter>System\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Data\Vector2.cpp">
+      <Filter>System\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Data\Size.cpp">
+      <Filter>System\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Data\Rect.cpp">
+      <Filter>System\Data</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

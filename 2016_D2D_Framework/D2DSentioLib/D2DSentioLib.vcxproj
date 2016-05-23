@@ -24,6 +24,10 @@
     <ClInclude Include="Share\tinyxml2.h" />
     <ClInclude Include="System\Application.h" />
     <ClInclude Include="System\BagicNode.h" />
+    <ClInclude Include="System\Data\MasterData.h" />
+    <ClInclude Include="System\Data\Rect.h" />
+    <ClInclude Include="System\Data\Size.h" />
+    <ClInclude Include="System\Data\Vector2.h" />
     <ClInclude Include="System\Director.h" />
     <ClInclude Include="System\Label\Label.h" />
     <ClInclude Include="System\Scene\Scene.h" />
@@ -51,6 +55,10 @@
     <ClCompile Include="Share\tinyxml2.cpp" />
     <ClCompile Include="System\Application.cpp" />
     <ClCompile Include="System\BagicNode.cpp" />
+    <ClCompile Include="System\Data\MasterData.cpp" />
+    <ClCompile Include="System\Data\Rect.cpp" />
+    <ClCompile Include="System\Data\Size.cpp" />
+    <ClCompile Include="System\Data\Vector2.cpp" />
     <ClCompile Include="System\Director.cpp" />
     <ClCompile Include="System\Label\Label.cpp" />
     <ClCompile Include="System\Scene\Scene.cpp" />

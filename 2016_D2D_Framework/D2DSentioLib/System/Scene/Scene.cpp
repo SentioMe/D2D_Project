@@ -5,10 +5,8 @@ namespace DXLib
 {
 
 
-#pragma region Virtual Function
-	void Scene::Release(bool isDestroyImmediate)
+	void Scene::_OnRelease(void)
 	{
-		BagicNode::Release(isDestroyImmediate);
 		
 	}
 
@@ -17,6 +15,4 @@ namespace DXLib
 		return ExtendString::Format(
 			"%s_Node (Tag : %d)", this->_name.c_str(), this->_tag);
 	}
-
-#pragma endregion
 }

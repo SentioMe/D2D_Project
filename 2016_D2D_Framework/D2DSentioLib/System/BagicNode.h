@@ -39,20 +39,13 @@ namespace DXLib
 		/** @warning 初期化の関数はパラメータが様様なので, 仮想関数で取り扱いして再定義する事を禁止します。*/
 		bool Initialize(const std::string& name);
 
-//#########################################################################
-#pragma region Virtual Function
-
 		/** メンバーのメモリーを解除します。
 		@param　bool isDestroyImmediate_ trueならば、子供のノード達を破壊します。（基本 ： true）*/
-		virtual void Release(bool isDestroyImmediate = true);
+		void Release(bool isDestroyImmediate = true);
 
 		/** C#の方法で、記述を定義します。*/
 		virtual const std::string& ToString(void) const;
-#pragma endregion
-//#########################################################################
 
-//#########################################################################
-#pragma region Node Function
 
 		/** このノードの親のノードを設定します。
 		すでに親のノードが有れば、そのノードの子供のノードの集まりから削除します。*/
@@ -84,8 +77,8 @@ namespace DXLib
 		@warning　この関数は例外処理をするために使用されます。*/
 		void _AddChild(BagicNode* child);
 
-#pragma endregion
-//#########################################################################
+		virtual bool _OnInitialize(void){ return true; }
+		virtual void _OnRelease(void){}
 
 	protected:
 		bool _isAlive;
