@@ -28,7 +28,7 @@ namespace DXLib
 	{
 		XMLSerializer* serializer = new XMLSerializer(filePath);
 
-		if (Serialize(serializer) == false)
+		if (false == Serialize(serializer))
 			return serializer->Close();
 
 		serializer->Save();
@@ -52,8 +52,8 @@ namespace DXLib
 	}
 	bool Rect::Deserialize(XMLSerializer* serializer)
 	{
-		serializer->Read("Origin", this->origin);
-		serializer->Read("Size", this->size);
+		serializer->Read("Origin", origin);
+		serializer->Read("Size", size);
 
 		return true;
 	}

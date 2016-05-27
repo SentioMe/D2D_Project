@@ -38,4 +38,14 @@
 
 #pragma endregion
 
+#pragma region Mode Configuration
+#ifdef _DEBUG
+#define CONFIGURATION_NAME "DEBUG"
+#elif defined(_RELEASE)
+#define CONFIGURATION_NAME "RELEASE"
+#else
+#define CONFIGURATION_NAME "UNKNOWN"
+#endif
+#pragma endregion
+
 #endif //!__LIB_CONFIG_H__

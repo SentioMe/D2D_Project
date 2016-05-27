@@ -12,8 +12,12 @@ namespace DXLib
 	void Director::Release(void)
 	{
 		SAFE_RELEASE(_renderTarget);
-		ULONG ulMsg = _d2dFactory->Release();
-		assert(ulMsg == 0 && "Memory Error! There are objects that have not been deallocated in the objects allocated in the D2D factory");
+		if (_d2dFactory != nullptr)
+		{
+			ULONG ulMsg = _d2dFactory->Release();
+			assert(ulMsg == 0 && "Memory Error! There are objects that have not been deallocated in the objects allocated in the D2D factory");
+		}
+		
 		_d2dFactory = nullptr;
 	}
 

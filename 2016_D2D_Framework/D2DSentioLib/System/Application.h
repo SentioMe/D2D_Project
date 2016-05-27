@@ -15,26 +15,14 @@ namespace DXLib
 		public Singleton<Application>, public IXMLSerializable
 	{
 	public:
-		enum AppCaptionMode
-		{
-			TITLE = 1 << 0,
-			FRAME = 1 << 1,
-			CONFIGURATION = 1 << 2,
-			ICON = 1 << 3,
-
-			DEFAULT = TITLE | FRAME | CONFIGURATION,
-			All = DEFAULT | ICON,
-
-			NONE = 0
-		};
-
-
+		
 	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		Application(void);
 		virtual~Application(void) override;
 
 	public:
-		bool Initialize(const std::string& resourceRootPath, const std::string& configDataPath);
+		bool Initialize(const std::string& resourceRootPath, const std::string& configDataPath,
+			OPTIONAL HINSTANCE appInstanceHandler = nullptr);
 
 		int Run(void);
 
@@ -48,42 +36,50 @@ namespace DXLib
 
 		inline void ShowCaptionMode(AppCaptionMode mode)
 		{
-			_appCaptionMode = (AppCaptionMode)(_appCaptionMode | mode);
+			_data.SetCaptionMode(mode, true);
 		}
 		inline void UnshowCaptionMode(AppCaptionMode mode)
 		{
-			_appCaptionMode = (AppCaptionMode)(_appCaptionMode - (_appCaptionMode & mode));
+			_data.SetCaptionMode(mode, false);
 		}
 		inline bool IsShowingCaptionMode(AppCaptionMode mode)
 		{
-			return (_appCaptionMode & mode) == mode;
+			return _data.IsShowingCaptionMode(mode);
 		}
 		
 
 //#########################################################################
 #pragma region Serialize Function
-		bool Serialize(const char* filePath){ return true; }
-		bool Serialize(XMLSerializer* serializer){ return true; }
-		bool Deserialize(const char* filePath){ return true; }
-		bool Deserialize(XMLSerializer* serializer){ return true; }
+		bool Serialize(const char* filePath);
+		bool Serialize(XMLSerializer* serializer);
+		bool Deserialize(const char* filePath);
+		bool Deserialize(XMLSerializer* serializer);
 #pragma endregion
 //#########################################################################
 
 	private:
 		static LRESULT CALLBACK _WinProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 		void _UpdateWindowCaption(void);
-
+		bool _CreateWindow(HINSTANCE appInstanceHandler);
 	protected:
 		virtual bool _OnInitialize(void){ return true; }
 
+	private:
+		std::string		_configDataPath;
+		bool			_isReplaceData;
+
 	protected:
 		bool			_isRunning;
-		AppCaptionMode	_appCaptionMode;
 		LARGE_INTEGER	_renderingInterval;
+		std::string		_windowCaption;
+		ApplicationData _data;
+		
 		PropertyReadonly(std::string, _resourceRootPath, ResourceRootPath);
 		PropertyReadonly(Rect, _clippingRect, ClippingRect);
-		PropertyReadonly(HINSTANCE, _hInstance, HInstance);
-		PropertyReadonly(HWND, _hWnd, HWnd);
+
+		PropertyReadonly(HINSTANCE, _appInstanceHandler, AppInstanceHandler);
+		PropertyReadonly(HWND, _winHandler, WinHandler);
+		PropertyReadonly(HICON, _iconHandler, IconHandler);
 	};
 
 }

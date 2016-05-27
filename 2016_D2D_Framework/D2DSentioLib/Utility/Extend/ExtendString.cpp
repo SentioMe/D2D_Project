@@ -13,13 +13,13 @@ namespace DXLib
 
 //#########################################################
 #pragma region Convert Methode
-	const std::string& ExtendString::WStringToString(IN const std::wstring & input)
+	std::string ExtendString::WStringToString(IN const std::wstring & input)
 	{
 		std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
 		return converter.to_bytes(input);
 	}
 
-	const std::wstring& ExtendString::StringToWString(IN const std::string & input)
+	std::wstring ExtendString::StringToWString(IN const std::string & input)
 	{
 		std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
 		return converter.from_bytes(input);
@@ -29,7 +29,7 @@ namespace DXLib
 
 //#########################################################
 #pragma region Adjust Methode
-	const std::string& ExtendString::Format(const char * format, ...)
+	std::string ExtendString::Format(const char * format, ...)
 	{
 #define STRING_MAX_BUFFER_SIZE 1024
 		std::string ret;

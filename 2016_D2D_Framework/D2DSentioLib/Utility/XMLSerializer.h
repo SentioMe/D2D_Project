@@ -46,12 +46,12 @@ namespace DXLib
 		void WriteArray(const char* key, T* value2DArrayBegin, int row, int col);
 
 		void Read(const char* key, IXMLSerializable& value);
-		void Read(const char* key, char*& value);
-		void Read(const char* key, int& value);
-		void Read(const char* key, unsigned& value);
-		void Read(const char* key, bool& value);
-		void Read(const char* key, double& value);
-		void Read(const char* key, float& value);
+		void Read(const char* key, char*& value, const char* defaultValue = "\0");
+		void Read(const char* key, int& value, const int defaultValue = 0);
+		void Read(const char* key, unsigned& value, const unsigned defaultValue = 0);
+		void Read(const char* key, bool& value, const bool defaultValue = false);
+		void Read(const char* key, double& value, const double defaultValue = 0.0);
+		void Read(const char* key, float& value, const float defaultValue = 0.0f);
 
 		template<typename T>
 		void ReadArray(const char* key, T* value1DArrayBegin, int size);

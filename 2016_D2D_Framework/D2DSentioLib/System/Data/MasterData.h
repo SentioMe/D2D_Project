@@ -8,27 +8,6 @@
 */
 namespace DXLib
 {
-	class ApplicationData : public IXMLSerializable
-	{
-	public:
-		ApplicationData(void){}
-		~ApplicationData(void){}
-
-	public:
-//#########################################################################
-#pragma region Serialize Function
-		bool Serialize(const char* filePath);
-		bool Serialize(XMLSerializer* serializer);
-		bool Deserialize(const char* filePath);
-		bool Deserialize(XMLSerializer* serializer);
-#pragma endregion
-//#########################################################################
-	public:
-		
-	};
-
-
-
 	
 	class LocalData : public IXMLSerializable
 	{
@@ -74,7 +53,7 @@ namespace DXLib
 //#########################################################################
 
 	private:
-		PropertyReadonly(ApplicationData, _appData, AppData);
+		//PropertyReadonly(ApplicationData, _appData, AppData);
 		PropertyReadonly(LocalData, _localData, LocalData);
 	};
 }

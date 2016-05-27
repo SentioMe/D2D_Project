@@ -57,4 +57,10 @@ C++での動的なメモリーの割り当てに失敗した場合、std::bad_al
 そのためにstd::nothrowを宣言して失敗した場合、falseが返されるようにする。*/
 #define ALLOCATE(varType, varName) varType* varName = new (std::nothrow) varType()
 
+
+#define RECT_WIDTH(rc)		(rc.right - rc.left)
+#define RECT_HEIGHT(rc)		(rc.bottom - rc.top)
+#define RECT_CENTER_X(rc)	(rc.left + (RECT_WIDTH(rc) / 2)
+#define RECT_CENTER_Y(rc)	(rc.top + (RECT_HEIGHT(rc) / 2)
+
 #endif //!__MACRO_H__

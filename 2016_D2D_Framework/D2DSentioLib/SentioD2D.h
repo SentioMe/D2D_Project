@@ -38,6 +38,7 @@
 #include "System\Data\Vector2.h"
 #include "System\Data\Size.h"
 #include "System\Data\Rect.h"
+#include "System\Data\ApplicationData.h"
 #include "System\Data\MasterData.h"
 
 #include "System\Director.h"

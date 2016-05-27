@@ -102,6 +102,9 @@
     <ClInclude Include="System\Data\Rect.h">
       <Filter>System\Data</Filter>
     </ClInclude>
+    <ClInclude Include="System\Data\ApplicationData.h">
+      <Filter>System\Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SentioD2D.cpp" />
@@ -160,6 +163,9 @@
       <Filter>System\Data</Filter>
     </ClCompile>
     <ClCompile Include="System\Data\Rect.cpp">
+      <Filter>System\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Data\ApplicationData.cpp">
       <Filter>System\Data</Filter>
     </ClCompile>
   </ItemGroup>

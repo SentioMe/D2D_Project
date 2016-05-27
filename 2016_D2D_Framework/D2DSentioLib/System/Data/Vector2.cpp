@@ -113,7 +113,7 @@ namespace DXLib
 	{
 		XMLSerializer* serializer = new XMLSerializer(filePath);
 
-		if (Serialize(serializer) == false)
+		if (false == Serialize(serializer))
 			return serializer->Close();
 
 		serializer->Save();
@@ -138,7 +138,7 @@ namespace DXLib
 	bool Vector2::Deserialize(XMLSerializer* serializer)
 	{
 		serializer->Read("X", this->x);
-		serializer->Read("Y", this->x);
+		serializer->Read("Y", this->y);
 
 		return true;
 	}

@@ -12,7 +12,11 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	TestApplication app;
 
 	auto appInstance = DXLib::Application::Instance();
-	appInstance->Run();
+
+	if (appInstance->Initialize(
+		"D:/MyFiles/Programming/CPlusPluse/Direct2D/D2D_Project/2016_D2D_Framework/D2DTestPart", "AppData.xml"))
+		appInstance->Run();
+
 	appInstance = nullptr;
 
 	return 0;

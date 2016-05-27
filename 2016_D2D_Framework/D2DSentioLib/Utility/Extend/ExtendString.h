@@ -26,10 +26,10 @@ namespace DXLib
 #pragma region Convert Methode
 
 		/** wstringタイプの文字列の変数を stringタイプで変換します。*/
-		static const std::string& WStringToString(const std::wstring& input);
+		static std::string WStringToString(const std::wstring& input);
 
 		/** stringタイプの文字列の変数を wstringタイプで変換します。*/
-		static const std::wstring& StringToWString(const std::string& input);
+		static std::wstring StringToWString(const std::string& input);
 
 #pragma endregion
 //#########################################################
@@ -38,7 +38,7 @@ namespace DXLib
 #pragma region Adjust Methode
 
 		/** 文字列の形式に合わせて、伝達されたパラメータ達を一つの文字列でへんかんします。*/
-		static const std::string& Format(const char* format, ...);
+		static std::string Format(const char* format, ...);
 
 		/** 文字列の両断から必要ない空白を削除します。*/
 		static void Trim(OUT std::wstring& output, OPTIONAL bool left = true, OPTIONAL bool right = true);

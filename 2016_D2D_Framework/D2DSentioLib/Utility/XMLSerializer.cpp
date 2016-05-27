@@ -19,7 +19,7 @@ namespace DXLib
 	}
 	XMLSerializer::~XMLSerializer(void)
 	{
-		while (_levelStack.empty() == false)
+		while (false == _levelStack.empty())
 		{
 			_levelStack.pop();
 		}
@@ -113,53 +113,60 @@ namespace DXLib
 			_levelStack.pop();
 		}
 	}
-	void XMLSerializer::Read(const char* key, char*& value)
+
+	void XMLSerializer::Read(const char* key, char*& value, const char* defaultValue)
 	{
 		tinyxml2::XMLElement* data = _levelStack.top()->FirstChildElement(key);
+
 		if (data != nullptr)
-		{
 			value = const_cast<char*>(data->GetText());
-		}
+		else
+			value = const_cast<char*>(defaultValue);
 	}
-	void XMLSerializer::Read(const char* key, int& value)
+	void XMLSerializer::Read(const char* key, int& value, const int defaultValue)
 	{
 		tinyxml2::XMLElement* data = _levelStack.top()->FirstChildElement(key);
+
 		if (data != nullptr)
-		{
 			data->QueryIntText(&value);
-		}
+		else
+			value = defaultValue;
 	}
-	void XMLSerializer::Read(const char* key, unsigned& value)
+	void XMLSerializer::Read(const char* key, unsigned& value, const unsigned defaultValue)
 	{
 		tinyxml2::XMLElement* data = _levelStack.top()->FirstChildElement(key);
+		
 		if (data != nullptr)
-		{
 			data->QueryUnsignedText(&value);
-		}
+		else
+			value = defaultValue;
 	}
-	void XMLSerializer::Read(const char* key, bool& value)
+	void XMLSerializer::Read(const char* key, bool& value, const bool defaultValue)
 	{
 		tinyxml2::XMLElement* data = _levelStack.top()->FirstChildElement(key);
+
 		if (data != nullptr)
-		{
 			data->QueryBoolText(&value);
-		}
+		else
+			value = defaultValue;
 	}
-	void XMLSerializer::Read(const char* key, double& value)
+	void XMLSerializer::Read(const char* key, double& value, const double defaultValue)
 	{
 		tinyxml2::XMLElement* data = _levelStack.top()->FirstChildElement(key);
+
 		if (data != nullptr)
-		{
 			data->QueryDoubleText(&value);
-		}
+		else
+			value = defaultValue;
 	}
-	void XMLSerializer::Read(const char* key, float& value)
+	void XMLSerializer::Read(const char* key, float& value, const float defaultValue)
 	{
 		tinyxml2::XMLElement* data = _levelStack.top()->FirstChildElement(key);
+
 		if (data != nullptr)
-		{
 			data->QueryFloatText(&value);
-		}
+		else
+			value = defaultValue;
 	}
 
 }

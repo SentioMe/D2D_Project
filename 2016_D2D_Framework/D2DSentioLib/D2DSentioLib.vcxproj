@@ -24,6 +24,7 @@
     <ClInclude Include="Share\tinyxml2.h" />
     <ClInclude Include="System\Application.h" />
     <ClInclude Include="System\BagicNode.h" />
+    <ClInclude Include="System\Data\ApplicationData.h" />
     <ClInclude Include="System\Data\MasterData.h" />
     <ClInclude Include="System\Data\Rect.h" />
     <ClInclude Include="System\Data\Size.h" />
@@ -55,6 +56,7 @@
     <ClCompile Include="Share\tinyxml2.cpp" />
     <ClCompile Include="System\Application.cpp" />
     <ClCompile Include="System\BagicNode.cpp" />
+    <ClCompile Include="System\Data\ApplicationData.cpp" />
     <ClCompile Include="System\Data\MasterData.cpp" />
     <ClCompile Include="System\Data\Rect.cpp" />
     <ClCompile Include="System\Data\Size.cpp" />
@@ -181,7 +183,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;_RELEASE;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

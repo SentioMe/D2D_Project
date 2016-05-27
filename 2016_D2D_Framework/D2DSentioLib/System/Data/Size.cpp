@@ -119,7 +119,7 @@ namespace DXLib
 	{
 		XMLSerializer* serializer = new XMLSerializer(filePath);
 
-		if (Serialize(serializer) == false)
+		if (false == Serialize(serializer))
 			return serializer->Close();
 
 		serializer->Save();
