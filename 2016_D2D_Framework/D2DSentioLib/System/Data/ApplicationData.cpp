@@ -6,7 +6,7 @@ namespace DXLib
 {
 	ApplicationData::ApplicationData(void)
 		: _appCaptionMode(AppCaptionMode::NONE), useTitleBar(false), useFullScreenMode(false),
-		_titleName(ExtendString::STRING_EMPTY), _iconPath(ExtendString::STRING_EMPTY)
+		_titleName(ExtendString::EMPTY), _iconPath(ExtendString::EMPTY), _caption(ExtendString::EMPTY)
 	{
 	}
 

@@ -1,21 +1,8 @@
 <Root>
-    <Data>
-        <CaptionMode:UseTitleName>1</CaptionMode:UseTitleName>
-        <CaptionMode:UseFrameInfo>1</CaptionMode:UseFrameInfo>
-        <CaptionMode:UseConfiguration>1</CaptionMode:UseConfiguration>
-        <CaptionMode:UseIcon>0</CaptionMode:UseIcon>
-        <UseFullScreenMode>0</UseFullScreenMode>
-        <TitleName>TestApp</TitleName>
-        <IconPath>Non</IconPath>
+    <Data CaptionMode:UseTitleName="true" CaptionMode:UseFrameInfo="true" CaptionMode:UseConfiguration="true" CaptionMode:UseIcon="true" UseFullScreenMode="false" TitleName="TestApp" IconPath="">
         <Window_Resolution>
-            <Origin>
-                <X>10</X>
-                <Y>10</Y>
-            </Origin>
-            <Size>
-                <Width>640</Width>
-                <Height>480</Height>
-            </Size>
+            <Origin X="10" Y="10"/>
+            <Size Width="600" Height="400"/>
         </Window_Resolution>
     </Data>
 </Root>

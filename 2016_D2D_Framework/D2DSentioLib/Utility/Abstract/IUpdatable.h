@@ -8,7 +8,10 @@
 */
 namespace DXLib
 {
-	
+	/**
+	@interface IUpdatable
+	@brief 毎フレームのたび、呼び出せる更新の関数の形を定義したインタフェース
+	*/
 	__interface IUpdatable
 	{
 		void Update(float deltaTime);

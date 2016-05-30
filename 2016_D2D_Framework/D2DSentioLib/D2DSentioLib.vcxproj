@@ -37,6 +37,7 @@
     <ClInclude Include="System\Sprite\Texture.h" />
     <ClInclude Include="System\Sprite\TextureCashe.h" />
     <ClInclude Include="UsingLibrary.h" />
+    <ClInclude Include="Utility\Abstract\IConvertible.h" />
     <ClInclude Include="Utility\Abstract\IUpdatable.h" />
     <ClInclude Include="Utility\Abstract\IXMLSerializable.h" />
     <ClInclude Include="Utility\Abstract\Singleton.h" />
@@ -44,6 +45,7 @@
     <ClInclude Include="Utility\Extend\ExtendMath.h" />
     <ClInclude Include="Utility\Extend\ExtendString.h" />
     <ClInclude Include="Utility\Macro.h" />
+    <ClInclude Include="Utility\Path.h" />
     <ClInclude Include="Utility\Random.h" />
     <ClInclude Include="Utility\XMLSerializer.h" />
   </ItemGroup>
@@ -52,6 +54,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SentioD2D.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Share\tinyxml2.cpp" />
     <ClCompile Include="System\Application.cpp" />
@@ -71,6 +74,7 @@
     <ClCompile Include="Utility\Extend\ExtendCollection.cpp" />
     <ClCompile Include="Utility\Extend\ExtendMath.cpp" />
     <ClCompile Include="Utility\Extend\ExtendString.cpp" />
+    <ClCompile Include="Utility\Path.cpp" />
     <ClCompile Include="Utility\Random.cpp" />
     <ClCompile Include="Utility\XMLSerializer.cpp" />
   </ItemGroup>
@@ -98,14 +102,14 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -133,6 +137,10 @@
     <IncludePath>$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -151,7 +159,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.\</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>SentioD2D.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -178,12 +186,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_LIB;_RELEASE;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>SentioD2D.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

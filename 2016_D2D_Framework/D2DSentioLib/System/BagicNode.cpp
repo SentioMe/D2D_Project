@@ -38,11 +38,15 @@ namespace DXLib
 		_OnRelease();
 	}
 
-	const std::string& BagicNode::ToString(void) const
+//#########################################################################
+#pragma region Convert Function
+	std::string	BagicNode::ToString(void) const
 	{
-		return ExtendString::Format(
-			"%s_Node (Tag : %d)", this->_name.c_str(), this->_tag);
+		return ExtendString::Format("%s_Node (Tag : %d)", this->_name.c_str(), this->_tag);
 	}
+#pragma endregion
+//#########################################################################
+
 #pragma endregion
 
 #pragma region Node Function

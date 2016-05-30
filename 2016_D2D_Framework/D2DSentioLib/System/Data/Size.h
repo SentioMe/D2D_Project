@@ -12,7 +12,7 @@ namespace DXLib
 {
 	class Vector2;
 
-	class Size : public IXMLSerializable
+	class Size : public IConvertible, public IXMLSerializable
 	{
 	public:
 		Size(void)
@@ -47,6 +47,12 @@ namespace DXLib
 		Size& operator-=(const Size& vec2);
 		Size operator-(const Size& vec2);
 		operator D2D1_SIZE_F(void);
+#pragma endregion
+//#########################################################################
+
+//#########################################################################
+#pragma region Convert Funtion
+		std::string		ToString(void)	const override;
 #pragma endregion
 //#########################################################################
 

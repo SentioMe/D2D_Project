@@ -114,6 +114,15 @@ namespace DXLib
 //#########################################################################
 
 //#########################################################################
+#pragma region Convert Function
+	std::string	Size::ToString(void) const
+	{
+		return ExtendString::Format("width : %.2f, height : %.2f", width, height);
+	}
+#pragma endregion
+//#########################################################################
+
+//#########################################################################
 #pragma region Serialize Function
 	bool Size::Serialize(const char* filePath)
 	{

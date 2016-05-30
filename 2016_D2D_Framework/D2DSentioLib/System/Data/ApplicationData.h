@@ -44,60 +44,30 @@ namespace DXLib
 			return (_appCaptionMode & mode) == mode;
 		}
 
-#ifdef UNICODE
-		inline std::wstring GetTitleName(void)
-		{
-			return (IsShowingCaptionMode(AppCaptionMode::TITLE))
-				? ExtendString::StringToWString(_titleName)
-				: ExtendString::WSTRING_EMPTY;
-		}
-		inline std::wstring GetIconPath(void)
+		inline const char* GetTitleName(void)
 		{
 			return (IsShowingCaptionMode(AppCaptionMode::ICON))
-				? ExtendString::StringToWString(_iconPath)
-				: ExtendString::WSTRING_EMPTY;
+				? _titleName.c_str()
+				: ExtendString::EMPTY.c_str();
 		}
-		inline std::wstring GetCaption(float frameRate = 0.0f)
+		inline const char* GetIconPath(void)
 		{
-			static std::string caption;
-
+			return (IsShowingCaptionMode(AppCaptionMode::ICON))
+				? _iconPath.c_str()
+				: ExtendString::EMPTY.c_str();
+		}
+		inline const char* GetCaption(float frameRate = 0.0f, float elapsedTime = 0.0f)
+		{
 			if (IsShowingCaptionMode(AppCaptionMode::TITLE))
-				caption = ExtendString::Format("[%s]", _titleName.c_str());
+				_caption = ExtendString::Format("[%s]", _titleName.c_str());
 			if (IsShowingCaptionMode(AppCaptionMode::FRAME))
-				caption = ExtendString::Format("%s[Frame : %.1f]", caption.c_str(), frameRate);
+				_caption = ExtendString::Format("%s[Frame : %.1f, ElapsedTime : %.4f]", _caption.c_str(), frameRate, elapsedTime);
 			if (IsShowingCaptionMode(AppCaptionMode::CONFIGURATION))
-				caption = ExtendString::Format("%s[Mode : %s]", caption.c_str(), CONFIGURATION_NAME);
+				_caption = ExtendString::Format("%s[Mode : %s]", _caption.c_str(), CONFIGURATION_NAME);
 
-			return ExtendString::StringToWString(caption);
+			return _caption.c_str();
 		}
-#else
 
-		inline std::string GetTitleName(void)
-		{
-			return (IsShowingCaptionMode(AppCaptionMode::ICON))
-				? _titleName
-				: ExtendString::STRING_EMPTY;
-		}
-		inline std::string GetIconPath(void)
-		{
-			return (IsShowingCaptionMode(AppCaptionMode::ICON))
-				? _iconPath
-				: ExtendString::STRING_EMPTY;
-		}
-		inline std::string GetCaption(float frameRate = 0.0f)
-		{
-			static std::string caption;
-
-			if (IsShowingCaptionMode(AppCaptionMode::TITLE))
-				caption = ExtendString::Format("[%s]", _titleName.c_str());
-			if (IsShowingCaptionMode(AppCaptionMode::FRAME))
-				caption = ExtendString::Format("%s[Frame : %.1f]", caption.c_str(), frameRate);
-			if (IsShowingCaptionMode(AppCaptionMode::CONFIGURATION))
-				caption = ExtendString::Format("%s[Mode : %s]", caption.c_str(), CONFIGURATION_NAME);
-
-			return caption;
-		}
-#endif
 		inline bool IsEmptyIconPath(void)
 		{
 			return _iconPath.empty();
@@ -115,6 +85,8 @@ namespace DXLib
 		AppCaptionMode	_appCaptionMode;
 		std::string		_titleName;
 		std::string		_iconPath;
+
+		std::string		_caption;
 
 	public:
 		Rect			appWindowRect;

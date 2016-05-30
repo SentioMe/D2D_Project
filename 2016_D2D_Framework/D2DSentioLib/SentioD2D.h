@@ -19,6 +19,7 @@
 //###################################################################
 #pragma region Utility
 #include "Utility\Abstract\Singleton.h"
+#include "Utility\Abstract\IConvertible.h"
 #include "Utility\Abstract\IUpdatable.h"
 #include "Utility\Abstract\IXMLSerializable.h"
 
@@ -27,6 +28,7 @@
 #include "Utility\Extend\ExtendCollection.h"
 
 #include "Utility\Macro.h"
+#include "Utility\Path.h"
 #include "Utility\Random.h"
 #include "Utility\XMLSerializer.h"
 #pragma endregion

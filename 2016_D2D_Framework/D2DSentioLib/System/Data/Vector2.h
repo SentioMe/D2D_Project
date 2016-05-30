@@ -9,7 +9,7 @@
 */
 namespace DXLib
 {
-	class Vector2 : public IXMLSerializable
+	class Vector2 : public IConvertible, public IXMLSerializable
 	{
 	public:
 		Vector2(void)
@@ -25,7 +25,7 @@ namespace DXLib
 		{
 		}
 
-		//#########################################################################
+//#########################################################################
 #pragma region Operator Function
 		Vector2& operator=(const Vector2& vec2);
 		bool operator==(const Vector2& vec2);
@@ -44,16 +44,22 @@ namespace DXLib
 		Vector2 operator-(const Vector2& vec2);
 		operator D2D1_POINT_2F(void);
 #pragma endregion
-		//#########################################################################
+//#########################################################################
 
-		//#########################################################################
+//#########################################################################
+#pragma region Convert Funtion
+		std::string		ToString(void)	const override;
+#pragma endregion
+//#########################################################################
+
+//#########################################################################
 #pragma region Serialize Function
 		bool Serialize(const char* filePath);
 		bool Serialize(XMLSerializer* serializer);
 		bool Deserialize(const char* filePath);
 		bool Deserialize(XMLSerializer* serializer);
 #pragma endregion
-		//#########################################################################
+//#########################################################################
 
 		void Normalize(void);
 		Vector2 GetNormalized(void);

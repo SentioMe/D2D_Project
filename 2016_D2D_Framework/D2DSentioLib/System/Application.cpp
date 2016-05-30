@@ -1,13 +1,13 @@
-#include "SentioD2D.h"
+﻿#include "SentioD2D.h"
 #include "Application.h"
 
 namespace DXLib
 {
 	Application::Application(void)
 		: _isReplaceData(false), _isRunning(false),
-		_windowCaption(ExtendString::STRING_EMPTY), 
-		_resourceRootPath(ExtendString::STRING_EMPTY), 
-		_configDataPath(ExtendString::STRING_EMPTY),
+		_windowCaption(ExtendString::EMPTY), 
+		_resourceRootPath(ExtendString::EMPTY),
+		_configDataPath(ExtendString::EMPTY),
 		_appInstanceHandler(nullptr), _winHandler(nullptr), _iconHandler(nullptr)
 	{
 		Singleton::_Overwrite(this);
@@ -38,13 +38,20 @@ namespace DXLib
 		this->_resourceRootPath = resourceRootPath;
 		this->_configDataPath = configDataPath;
 
-		if (false == Deserialize(ExtendString::Format("%s/%s", _resourceRootPath.c_str(), _configDataPath.c_str()).c_str()))
+		if (false == Deserialize(ExtendString::Format("%s\\%s", _resourceRootPath.c_str(), _configDataPath.c_str()).c_str()))
 			return false;
 
 		_isReplaceData = true;
 
 		if (false == _CreateWindow((nullptr == appInstanceHandler) ? GetModuleHandle(nullptr) : appInstanceHandler))
 			return false;
+
+		auto director = Director::Create();
+		if (false == director->Initialize(_winHandler))
+		{
+			director->Destroy();
+			return false;
+		}
 
 		SetRenderingFrame(60.0f);
 		
@@ -58,17 +65,22 @@ namespace DXLib
 
 		this->_isRunning = true;
 
+		LARGE_INTEGER performanceFrequency;
+		QueryPerformanceFrequency(&performanceFrequency);
+
 		LARGE_INTEGER last;
 		LARGE_INTEGER now;
 
 		QueryPerformanceCounter(&last);
-		//auto director = Director::Create();
+		
+		Director* director = Director::Instance();
 
 		while (_isRunning)
 		{
 			QueryPerformanceCounter(&now);
+			LONGLONG delta = now.QuadPart - last.QuadPart;
 
-			if (now.QuadPart - last.QuadPart > _renderingInterval.QuadPart)
+			if (delta > _renderingInterval.QuadPart)
 			{
 				last.QuadPart = now.QuadPart - (now.QuadPart % _renderingInterval.QuadPart);
 
@@ -78,28 +90,26 @@ namespace DXLib
 					if (msg.message == WM_QUIT)
 						break;
 
-
 					if (!TranslateAccelerator(_winHandler, nullptr, &msg))
 					{
 						TranslateMessage(&msg);
 						DispatchMessage(&msg);
 					}
 				}
-				else
+
+				float elapsedTime = delta / (float)performanceFrequency.QuadPart;
+				_UpdateWindowCaption(elapsedTime);
+
+				if (false != director->BeginFrame(elapsedTime))
 				{
-					//director->Run();
+					director->DrawFrame();
+					director->EndFrame();
 				}
-
-				
 			}
-			else
-			{
-				Sleep(1);
-			}
-
 		}
 
-		//director->Destroy();
+		director->Destroy();
+		director = nullptr;
 
 		return 0;
 	}
@@ -107,36 +117,28 @@ namespace DXLib
 	void Application::SetRenderingFrame(float frame)
 	{
 		float interval = 1.0f / frame;
-		LARGE_INTEGER frequency;
-		QueryPerformanceFrequency(&frequency);
-		_renderingInterval.QuadPart = (LONGLONG)(interval * frequency.QuadPart);
+		LARGE_INTEGER performanceFrequency;
+		QueryPerformanceFrequency(&performanceFrequency);
+		_renderingInterval.QuadPart = (LONGLONG)(interval * performanceFrequency.QuadPart);
 	}
 
 	void Application::ShowCursor(bool isShow)
 	{
-		int cursorCount = 0;
-
 		/**
 		@note :
-			WINAPI::ShowCursor(bool) =>
-			true�� �ѱ�� CursorCount�� 1�� ������Ű��, 0�̻��̶�� ���
-			false�� �ѱ�� CursorCount�� 1�� ���ҽ�Ű��, 0�̸��̶�� �����
-
+			WINAPI::ShowCursor(bool)
+				パラメータにtrueを渡せば、カウントを1ずつ増加させ、 0以上になると出力します。
+				falseを渡せば、カウントを1ずつ減らし、 0未満になると、出力しません。
 		*/
-
+		int cursorCount = 0;
+		
 		if (isShow)
 		{
-			do
-			{
-				cursorCount = ::ShowCursor(isShow);
-			} while (cursorCount < 0);
+			do { cursorCount = ::ShowCursor(isShow); } while (cursorCount < 0);
 		}
 		else
 		{
-			do
-			{
-				cursorCount = ::ShowCursor(isShow);
-			} while (cursorCount > -1);
+			do { cursorCount = ::ShowCursor(isShow); } while (cursorCount > -1);
 		}
 	}
 
@@ -180,18 +182,15 @@ namespace DXLib
 	{
 		assert(appInstanceHandler != nullptr, "Passed appInstanceHandler is null");
 		_appInstanceHandler = appInstanceHandler;
-
-		HWND windowHandler = ::GetDesktopWindow();
-
+		
 		RECT userWindowRect;
-		GetWindowRect(windowHandler, &userWindowRect);
+		GetWindowRect(::GetDesktopWindow(), &userWindowRect);
 
 		_iconHandler = (_data.IsShowingCaptionMode(AppCaptionMode::ICON) && _data.IsEmptyIconPath() == false)
-			? ExtractIcon(_appInstanceHandler, _data.GetIconPath().c_str(), 0)
+			? ExtractIcon(_appInstanceHandler, ExtendString::Format("%s\\%s", _resourceRootPath.c_str(), _data.GetIconPath()).c_str(), 0)
 			: nullptr;
 
-		std::wstring ws = _data.GetCaption();
-		LPCWSTR caption = ws.c_str();
+		const char* caption = _data.GetCaption();
 
 		WNDCLASS wndClass;
 		wndClass.style = CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
@@ -221,8 +220,8 @@ namespace DXLib
 		{
 			_data.useTitleBar = true;
 
-			int screenWidth = RECT_WIDTH(userWindowRect);
-			int screenHeight = RECT_HEIGHT(userWindowRect);
+			int screenWidth = ExtendMath::GetRectWidth(userWindowRect);
+			int screenHeight = ExtendMath::GetRectHeight(userWindowRect);
 
 			if (_data.appWindowRect.size.width >= screenWidth)
 			{
@@ -247,26 +246,49 @@ namespace DXLib
 
 		AdjustWindowRect(&clientWinRect, style, false);
 
-		windowHandler = CreateWindow(
+		_winHandler = CreateWindow(
 			caption,
 			caption,
 			style,
 			_data.appWindowRect.origin.x,
 			_data.appWindowRect.origin.y,
-			RECT_WIDTH(clientWinRect),
-			RECT_HEIGHT(clientWinRect),
+			ExtendMath::GetRectWidth(clientWinRect),
+			ExtendMath::GetRectHeight(clientWinRect),
 			nullptr,
 			nullptr,
 			appInstanceHandler,
 			nullptr);
 
-		if (false == windowHandler)
+		if (false == _winHandler)
 			return false;
 
-		ShowWindow(windowHandler, SW_SHOW);
-		UpdateWindow(windowHandler);
+		ShowWindow(_winHandler, SW_SHOW);
+		UpdateWindow(_winHandler);
 
 		return true;
+	}
+
+	void Application::_UpdateWindowCaption(float elapsedTime)
+	{
+		/**
+		@note :
+			アプリケーションのパフォーマンスの為に、
+			下の関数の呼び出しに任意のインターバルを置きます。
+
+			SetWindowText && _data.GetCaption
+		*/
+
+		const int UPDATE_INTERVAL = 100;
+		static int count = 0;
+
+		++count;
+		if (count < UPDATE_INTERVAL)
+			return;
+
+		count = 0;
+
+		float frameRate = 1.0f / elapsedTime;
+		SetWindowText(_winHandler, _data.GetCaption(frameRate, elapsedTime));
 	}
 
 	LRESULT CALLBACK Application::_WinProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
@@ -288,9 +310,6 @@ namespace DXLib
 
 				if (!IsRectEmpty(&rc))
 					ClipCursor(&rc);
-
-				/*if (!IsRectEmpty())
-					ClipCursor(&_rect);*/
 			}
 		}
 		break;

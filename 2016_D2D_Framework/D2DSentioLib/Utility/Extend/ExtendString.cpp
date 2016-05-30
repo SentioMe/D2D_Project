@@ -1,37 +1,32 @@
-#include "SentioD2D.h"
+﻿#include "SentioD2D.h"
 #include "ExtendString.h"
 #include <codecvt>
 
 namespace DXLib
 {
-//#########################################################
-#pragma region Const Value
-	const std::string ExtendString::STRING_EMPTY = "";
-	const std::wstring ExtendString::WSTRING_EMPTY = L"";
-#pragma endregion
-//#########################################################
+#define STRING_MAX_BUFFER_SIZE 256
 
-//#########################################################
-#pragma region Convert Methode
-	std::string ExtendString::WStringToString(IN const std::wstring & input)
+	const std::string ExtendString::EMPTY = "";
+	
+	/** wstringタイプの文字列の変数を stringタイプで変換します。*/
+	std::string ExtendString::ToString(const std::wstring& input)
 	{
 		std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
 		return converter.to_bytes(input);
 	}
 
-	std::wstring ExtendString::StringToWString(IN const std::string & input)
+	/** stringタイプの文字列の変数を wstringタイプで変換します。*/
+	std::wstring ExtendString::ToWString(const std::string& input)
 	{
 		std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
 		return converter.from_bytes(input);
 	}
-#pragma endregion
-//#########################################################
 
-//#########################################################
-#pragma region Adjust Methode
-	std::string ExtendString::Format(const char * format, ...)
+	
+
+	/** 文字列の形式に合わせて、伝達されたパラメータ達を一つの文字列でへんかんします。*/
+	std::string ExtendString::Format(const char* format, ...)
 	{
-#define STRING_MAX_BUFFER_SIZE 1024
 		std::string ret;
 
 		va_list ap;
@@ -50,22 +45,8 @@ namespace DXLib
 		return ret;
 	}
 
-	void ExtendString::Trim(OUT std::wstring & output, OPTIONAL bool left, OPTIONAL bool right)
-	{
-		static const std::wstring delimiter = L"\t\r\n";
-
-		if (true == right)
-		{
-			output.erase(output.find_last_not_of(delimiter) + 1);
-		}
-
-		if (true == left)
-		{
-			output.erase(0, output.find_first_not_of(delimiter));
-		}
-	}
-
-	void ExtendString::Trim(OUT std::string & output, OPTIONAL bool left, OPTIONAL bool right)
+	/** 文字列の両断から必要ない空白を削除します。*/
+	void ExtendString::Trim(OUT std::string& output, OPTIONAL bool left, OPTIONAL bool right)
 	{
 		static const std::string delimiter = "\t\r\n";
 
@@ -79,7 +60,4 @@ namespace DXLib
 			output.erase(0, output.find_first_not_of(delimiter));
 		}
 	}
-#pragma endregion
-//#########################################################
-
 }

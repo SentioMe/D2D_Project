@@ -11,7 +11,7 @@ namespace DXLib
 	class Vector2;
 	class Size;
 
-	class Rect : public IXMLSerializable
+	class Rect : public IConvertible, public IXMLSerializable
 	{
 	public:
 		Rect(void);
@@ -20,22 +20,27 @@ namespace DXLib
 		Rect(const RECT& rect);
 
 //#########################################################################
-#pragma region Serialize Function
-		bool Serialize(const char* filePath);
-		bool Serialize(XMLSerializer* serializer);
-		bool Deserialize(const char* filePath);
-		bool Deserialize(XMLSerializer* serializer);
-#pragma endregion
-//#########################################################################
-
-
-//#########################################################################
 #pragma region Operator Function
 		Rect& operator=(const Rect& rect);
 		bool operator==(const Rect& rect);
 		bool operator!=(const Rect& rect);
 		operator D2D1_RECT_F(void);
 		operator RECT(void);
+#pragma endregion
+//#########################################################################
+
+//#########################################################################
+#pragma region Convert Funtion
+		std::string		ToString(void)	const override;
+#pragma endregion
+//#########################################################################
+
+//#########################################################################
+#pragma region Serialize Function
+		bool Serialize(const char* filePath);
+		bool Serialize(XMLSerializer* serializer);
+		bool Deserialize(const char* filePath);
+		bool Deserialize(XMLSerializer* serializer);
 #pragma endregion
 //#########################################################################
 

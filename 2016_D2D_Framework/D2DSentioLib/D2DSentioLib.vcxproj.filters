@@ -78,9 +78,6 @@
     <ClInclude Include="Utility\Extend\ExtendCollection.h">
       <Filter>Utility\Extend</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Extend\ExtendMath.h">
-      <Filter>Utility\Extend</Filter>
-    </ClInclude>
     <ClInclude Include="Utility\Extend\ExtendString.h">
       <Filter>Utility\Extend</Filter>
     </ClInclude>
@@ -104,6 +101,15 @@
     </ClInclude>
     <ClInclude Include="System\Data\ApplicationData.h">
       <Filter>System\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Path.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Abstract\IConvertible.h">
+      <Filter>Utility\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Extend\ExtendMath.h">
+      <Filter>Utility\Extend</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -141,9 +147,6 @@
     <ClCompile Include="Utility\Extend\ExtendCollection.cpp">
       <Filter>Utility\Extend</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\Extend\ExtendMath.cpp">
-      <Filter>Utility\Extend</Filter>
-    </ClCompile>
     <ClCompile Include="Utility\Extend\ExtendString.cpp">
       <Filter>Utility\Extend</Filter>
     </ClCompile>
@@ -167,6 +170,12 @@
     </ClCompile>
     <ClCompile Include="System\Data\ApplicationData.cpp">
       <Filter>System\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Path.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Extend\ExtendMath.cpp">
+      <Filter>Utility\Extend</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

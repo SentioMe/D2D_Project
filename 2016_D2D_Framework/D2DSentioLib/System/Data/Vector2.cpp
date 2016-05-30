@@ -108,6 +108,15 @@ namespace DXLib
 //#########################################################################
 
 //#########################################################################
+#pragma region Convert Function
+	std::string	Vector2::ToString(void) const
+	{
+		return ExtendString::Format("x : %.2f, y : %.2f", x, y);
+	}
+#pragma endregion
+//#########################################################################
+
+//#########################################################################
 #pragma region Serialize Function
 	bool Vector2::Serialize(const char* filePath)
 	{

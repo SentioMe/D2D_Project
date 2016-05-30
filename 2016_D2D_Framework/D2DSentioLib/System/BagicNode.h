@@ -15,7 +15,7 @@ namespace DXLib
 	@class BagicNode
 	@brief シーングラフをなす様様のノード達の原型
 	*/
-	class BagicNode
+	class BagicNode : public IConvertible
 	{
 	public:
 		typedef std::vector<BagicNode*> NodeContainer;
@@ -24,7 +24,7 @@ namespace DXLib
 	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		BagicNode(void)
 			: _parent(nullptr), _isAlive(true), _isActive(false),
-			_name(ExtendString::STRING_EMPTY), _tag(0)
+			_name(ExtendString::EMPTY), _tag(0)
 		{
 			this->_children.clear();
 		}
@@ -35,7 +35,7 @@ namespace DXLib
 
 	public:
 		/** cocos2Dの方法で、割り当てます。*/
-		static BagicNode* Create(const std::string& name = ExtendString::STRING_EMPTY);
+		static BagicNode* Create(const std::string& name = ExtendString::EMPTY);
 		/** @warning 初期化の関数はパラメータが様様なので, 仮想関数で取り扱いして再定義する事を禁止します。*/
 		bool Initialize(const std::string& name);
 
@@ -43,9 +43,11 @@ namespace DXLib
 		@param　bool isDestroyImmediate_ trueならば、子供のノード達を破壊します。（基本 ： true）*/
 		void Release(bool isDestroyImmediate = true);
 
-		/** C#の方法で、記述を定義します。*/
-		virtual const std::string& ToString(void) const;
-
+//#########################################################################
+#pragma region Convert Funtion
+		std::string		ToString(void)	const override;
+#pragma endregion
+//#########################################################################
 
 		/** このノードの親のノードを設定します。
 		すでに親のノードが有れば、そのノードの子供のノードの集まりから削除します。*/
@@ -69,15 +71,15 @@ namespace DXLib
 		/** 子供のノードの集まりから指定したタグのノード達を探して返されします。*/
 		NodeContainer& FindChildren(int tag);
 
-		/** ToString(void)を呼べる事でノードを文字列で変換します。*/
-		operator const char*();
-
+		
 	protected:
 		/** 伝達されたノードを子供のノードの集まりに追加します。
 		@warning　この関数は例外処理をするために使用されます。*/
 		void _AddChild(BagicNode* child);
 
+		/** 継承したクラスでオーバーライド可能な初期化の関数*/
 		virtual bool _OnInitialize(void){ return true; }
+		/** 継承したクラスでオーバーライド可能なメモリーの解除の関数*/
 		virtual void _OnRelease(void){}
 
 	protected:

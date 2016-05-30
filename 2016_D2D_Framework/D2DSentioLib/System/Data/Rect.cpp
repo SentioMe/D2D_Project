@@ -23,6 +23,47 @@ namespace DXLib
 	}
 
 //#########################################################################
+#pragma region Operator Function
+	Rect& Rect::operator=(const Rect& rect)
+	{
+		this->origin = rect.origin;
+		this->size = rect.size;
+
+		return *this;
+	}
+
+	bool Rect::operator==(const Rect& rect)
+	{
+		return (origin == rect.origin && size == rect.size);
+	}
+
+	bool Rect::operator!=(const Rect& rect)
+	{
+		return !(*this == rect);
+	}
+
+	Rect::operator D2D1_RECT_F(void)
+	{
+		return D2D1::RectF(Left(), Top(), Right(), Bottom());
+	}
+
+	Rect::operator RECT(void)
+	{
+		return{ Left(), Top(), Right(), Bottom() };
+	}
+#pragma endregion
+//#########################################################################
+
+//#########################################################################
+#pragma region Convert Function
+	std::string	Rect::ToString(void) const
+	{
+		return ExtendString::Format("origin(%s), size(%s)", origin.ToString().c_str(), size.ToString().c_str());
+	}
+#pragma endregion
+//#########################################################################
+
+//#########################################################################
 #pragma region Serialize Function
 	bool Rect::Serialize(const char* filePath)
 	{
@@ -56,39 +97,6 @@ namespace DXLib
 		serializer->Read("Size", size);
 
 		return true;
-	}
-#pragma endregion
-//#########################################################################
-
-
-//#########################################################################
-#pragma region Operator Function
-	Rect& Rect::operator=(const Rect& rect)
-	{
-		this->origin = rect.origin;
-		this->size = rect.size;
-
-		return *this;
-	}
-
-	bool Rect::operator==(const Rect& rect)
-	{
-		return (origin == rect.origin && size == rect.size);
-	}
-
-	bool Rect::operator!=(const Rect& rect)
-	{
-		return !(*this == rect);
-	}
-
-	Rect::operator D2D1_RECT_F(void)
-	{
-		return D2D1::RectF(Left(), Top(), Right(), Bottom());
-	}
-
-	Rect::operator RECT(void)
-	{
-		return { Left(), Top(), Right(), Bottom() };
 	}
 #pragma endregion
 //#########################################################################

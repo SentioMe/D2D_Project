@@ -1,0 +1,8 @@
+<Root>
+    <Data CaptionMode:UseTitleName="1" CaptionMode:UseFrameInfo="1" CaptionMode:UseConfiguration="1" CaptionMode:UseIcon="1" UseFullScreenMode="0" TitleName="TestApp" IconPath="Images/AppIcon/Shana1.ico">
+        <Window_Resolution>
+            <Origin X="10" Y="10"/>
+            <Size Width="600" Height="400"/>
+        </Window_Resolution>
+    </Data>
+</Root>

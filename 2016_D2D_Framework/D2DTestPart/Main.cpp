@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "TestApplication.h"
 
+using namespace DXLib;
+
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 					   _In_opt_ HINSTANCE hPrevInstance,
 					   _In_ LPTSTR lpCmdLine,
@@ -11,10 +13,10 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	TestApplication app;
 
-	auto appInstance = DXLib::Application::Instance();
+	auto appInstance = Application::Instance();
 
-	if (appInstance->Initialize(
-		"D:/MyFiles/Programming/CPlusPluse/Direct2D/D2D_Project/2016_D2D_Framework/D2DTestPart", "AppData.xml"))
+	std::string& path = Path::RunningPath();
+	if (appInstance->Initialize(ExtendString::Format("%s\\Resources", path.c_str()), "Datas\\AppData.xml"))
 		appInstance->Run();
 
 	appInstance = nullptr;
