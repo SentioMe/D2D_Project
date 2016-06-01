@@ -72,15 +72,15 @@ namespace DXLib
 		{
 			return _iconPath.empty();
 		}
-	public:
-		//#########################################################################
+
+//#########################################################################
 #pragma region Serialize Function
-		bool Serialize(const char* filePath){ return true; }
-		bool Serialize(XMLSerializer* serializer);
-		bool Deserialize(const char* filePath){ return true; }
-		bool Deserialize(XMLSerializer* serializer);
+		bool Serialize(const char* filePath) override { return true; }
+		bool Serialize(XMLSerializer* serializer) override;
+		bool Deserialize(const char* filePath) override { return true; }
+		bool Deserialize(XMLSerializer* serializer) override;
 #pragma endregion
-		//#########################################################################
+//#########################################################################
 	private:
 		AppCaptionMode	_appCaptionMode;
 		std::string		_titleName;

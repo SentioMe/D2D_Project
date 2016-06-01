@@ -1,8 +1,0 @@
-<Root>
-    <Data CaptionMode:UseTitleName="true" CaptionMode:UseFrameInfo="true" CaptionMode:UseConfiguration="true" CaptionMode:UseIcon="true" UseFullScreenMode="false" TitleName="TestApp" IconPath="">
-        <Window_Resolution>
-            <Origin X="10" Y="10"/>
-            <Size Width="600" Height="400"/>
-        </Window_Resolution>
-    </Data>
-</Root>

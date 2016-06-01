@@ -18,16 +18,10 @@ namespace DXLib
 	public:
 //#########################################################################
 #pragma region Serialize Function
-		bool Serialize(const char* filePath){ return true; }
-		bool Serialize(XMLSerializer* serializer)
-		{ 
-			return true;
-		}
-		bool Deserialize(const char* filePath){ return true; }
-		bool Deserialize(XMLSerializer* serializer)
-		{
-			return true;
-		}
+		bool Serialize(const char* filePath) override { return true; }
+		bool Serialize(XMLSerializer* serializer) override { return true; }
+		bool Deserialize(const char* filePath) override { return true; }
+		bool Deserialize(XMLSerializer* serializer) override { return true; }
 #pragma endregion
 //#########################################################################
 	public:
@@ -45,10 +39,10 @@ namespace DXLib
 
 //#########################################################################
 #pragma region Serialize Function
-		bool Serialize(const char* filePath);
-		bool Serialize(XMLSerializer* serializer);
-		bool Deserialize(const char* filePath);
-		bool Deserialize(XMLSerializer* serializer);
+		bool Serialize(const char* filePath) override;
+		bool Serialize(XMLSerializer* serializer) override;
+		bool Deserialize(const char* filePath) override;
+		bool Deserialize(XMLSerializer* serializer) override;
 #pragma endregion
 //#########################################################################
 

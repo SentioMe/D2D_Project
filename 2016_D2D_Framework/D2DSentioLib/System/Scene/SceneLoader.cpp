@@ -3,6 +3,11 @@
 
 namespace DXLib
 {
+	bool SceneLoader::Initialize(OPTIONAL const std::string& sceneFilePath)
+	{
+		return true;
+	}
+
 	void SceneLoader::ReplaceScene(const Scene * scene)
 	{
 	}

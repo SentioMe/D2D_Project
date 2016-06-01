@@ -53,8 +53,6 @@ namespace DXLib
 			return false;
 		}
 
-		SetRenderingFrame(60.0f);
-		
 		return _OnInitialize();
 	}
 

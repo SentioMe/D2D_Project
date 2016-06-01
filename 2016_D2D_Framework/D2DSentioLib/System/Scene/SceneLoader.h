@@ -11,7 +11,7 @@
 namespace DXLib
 {
 	class SceneLoader sealed : 
-		public Singleton<SceneLoader>, public IUpdatable
+		public Singleton<SceneLoader>, public IXMLSerializable, public IUpdatable
 	{
 	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		SceneLoader(void)
@@ -24,14 +24,24 @@ namespace DXLib
 
 
 	public:
+		bool Initialize(OPTIONAL const std::string& sceneFilePath = ExtendString::EMPTY);
+
 		void Update(float deltaTime) override;
 
 		void ReplaceScene(const Scene* scene);
 		void PushScene(const Scene* scene);
 		void PopScene(void);
 
-		
-
+		//#########################################################################
+#pragma region Serialize Function
+		bool Serialize(const char* filePath) override
+		{ return true; }
+		bool Serialize(XMLSerializer* serializer) override;
+		bool Deserialize(const char* filePath) override
+		{ return true; }
+		bool Deserialize(XMLSerializer* serializer) override;
+#pragma endregion
+		//#########################################################################
 	private:
 		Scene* _nextScene;
 		std::stack<Scene*> _sceneStack;

@@ -15,8 +15,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	auto appInstance = Application::Instance();
 
-	std::string& path = Path::RunningPath();
-	if (appInstance->Initialize(ExtendString::Format("%s\\Resources", path.c_str()), "Datas\\AppData.xml"))
+	if (appInstance->Initialize(Path::ResourcesPath(), "Datas\\AppData.xml"))
 		appInstance->Run();
 
 	appInstance = nullptr;
