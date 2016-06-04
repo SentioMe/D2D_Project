@@ -47,9 +47,6 @@
     <ClInclude Include="System\Scene\Scene.h">
       <Filter>System\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="System\Scene\SceneLoader.h">
-      <Filter>System\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="System\Sprite\Texture.h">
       <Filter>System\Sprite</Filter>
     </ClInclude>
@@ -87,9 +84,6 @@
     <ClInclude Include="System\Director.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="System\Data\MasterData.h">
-      <Filter>System\Data</Filter>
-    </ClInclude>
     <ClInclude Include="System\Data\Vector2.h">
       <Filter>System\Data</Filter>
     </ClInclude>
@@ -97,9 +91,6 @@
       <Filter>System\Data</Filter>
     </ClInclude>
     <ClInclude Include="System\Data\Rect.h">
-      <Filter>System\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="System\Data\ApplicationData.h">
       <Filter>System\Data</Filter>
     </ClInclude>
     <ClInclude Include="Utility\Path.h">
@@ -110,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="Utility\Extend\ExtendMath.h">
       <Filter>Utility\Extend</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Scene\SceneManager.h">
+      <Filter>System\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -124,9 +118,6 @@
       <Filter>System\Label</Filter>
     </ClCompile>
     <ClCompile Include="System\Scene\Scene.cpp">
-      <Filter>System\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="System\Scene\SceneLoader.cpp">
       <Filter>System\Scene</Filter>
     </ClCompile>
     <ClCompile Include="System\Sprite\Texture.cpp">
@@ -156,9 +147,6 @@
     <ClCompile Include="System\Director.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="System\Data\MasterData.cpp">
-      <Filter>System\Data</Filter>
-    </ClCompile>
     <ClCompile Include="System\Data\Vector2.cpp">
       <Filter>System\Data</Filter>
     </ClCompile>
@@ -168,14 +156,14 @@
     <ClCompile Include="System\Data\Rect.cpp">
       <Filter>System\Data</Filter>
     </ClCompile>
-    <ClCompile Include="System\Data\ApplicationData.cpp">
-      <Filter>System\Data</Filter>
-    </ClCompile>
     <ClCompile Include="Utility\Path.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
     <ClCompile Include="Utility\Extend\ExtendMath.cpp">
       <Filter>Utility\Extend</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Scene\SceneManager.cpp">
+      <Filter>System\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

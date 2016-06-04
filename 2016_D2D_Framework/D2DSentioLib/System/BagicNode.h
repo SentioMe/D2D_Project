@@ -62,6 +62,10 @@ namespace DXLib
 		inline static void RequestDestroy(BagicNode* node){ node->RequestDestroy(); }
 		/** このノードが生存しているか確認するため使用されます。*/
 		inline bool IsAlive(void) { return _isAlive; }
+		/** このノードを演算するかを指定します。。*/
+		inline bool SetActive(bool active) { _isActive = active; }
+		/** このノードが演算の対象か確認するため使用されます。*/
+		inline bool IsActive(void){ return _isActive; }
 		/** 子供のノードの集まりから指定した名前のノードを探して返されします。*/
 		BagicNode* FindChild(const std::string& name_);
 		/** 子供のノードの集まりから指定したタグのノードを探して返されします。*/
@@ -84,9 +88,9 @@ namespace DXLib
 
 	protected:
 		bool _isAlive;
+		bool _isActive;
 		NodeContainer _children;
 		PtrPropertyReadonly(BagicNode, _parent, Parent);
-		Property(bool, _isActive, IsActive);
 		Property(std::string, _name, Name);
 		Property(int, _tag, Tag);
 	};

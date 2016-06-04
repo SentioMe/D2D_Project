@@ -10,6 +10,8 @@
 */
 namespace DXLib
 {
+	class SceneManager;
+
 	/**
 	@class Director
 	@brief アプリケーションの下で全般を管理するクラス
@@ -38,9 +40,10 @@ namespace DXLib
 		bool _CreateD2DDevice(const HWND hWnd);
 
 	private:
-		__int64	_accumFrameCount;
-		float	_deltaTime;
-		float	_accumDeltaTime;
+		__int64			_accumFrameCount;
+		float			_deltaTime;
+		float			_accumDeltaTime;
+		SceneManager*	_sceneManager;
 
 		PtrPropertyReadonly(ID2D1Factory, _d2dFactory, D2DFactory);
 		PtrPropertyReadonly(ID2D1HwndRenderTarget, _renderTarget, RenderTarget);

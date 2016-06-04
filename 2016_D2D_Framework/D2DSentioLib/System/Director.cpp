@@ -5,7 +5,7 @@
 namespace DXLib
 {
 	Director::Director(void)
-			: _d2dFactory(nullptr), _renderTarget(nullptr),
+		: _d2dFactory(nullptr), _renderTarget(nullptr), _sceneManager(nullptr),
 		_accumFrameCount(0), _deltaTime(0.0f), _accumDeltaTime(0.0f)
 	{
 
@@ -19,6 +19,8 @@ namespace DXLib
 	{
 		if (false == this->_CreateD2DDevice(hWnd))
 			return false;
+
+		_sceneManager = SceneManager::Create();
 
 		return true;
 	}
@@ -48,7 +50,7 @@ namespace DXLib
 
 	void Director::DrawFrame(void)
 	{
-
+		_sceneManager->Update(_deltaTime);
 	}
 
 	void Director::EndFrame(void)
@@ -59,13 +61,13 @@ namespace DXLib
 
 	bool Director::_CreateD2DDevice(const HWND hWnd)
 	{
-		assert(hWnd != nullptr && "Device Error : You didn't pass a handle by window");
+		assert(hWnd != nullptr && "Passed window handle is null");
 
 		
 		if (FAILED(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &this->_d2dFactory)))
 		{
 			SAFE_RELEASE(_d2dFactory);
-			assert("Device Error : Failed to create a factory");
+			assert("Failed to create a factory");
 
 			return false;
 		}
@@ -82,7 +84,7 @@ namespace DXLib
 		{
 			SAFE_RELEASE(_renderTarget);
 			SAFE_RELEASE(_d2dFactory);
-			assert("Device Error! Failed to create a render target");
+			assert("Failed to create a render target");
 
 			return false;
 		}

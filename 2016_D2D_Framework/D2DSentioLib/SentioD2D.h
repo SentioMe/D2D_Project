@@ -40,8 +40,6 @@
 #include "System\Data\Vector2.h"
 #include "System\Data\Size.h"
 #include "System\Data\Rect.h"
-#include "System\Data\ApplicationData.h"
-#include "System\Data\MasterData.h"
 
 #include "System\Director.h"
 #include "System\Application.h"
@@ -55,7 +53,7 @@
 #include "System\Label\Label.h"
 
 #include "System\Scene\Scene.h"
-#include "System\Scene\SceneLoader.h"
+#include "System\Scene\SceneManager.h"
 
 #pragma endregion
 //####################################################################

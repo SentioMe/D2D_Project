@@ -25,16 +25,18 @@ namespace DXLib
 		/** @warning 初期化の関数はパラメータが様様なので, 仮想関数で取り扱いして再定義する事を禁止します。*/
 		bool Initialize(const std::string& name);
 
+		void Enter(void){}
+		void Exit(void){}
 		
 //#########################################################################
 #pragma region Convert Funtion
 		std::string		ToString(void)	const override;
 #pragma endregion
 //#########################################################################
-	
 	protected:
 		virtual void _OnRelease(void) override;
-
+		virtual void _OnEnter(void){}
+		virtual void _OnExit(void){}
 	protected:
 		//PROPERTY(Camera* _defaultCamera, Camera);
 
