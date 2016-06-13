@@ -15,7 +15,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	auto appInstance = Application::Instance();
 
-	if (appInstance->Initialize(Path::ResourcesPath(), "Datas\\AppData.xml"))
+	if (appInstance->Initialize("Datas\\AppData.xml"))
 		appInstance->Run();
 
 	appInstance = nullptr;

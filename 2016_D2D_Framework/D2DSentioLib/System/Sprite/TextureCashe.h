@@ -14,13 +14,20 @@ namespace DXLib
 	{
 	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		TextureCashe(void)
+			: _imagingFactory(nullptr)
 		{
+			_loadedTextureMap.clear();
 		}
 		~TextureCashe(void) override
 		{
+			this->Release();
 		}
 
 	public:
+		void Release(void);
+
+		const Texture* LoadTexture(const std::string& filePath);
+		bool UnloadTexture(Texture* texture);
 
 //#########################################################################
 #pragma region Serialize Function
@@ -30,6 +37,15 @@ namespace DXLib
 		bool Deserialize(XMLSerializer* serializer){ return true; }
 #pragma endregion
 //#########################################################################
+	
+	private:
+		bool _CreateImagingFactory(void);
+
+	private:
+		std::map<std::string, Texture*> _loadedTextureMap;
+		PtrPropertyReadonly(IWICImagingFactory, _imagingFactory, Factory);
+
+
 	};
 
 }

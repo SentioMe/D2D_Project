@@ -1,7 +1,8 @@
 #pragma once
 
+USING_SDL;
 
-class TestApplication : public DXLib::Application
+class TestApplication : public Application
 {
 public:
 	TestApplication(void);
@@ -9,5 +10,7 @@ public:
 
 protected:
 	virtual bool _OnInitialize(void) override;
+
+	bool _PreLoadScene(SceneManager* sceneManager, const std::string& sceneFile);
 };
 

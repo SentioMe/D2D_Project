@@ -52,4 +52,9 @@ namespace DXLib
 	}
 #pragma endregion
 //#########################################################
+
+	bool ExtendMath::Approximately(float lhs, float rhs)
+	{
+		return abs(lhs - rhs) < ExtendMath::Epsilon ? true : false;
+	}
 }

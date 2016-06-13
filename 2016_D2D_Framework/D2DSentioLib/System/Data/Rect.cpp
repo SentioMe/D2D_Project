@@ -55,15 +55,6 @@ namespace DXLib
 //#########################################################################
 
 //#########################################################################
-#pragma region Convert Function
-	std::string	Rect::ToString(void) const
-	{
-		return ExtendString::Format("origin(%s), size(%s)", origin.ToString().c_str(), size.ToString().c_str());
-	}
-#pragma endregion
-//#########################################################################
-
-//#########################################################################
 #pragma region Serialize Function
 	bool Rect::Serialize(const char* filePath)
 	{

@@ -48,7 +48,8 @@ namespace DXLib
 
 //#########################################################################
 #pragma region Convert Funtion
-		std::string		ToString(void)	const override;
+		std::string ToString(void) const override
+		{ return ExtendString::Format("x : %.2f, y : %.2f", x, y); }
 #pragma endregion
 //#########################################################################
 

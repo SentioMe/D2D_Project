@@ -16,7 +16,8 @@ namespace DXLib
 
 	bool Vector2::operator==(const Vector2& vec2)
 	{
-		return (x == vec2.x && y == vec2.y);
+		return ExtendMath::Approximately(this->x, vec2.x) 
+			&& ExtendMath::Approximately(this->y, vec2.y);
 	}
 	bool Vector2::operator!=(const Vector2& vec2)
 	{
@@ -103,15 +104,6 @@ namespace DXLib
 	Vector2::operator D2D1_POINT_2F(void)
 	{
 		return D2D1::Point2F(x, y);
-	}
-#pragma endregion
-//#########################################################################
-
-//#########################################################################
-#pragma region Convert Function
-	std::string	Vector2::ToString(void) const
-	{
-		return ExtendString::Format("x : %.2f, y : %.2f", x, y);
 	}
 #pragma endregion
 //#########################################################################

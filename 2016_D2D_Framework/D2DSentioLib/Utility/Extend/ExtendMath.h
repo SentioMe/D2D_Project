@@ -44,6 +44,8 @@ namespace DXLib
 		static float GetRectCenterPositionY(const RECT& rect);
 #pragma endregion
 //#########################################################
+
+		static bool Approximately(float lhs, float rhs);
 		
 	};
 }

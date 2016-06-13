@@ -31,7 +31,8 @@ namespace DXLib
 
 //#########################################################################
 #pragma region Convert Funtion
-		std::string		ToString(void)	const override;
+		std::string ToString(void) const override
+		{ return ExtendString::Format("origin(%s), size(%s)", origin.ToString().c_str(), size.ToString().c_str()); }
 #pragma endregion
 //#########################################################################
 

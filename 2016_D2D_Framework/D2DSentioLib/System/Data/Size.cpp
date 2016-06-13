@@ -21,7 +21,8 @@ namespace DXLib
 
 	bool Size::operator==(const Size& size)
 	{
-		return (this->width == size.width && this->height == size.height);
+		return ExtendMath::Approximately(this->width, size.width)
+			&& ExtendMath::Approximately(this->height, size.height);
 	}
 	bool Size::operator!=(const Size& size)
 	{
@@ -110,15 +111,6 @@ namespace DXLib
 		return D2D1::SizeF(width, height);
 	}
 
-#pragma endregion
-//#########################################################################
-
-//#########################################################################
-#pragma region Convert Function
-	std::string	Size::ToString(void) const
-	{
-		return ExtendString::Format("width : %.2f, height : %.2f", width, height);
-	}
 #pragma endregion
 //#########################################################################
 

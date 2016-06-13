@@ -19,68 +19,23 @@ namespace DXLib
 	std::string Path::ResourcesPath(void)
 	{
 
-		std::string root = Path::Root(Path::RunningPath());
+		std::string root = Directory::Root(Path::RunningPath());
 		std::string path = Path::RunningPath();
 
 		if (path.find(".exe") != std::string::npos)
 		{
-			path = Path::Parent(path);
+			path = Directory::Parent(path);
 			if (path.find("Debug") != std::string::npos || path.find("Release") != std::string::npos)
 			{
-				path = Path::Parent(path);
+				path = Directory::Parent(path);
 				if (path.find("x64") != std::string::npos || path.find("x86") != std::string::npos)
 				{
-					path = Path::Parent(path);
+					path = Directory::Parent(path);
 				}
 			}
 		}
 
 		path.append("\\Resources");
-
-		return path;
-	}
-
-	std::string Path::Root(const std::string& path)
-	{
-		assert(path.empty() == false, "Passed path string is empty");
-
-		int position = NPOS;
-		for (int i = 0; i < path.length(); ++i)
-		{
-			if ((path[i] == '/' || path[i] == '\\') && i > 0)
-			{
-				if (path[i - 1] == ':')
-					continue;
-
-				position = i;
-				break;
-			}
-		}
-
-		if (position != NPOS)
-		{
-			std::string resultPath;
-			resultPath.assign(path.c_str(), position);
-			return resultPath;
-		}
-
-		return path;
-	}
-
-	std::string Path::Parent(const std::string& path)
-	{
-		assert(path.empty() == false, "Passed path string is empty");
-
-		int position = path.find_last_of('/');
-		if (position == NPOS)
-			position = path.find_last_of('\\');
-
-		if (position != NPOS)
-		{
-			std::string resultPath;
-			resultPath.assign(path.c_str(), position);
-			return resultPath;
-		}
 
 		return path;
 	}
@@ -116,6 +71,19 @@ namespace DXLib
 		}
 
 		return path;
+	}
+
+	std::string Path::FileNameWithoutExtension(const std::string& path)
+	{
+		assert(path.empty() == false, "Passed path string is empty");
+
+		std::string fileName = FileName(path);
+		std::string extension = Extension(fileName);
+
+		for (int i = 0; i < extension.size(); ++i)
+			fileName.pop_back();
+
+		return fileName;
 	}
 
 	std::string Path::Extension(const std::string& path)
