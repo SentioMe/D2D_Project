@@ -9,10 +9,12 @@ namespace DXLib
 	{
 		ALLOCATE(BagicNode, newNode);
 		
-		if (false == newNode || false == newNode->Initialize(name))
+		if (nullptr == newNode || false == newNode->Initialize(name))
 		{
 			SAFE_DELETE(newNode);
 		}
+
+		newNode->SetActive(true);
 
 		return newNode;
 	}
@@ -22,9 +24,11 @@ namespace DXLib
 		this->_name = name;
 		return _OnInitialize();
 	}
-#pragma region Virtual Function
+
 	void BagicNode::Release(bool isDestroyImmediate)
 	{
+		this->SetActive(false);
+
 		if (true == isDestroyImmediate)
 		{
 			for (BagicNode* child : _children)
@@ -38,21 +42,18 @@ namespace DXLib
 		_OnRelease();
 	}
 
-//#########################################################################
-#pragma region Convert Function
-	std::string	BagicNode::ToString(void) const
+	void BagicNode::SetActive(bool active)
 	{
-		return ExtendString::Format("%s_Node (Tag : %d)", this->_name.c_str(), this->_tag);
+		if (_isActive == active)
+			return;
+
+		_isActive = active;
+		(_isActive) ? _OnActivate() : _OnDeactivate();
 	}
-#pragma endregion
-//#########################################################################
 
-#pragma endregion
-
-#pragma region Node Function
 	void BagicNode::SetParent(BagicNode* parent)
 	{
-		assert(parent != nullptr, "Parameter 'parent_' is null!");
+		assert(parent != nullptr, "Passed parent is null!");
 
 		if (nullptr != this->_parent)
 		{
@@ -155,10 +156,9 @@ namespace DXLib
 
 	void BagicNode::_AddChild(BagicNode* child)
 	{
-		assert(child != nullptr, "Parameter 'child' is null!");
+		assert(child != nullptr, "Passed child is null!");
 
 		this->_children.push_back(child);
 	}
 
-#pragma endregion
 }

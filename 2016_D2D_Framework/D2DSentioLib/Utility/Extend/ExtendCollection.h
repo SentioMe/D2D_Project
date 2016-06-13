@@ -28,9 +28,16 @@ namespace DXLib
 //#########################################################################
 #pragma region Release Container
 
+		template <typename T>
+		static void Clear(std::stack<T>& container)
+		{
+			while (container.empty() == false)
+				container.pop();
+		}
+
 		/** 動的で割り当てたオブジェクト達を入れたvectorのメモリーを解除します。*/
 		template <typename T>
-		static bool FreeMemoryByVector(std::vector<T*>& container)
+		static bool Destroy(std::vector<T*>& container)
 		{
 			if (container.empty())
 				return false;
@@ -47,9 +54,9 @@ namespace DXLib
 		}
 		/** 動的で割り当てたオブジェクト達を入れたmapのメモリーを解除します。*/
 		template <typename key, typename value>
-		static bool FreeMemoryByMap(std::map<key, value*>& container)
+		static bool Destroy(std::map<key, value*>& container)
 		{
-			if (container.emplty())
+			if (container.empty())
 				return false;
 
 			std::map<key, value*>::iterator current = container.begin();
@@ -66,9 +73,9 @@ namespace DXLib
 		}
 		/** 動的で割り当てたCOMのオブジェクト達を入れたmapのメモリーを解除します。*/
 		template <typename key, typename value>
-		static bool ReleaseReferenceByMap(std::map<key, value*>& container)
+		static bool DestroyCOM(std::map<key, value*>& container)
 		{
-			if (container.emplty())
+			if (container.empty())
 				return false;
 
 			std::map<key, value*>::iterator current = container.begin();

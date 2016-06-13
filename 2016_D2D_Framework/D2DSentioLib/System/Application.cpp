@@ -32,10 +32,9 @@ namespace DXLib
 			this->Serialize(ExtendString::Format("%s/%s", _resourceRootPath.c_str(), _configDataPath.c_str()).c_str());
 	}
 
-	bool Application::Initialize(const std::string& resourceRootPath, const std::string& configDataPath,
-		OPTIONAL HINSTANCE appInstanceHandler)
+	bool Application::Initialize(const std::string& configDataPath, OPTIONAL HINSTANCE appInstanceHandler)
 	{
-		this->_resourceRootPath = resourceRootPath;
+		this->_resourceRootPath = Path::ResourcesPath();
 		this->_configDataPath = configDataPath;
 
 		if (false == Deserialize(ExtendString::Format("%s\\%s", _resourceRootPath.c_str(), _configDataPath.c_str()).c_str()))
@@ -140,7 +139,7 @@ namespace DXLib
 		}
 	}
 
-	//#########################################################################
+//#########################################################################
 #pragma region Serialize Function
 	bool Application::Serialize(const char* filePath)
 	{
@@ -156,7 +155,6 @@ namespace DXLib
 	bool Application::Serialize(XMLSerializer* serializer)
 	{
 		serializer->Write("Data", _data);
-
 		return true;
 	}
 	bool Application::Deserialize(const char* filePath)
@@ -174,7 +172,7 @@ namespace DXLib
 		return true;
 	}
 #pragma endregion
-	//#########################################################################
+//#########################################################################
 
 	bool Application::_CreateWindow(HINSTANCE appInstanceHandler)
 	{
@@ -357,8 +355,8 @@ namespace DXLib
 		serializer->Write("CaptionMode:UseIcon", IsShowingCaptionMode(AppCaptionMode::ICON));
 
 		serializer->Write("UseFullScreenMode", useFullScreenMode);
-		serializer->Write("TitleName", _titleName.c_str());
-		serializer->Write("IconPath", _iconPath.c_str());
+		serializer->Write("TitleName", _titleName);
+		serializer->Write("IconPath", _iconPath);
 		serializer->Write("Window_Resolution", appWindowRect);
 
 		return true;
@@ -382,12 +380,8 @@ namespace DXLib
 
 
 		serializer->Read("UseFullScreenMode", useFullScreenMode, false);
-		char* titleName;
-		serializer->Read("TitleName", titleName, "MyApp");
-		_titleName = titleName;
-		char* iconPath;
-		serializer->Read("IconPath", iconPath);
-		_iconPath = iconPath;
+		serializer->Read("TitleName", _titleName, "MyApp");
+		serializer->Read("IconPath", _iconPath);
 		serializer->Read("Window_Resolution", appWindowRect);
 
 		return true;

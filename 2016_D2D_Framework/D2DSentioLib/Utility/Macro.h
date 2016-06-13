@@ -24,12 +24,12 @@
 
 #define Property(varType, varName, funcName)\
 	protected: varType varName;\
-	public : inline const varType& Get##funcName(void) {return varName;}\
+	public : inline const varType& Get##funcName(void) const {return varName;}\
 	public : inline void Set##funcName(const varType& var) {varName = var;}
 
 #define PropertyReadonly(varType, varName, funcName)\
 	protected: varType varName;\
-	public : inline const varType& Get##funcName(void) {return varName;}
+	public : inline const varType& Get##funcName(void) const {return varName;}
 
 #define PropertyWriteonly(varType, varName, funcName)\
 	protected: varType varName;\
@@ -56,6 +56,5 @@
 C++での動的なメモリーの割り当てに失敗した場合、std::bad_allocと値が返され、真偽を判断することができなくなる。
 そのためにstd::nothrowを宣言して失敗した場合、falseが返されるようにする。*/
 #define ALLOCATE(varType, varName) varType* varName = new (std::nothrow) varType()
-
 
 #endif //!__MACRO_H__

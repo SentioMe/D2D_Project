@@ -8,6 +8,8 @@
 */
 namespace DXLib
 {
+	typedef std::vector<std::string> StringContainer;
+
 	/**
 	@class ExtendString
 	@brief 文字列の使う事をサポートする静的関数の集まり

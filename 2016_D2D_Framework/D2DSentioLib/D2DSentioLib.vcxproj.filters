@@ -28,6 +28,12 @@
     <Filter Include="System\Data">
       <UniqueIdentifier>{87c60d88-a8f4-41da-bb83-91f8069fc7f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Layer">
+      <UniqueIdentifier>{c19c830e-84b5-458d-b88e-5b2d55fb7e18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Asset">
+      <UniqueIdentifier>{3fcd076f-397c-4954-8902-356c244ee49f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SentioD2D.h" />
@@ -105,6 +111,21 @@
     <ClInclude Include="System\Scene\SceneManager.h">
       <Filter>System\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="System\Layer\Layer.h">
+      <Filter>System\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Asset\AssetFormat.h">
+      <Filter>System\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Asset\TextureAssetFormat.h">
+      <Filter>System\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Asset\SoundAssetFormat.h">
+      <Filter>System\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Directory.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SentioD2D.cpp" />
@@ -164,6 +185,21 @@
     </ClCompile>
     <ClCompile Include="System\Scene\SceneManager.cpp">
       <Filter>System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Layer\Layer.cpp">
+      <Filter>System\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Asset\AssetFormat.cpp">
+      <Filter>System\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Asset\TextureAssetFormat.cpp">
+      <Filter>System\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Asset\SoundAssetFormat.cpp">
+      <Filter>System\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Directory.cpp">
+      <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

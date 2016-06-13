@@ -3,17 +3,37 @@
 
 namespace DXLib
 {
-	bool SceneManager::Initialize(OPTIONAL const std::string& sceneFilePath)
+	SceneManager::SceneManager(void)
+		: _runningScene(nullptr), _nextScene(nullptr), _requestedExitScene(false)
 	{
-		return true;
+		ExtendCollection::Clear(_sceneStack);
+		_loadedSceneMap.clear();
+	}
+	SceneManager::~SceneManager(void)
+	{
+		this->Release();
+	}
+
+	void SceneManager::Release(void)
+	{
+		ExtendCollection::Clear(_sceneStack);
+
+		if (_runningScene != nullptr)
+			_runningScene->Exit();
+
+		_runningScene = nullptr;
+
+		_ExitNextScene();
+
+		ExtendCollection::Destroy(_loadedSceneMap);
 	}
 
 	void SceneManager::Update(float deltaTime)
 	{
-		if (IsWaitedNextScene())
+		if (true == IsWaitedNextScene())
 			this->SetNextScene();
 
-		//_runningScene->Render(deltaTime);
+		_runningScene->Update(deltaTime);
 	}
 
 	void SceneManager::SetNextScene(void)
@@ -42,19 +62,9 @@ namespace DXLib
 		if (scene == _nextScene)
 			return;
 
-		if (IsWaitedNextScene())
-		{
-			if (_nextScene->IsActive())
-				_nextScene->Exit();
+		_ExitNextScene();
 
-			_nextScene = nullptr;
-		}
-
-		_sceneStack.pop();
-		_sceneStack.push(scene);
-		_nextScene = scene;
-
-		_requestedExitScene = true;
+		_UpdateSceneStack(scene, true);
 	}
 
 	void SceneManager::ReplaceScene(Scene* scene)
@@ -67,23 +77,11 @@ namespace DXLib
 		if (scene == _nextScene)
 			return;
 
-		if (IsWaitedNextScene())
-		{
-			if (_nextScene->IsActive())
-				_nextScene->Exit();
+		_ExitNextScene();
 
-			_nextScene = nullptr;
-		}
+		LoadScene(scene);
 
-		if (false == ExtendCollection::IsContains(_loadedSceneMap, scene->GetName()))
-			_loadedSceneMap.insert(std::pair<std::string, Scene*>(scene->GetName(), scene));
-
-
-		_sceneStack.pop();
-		_sceneStack.push(scene);
-		_nextScene = scene;
-
-		_requestedExitScene = true;
+		_UpdateSceneStack(scene, true);
 	}
 
 	void SceneManager::PushScene(const std::string& sceneName)
@@ -94,22 +92,16 @@ namespace DXLib
 		if (false == ExtendCollection::TryGetValue(_loadedSceneMap, sceneName, scene))
 			return;
 
-		_sceneStack.push(scene);
-		_nextScene = scene;
-
-		_requestedExitScene = false;
+		_UpdateSceneStack(scene, false);
 	}
 
 	void SceneManager::PushScene(Scene* scene)
 	{
 		assert(scene != nullptr, "Passed scene is null");
-		if (false == ExtendCollection::IsContains(_loadedSceneMap, scene->GetName()))
-			_loadedSceneMap.insert(std::pair<std::string, Scene*>(scene->GetName(), scene));
 
-		_sceneStack.push(scene);
-		_nextScene = scene;
+		LoadScene(scene);
 
-		_requestedExitScene = false;
+		_UpdateSceneStack(scene, false);
 	}
 
 	void SceneManager::PopScene(void)
@@ -126,5 +118,58 @@ namespace DXLib
 
 		_requestedExitScene = true;
 		_nextScene = _sceneStack.top();
+	}
+
+	void SceneManager::_UpdateSceneStack(Scene* scene, bool isReplace)
+	{
+		if (true == isReplace)
+			_sceneStack.pop();
+
+		_sceneStack.push(scene);
+		_nextScene = scene;
+
+		_requestedExitScene = isReplace;
+	}
+
+	void SceneManager::_ExitNextScene(void)
+	{
+		if (false == IsWaitedNextScene())
+			return;
+
+		_nextScene->Exit();
+
+		_nextScene = nullptr;
+	}
+
+
+
+	const Scene* SceneManager::LoadScene(Scene* scene)
+	{
+		assert(scene != nullptr, "Passed scene is null");
+
+		if (false == ExtendCollection::IsContains(_loadedSceneMap, scene->GetName()))
+			_loadedSceneMap.insert(std::pair<std::string, Scene*>(scene->GetName(), scene));
+
+		return scene;
+	}
+
+	bool SceneManager::UnloadScene(Scene* scene)
+	{
+		assert(scene != nullptr, "Passed scene is null");
+
+		return UnloadScene(scene->GetName());
+	}
+
+	bool SceneManager::UnloadScene(const std::string& sceneName)
+	{
+		assert(sceneName.empty(), "Passed scene name is empty");
+
+		if (true == ExtendCollection::IsContains(_loadedSceneMap, sceneName))
+		{
+			_loadedSceneMap.erase(sceneName);
+			return true;
+		}
+
+		return false;
 	}
 }

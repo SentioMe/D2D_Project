@@ -45,7 +45,8 @@ namespace DXLib
 
 //#########################################################################
 #pragma region Convert Funtion
-		std::string		ToString(void)	const override;
+		inline std::string ToString(void) const override
+		{ return ExtendString::Format("%s_Node (Tag : %d)", this->_name.c_str(), this->_tag); }
 #pragma endregion
 //#########################################################################
 
@@ -62,8 +63,8 @@ namespace DXLib
 		inline static void RequestDestroy(BagicNode* node){ node->RequestDestroy(); }
 		/** このノードが生存しているか確認するため使用されます。*/
 		inline bool IsAlive(void) { return _isAlive; }
-		/** このノードを演算するかを指定します。。*/
-		inline bool SetActive(bool active) { _isActive = active; }
+		/** このノードを演算するかを指定します。*/
+		void SetActive(bool active);
 		/** このノードが演算の対象か確認するため使用されます。*/
 		inline bool IsActive(void){ return _isActive; }
 		/** 子供のノードの集まりから指定した名前のノードを探して返されします。*/
@@ -86,6 +87,8 @@ namespace DXLib
 		/** 継承したクラスでオーバーライド可能なメモリーの解除の関数*/
 		virtual void _OnRelease(void){}
 
+		virtual void _OnActivate(void){}
+		virtual void _OnDeactivate(void){}
 	protected:
 		bool _isAlive;
 		bool _isActive;

@@ -10,7 +10,6 @@
 
 namespace DXLib
 {
-
 #define XML_ROOT "Root"
 
 	/**
@@ -34,6 +33,7 @@ namespace DXLib
 	public:
 		void Write(const char* key, IXMLSerializable& value);
 		void Write(const char* key, const char* value);
+		void Write(const char* key, std::string& value);
 		void Write(const char* key, int value);
 		void Write(const char* key, unsigned value);
 		void Write(const char* key, bool value);
@@ -44,9 +44,12 @@ namespace DXLib
 		void WriteArray(const char* key, T* value1DArrayBegin, int size);
 		template<typename T>
 		void WriteArray(const char* key, T* value2DArrayBegin, int row, int col);
+		template<typename T>
+		void WriteVector(const char* key, std::vector<T>& valueVector);
 
 		void Read(const char* key, IXMLSerializable& value);
 		void Read(const char* key, char*& value, const char* defaultValue = "\0");
+		void Read(const char* key, std::string& value, const std::string defaultValue = "");
 		void Read(const char* key, int& value, const int defaultValue = 0);
 		void Read(const char* key, unsigned& value, const unsigned defaultValue = 0);
 		void Read(const char* key, bool& value, const bool defaultValue = false);
@@ -57,6 +60,8 @@ namespace DXLib
 		void ReadArray(const char* key, T* value1DArrayBegin, int size);
 		template<typename T>
 		void ReadArray(const char* key, T* value2DArrayBegin, int row, int col);
+		template<typename T>
+		void ReadVector(const char* key, std::vector<T>& valueVector, int size);
 
 	private:
 		const char*							_filePath;
@@ -79,7 +84,12 @@ namespace DXLib
 			char name[32];
 			memset(name, 0, 32);
 			sprintf(name, "ID_%d", i);
-			Write(name, *(value1DArrayBegin + i));
+			tinyxml2::XMLElement* valueNode = _document->NewElement(name);
+			_levelStack.top()->InsertEndChild(valueNode);
+
+			_levelStack.push(valueNode);
+			Write("var", *(value1DArrayBegin + i));
+			_levelStack.pop();
 		}
 
 		_levelStack.pop();
@@ -91,15 +101,40 @@ namespace DXLib
 		_levelStack.top()->InsertEndChild(data);
 		_levelStack.push(data);
 
-		for (int r = 0; r < row; ++r)
+		for (int i = 0; i < size; ++i)
 		{
-			for (int c = 0; c < col; ++c)
-			{
-				char name[32];
-				memset(name, 0, 32);
-				sprintf(name, "ID_%d:%d", r, c);
-				Write(name, *(value2DArrayBegin + (c + r * col)));
-			}
+			char name[32];
+			memset(name, 0, 32);
+			sprintf(name, "ID_%d:%d", r, c);
+			tinyxml2::XMLElement* valueNode = _document->NewElement(name);
+			_levelStack.top()->InsertEndChild(valueNode);
+
+			_levelStack.push(valueNode);
+			Write("var", *(value2DArrayBegin + (c + r * col)));
+			_levelStack.pop();
+		}
+
+		_levelStack.pop();
+	}
+	template<typename T>
+	void XMLSerializer::WriteVector(const char* key, std::vector<T>& valueVector)
+	{
+		tinyxml2::XMLElement* data = _document->NewElement(key);
+		_levelStack.top()->InsertEndChild(data);
+		_levelStack.push(data);
+		int size = valueVector.size();
+
+		for (int i = 0; i < size; ++i)
+		{
+			char name[32];
+			memset(name, 0, 32);
+			sprintf(name, "ID_%d", i);
+			tinyxml2::XMLElement* valueNode = _document->NewElement(name);
+			_levelStack.top()->InsertEndChild(valueNode);
+
+			_levelStack.push(valueNode);
+			Write("var", valueVector[i]);
+			_levelStack.pop();
 		}
 
 		_levelStack.pop();
@@ -111,12 +146,16 @@ namespace DXLib
 		tinyxml2::XMLElement* data = _levelStack.top()->FirstChildElement(key);
 		_levelStack.push(data);
 
-		for (int i = 0; i < size; ++i)
+		tinyxml2::XMLElement* valueNode = _levelStack.top()->FirstChildElement("ID_0");
+
+		int i = 0;
+		while (valueNode != nullptr && i < size)
 		{
-			char name[32];
-			memset(name, 0, 32);
-			sprintf(name, "ID_%d", i);
-			Read(name, *(value1DArrayBegin + i));
+			_levelStack.push(valueNode);
+			Read("var", *(value1DArrayBegin + i));
+			valueNode = (tinyxml2::XMLElement*)valueNode->NextSibling();
+			++i;
+			_levelStack.pop();
 		}
 
 		_levelStack.pop();
@@ -127,15 +166,47 @@ namespace DXLib
 		tinyxml2::XMLElement* data = _levelStack.top()->FirstChildElement(key);
 		_levelStack.push(data);
 
-		for (int r = 0; r < row; ++r)
+		tinyxml2::XMLElement* valueNode = _levelStack.top()->FirstChildElement("ID_0:0");
+
+		int r, c = 0;
+
+		while (valueNode != nullptr && r < row && c < col)
 		{
-			for (int c = 0; c < col; ++c)
+			_levelStack.push(valueNode);
+			Read("var", *(value2DArrayBegin + (c + r * col)));
+			valueNode = (tinyxml2::XMLElement*)valueNode->NextSibling();
+			++c;
+
+			if (c >= col)
 			{
-				char name[32];
-				memset(name, 0, 32);
-				sprintf(name, "ID_%d:%d", r, c);
-				Read(name, *(value2DArrayBegin + (c + r * col)));
+				c = 0;
+				++r;
 			}
+
+			_levelStack.pop();
+		}
+
+		_levelStack.pop();
+	}
+
+	template<typename T>
+	void XMLSerializer::ReadVector(const char* key, std::vector<T>& valueVector, int size)
+	{
+		tinyxml2::XMLElement* data = _levelStack.top()->FirstChildElement(key);
+		_levelStack.push(data);
+		
+		valueVector.resize(size);
+
+		tinyxml2::XMLElement* valueNode = _levelStack.top()->FirstChildElement("ID_0");
+
+		int i = 0;
+		while (valueNode != nullptr && i < size)
+		{
+			_levelStack.push(valueNode);
+			Read("var", valueVector[i]);
+			valueNode = (tinyxml2::XMLElement*)valueNode->NextSibling();
+			++i;
+			_levelStack.pop();
 		}
 
 		_levelStack.pop();

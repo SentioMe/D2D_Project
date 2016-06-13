@@ -8,16 +8,18 @@
 */
 namespace DXLib
 {
-	class Scene : public BagicNode
+#define MAIN_LAYER_NAME "MainLayer"
+
+	class Scene : public IConvertible
 	{
 	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		Scene(void)
+			: _mainLayer(nullptr), _isStay(false)
 		{
-
 		}
-		virtual~Scene(void) override
+		virtual~Scene(void)
 		{
-
+			this->Exit();
 		}
 	public:
 		/** cocos2Dの方法で、割り当てます。*/
@@ -25,21 +27,33 @@ namespace DXLib
 		/** @warning 初期化の関数はパラメータが様様なので, 仮想関数で取り扱いして再定義する事を禁止します。*/
 		bool Initialize(const std::string& name);
 
-		void Enter(void){}
-		void Exit(void){}
+		void Enter(void);
+		void Exit(void);
+
+		void Update(float deltaTime){ _OnUpdate(deltaTime); }
+		void LateUpdate(float deltaTime){ _OnLateUpdate(deltaTime); }
 		
 //#########################################################################
 #pragma region Convert Funtion
-		std::string		ToString(void)	const override;
+		inline std::string ToString(void) const
+		{ return ExtendString::Format("%s_Scene (Tag : %d)", this->_name.c_str()); }
 #pragma endregion
 //#########################################################################
 	protected:
-		virtual void _OnRelease(void) override;
+		virtual bool _OnInitialize(void){ return true; }
 		virtual void _OnEnter(void){}
 		virtual void _OnExit(void){}
-	protected:
-		//PROPERTY(Camera* _defaultCamera, Camera);
 
+		virtual void _OnUpdate(float deltaTime){}
+		virtual void _OnLateUpdate(float deltaTime){}
+
+	private:
+		bool _isStay;
+
+	protected:
+		Property(std::string, _name, Name);
+		PtrPropertyReadonly(Layer, _mainLayer, MainLayer);
+		//PROPERTY(Camera* _defaultCamera, Camera);
 	};
 
 }

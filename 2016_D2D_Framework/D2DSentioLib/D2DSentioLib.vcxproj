@@ -23,12 +23,16 @@
     <ClInclude Include="SentioD2D.h" />
     <ClInclude Include="Share\tinyxml2.h" />
     <ClInclude Include="System\Application.h" />
+    <ClInclude Include="System\Asset\AssetFormat.h" />
+    <ClInclude Include="System\Asset\SoundAssetFormat.h" />
+    <ClInclude Include="System\Asset\TextureAssetFormat.h" />
     <ClInclude Include="System\BagicNode.h" />
     <ClInclude Include="System\Data\Rect.h" />
     <ClInclude Include="System\Data\Size.h" />
     <ClInclude Include="System\Data\Vector2.h" />
     <ClInclude Include="System\Director.h" />
     <ClInclude Include="System\Label\Label.h" />
+    <ClInclude Include="System\Layer\Layer.h" />
     <ClInclude Include="System\Scene\Scene.h" />
     <ClInclude Include="System\Scene\SceneManager.h" />
     <ClInclude Include="System\Sprite\Sprite.h" />
@@ -39,6 +43,7 @@
     <ClInclude Include="Utility\Abstract\IUpdatable.h" />
     <ClInclude Include="Utility\Abstract\IXMLSerializable.h" />
     <ClInclude Include="Utility\Abstract\Singleton.h" />
+    <ClInclude Include="Utility\Directory.h" />
     <ClInclude Include="Utility\Extend\ExtendCollection.h" />
     <ClInclude Include="Utility\Extend\ExtendMath.h" />
     <ClInclude Include="Utility\Extend\ExtendString.h" />
@@ -56,17 +61,22 @@
     </ClCompile>
     <ClCompile Include="Share\tinyxml2.cpp" />
     <ClCompile Include="System\Application.cpp" />
+    <ClCompile Include="System\Asset\AssetFormat.cpp" />
+    <ClCompile Include="System\Asset\SoundAssetFormat.cpp" />
+    <ClCompile Include="System\Asset\TextureAssetFormat.cpp" />
     <ClCompile Include="System\BagicNode.cpp" />
     <ClCompile Include="System\Data\Rect.cpp" />
     <ClCompile Include="System\Data\Size.cpp" />
     <ClCompile Include="System\Data\Vector2.cpp" />
     <ClCompile Include="System\Director.cpp" />
     <ClCompile Include="System\Label\Label.cpp" />
+    <ClCompile Include="System\Layer\Layer.cpp" />
     <ClCompile Include="System\Scene\Scene.cpp" />
     <ClCompile Include="System\Scene\SceneManager.cpp" />
     <ClCompile Include="System\Sprite\Sprite.cpp" />
     <ClCompile Include="System\Sprite\Texture.cpp" />
     <ClCompile Include="System\Sprite\TextureCashe.cpp" />
+    <ClCompile Include="Utility\Directory.cpp" />
     <ClCompile Include="Utility\Extend\ExtendCollection.cpp" />
     <ClCompile Include="Utility\Extend\ExtendMath.cpp" />
     <ClCompile Include="Utility\Extend\ExtendString.cpp" />

@@ -26,11 +26,14 @@ namespace DXLib
 	}
 	void Director::Release(void)
 	{
+		_sceneManager->Destroy();
+		_sceneManager = nullptr;
+
 		SAFE_RELEASE(_renderTarget);
 		if (_d2dFactory != nullptr)
 		{
-			ULONG ulMsg = _d2dFactory->Release();
-			assert(ulMsg == 0 && "Memory Error! There are objects that have not been deallocated in the objects allocated in the D2D factory");
+			ULONG message = _d2dFactory->Release();
+			assert(message == 0 && "There are objects that have not been deallocated in the objects allocated in the D2D factory");
 		}
 		
 		_d2dFactory = nullptr;

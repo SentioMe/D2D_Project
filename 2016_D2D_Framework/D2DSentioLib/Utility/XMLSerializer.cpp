@@ -58,13 +58,19 @@ namespace DXLib
 
 	void XMLSerializer::Write(const char* key, IXMLSerializable& value)
 	{
-		tinyxml2::XMLElement* data = _document->NewElement(key);
+		if (key == "value")
+		{
+			value.Serialize(this);
+		}
+		else
+		{
+			tinyxml2::XMLElement* data = _document->NewElement(key);
+			_levelStack.top()->InsertEndChild(data);
 
-		_levelStack.top()->InsertEndChild(data);
-
-		_levelStack.push(data);
-		value.Serialize(this);
-		_levelStack.pop();
+			_levelStack.push(data);
+			value.Serialize(this);
+			_levelStack.pop();
+		}
 	}
 	void XMLSerializer::Write(const char* key, const char* value)
 	{
@@ -73,6 +79,14 @@ namespace DXLib
 			return;
 
 		data->SetAttribute(key, value);
+	}
+	void XMLSerializer::Write(const char* key, std::string& value)
+	{
+		tinyxml2::XMLElement* data = _levelStack.top();
+		if (data == nullptr)
+			return;
+
+		data->SetAttribute(key, value.c_str());
 	}
 	void XMLSerializer::Write(const char* key, int value)
 	{
@@ -134,6 +148,16 @@ namespace DXLib
 			? const_cast<char*>(data->Attribute(key))
 			: const_cast<char*>(defaultValue);
 	}
+
+	void XMLSerializer::Read(const char* key, std::string& value, const std::string defaultValue)
+	{
+		tinyxml2::XMLElement* data = _levelStack.top();
+
+		value = (nullptr != data)
+			? data->Attribute(key)
+			: defaultValue;
+	}
+
 	void XMLSerializer::Read(const char* key, int& value, const int defaultValue)
 	{
 		tinyxml2::XMLElement* data = _levelStack.top();

@@ -89,14 +89,14 @@ namespace DXLib
 				return _iconPath.empty();
 			}
 
-			//#########################################################################
+//#########################################################################
 #pragma region Serialize Function
 			bool Serialize(const char* filePath) override { return true; }
 			bool Serialize(XMLSerializer* serializer) override;
 			bool Deserialize(const char* filePath) override { return true; }
 			bool Deserialize(XMLSerializer* serializer) override;
 #pragma endregion
-			//#########################################################################
+//#########################################################################
 		private:
 			AppCaptionMode	_appCaptionMode;
 			std::string		_titleName;
@@ -116,8 +116,7 @@ namespace DXLib
 		virtual~Application(void) override;
 
 	public:
-		bool Initialize(const std::string& resourceRootPath, const std::string& configDataPath,
-			OPTIONAL HINSTANCE appInstanceHandler = nullptr);
+		bool Initialize(const std::string& configDataPath, OPTIONAL HINSTANCE appInstanceHandler = nullptr);
 
 		int Run(void);
 
@@ -144,6 +143,8 @@ namespace DXLib
 		{
 			return _data.IsShowingCaptionMode(mode);
 		}
+
+		inline const Rect& GetWinRect(void) const { return _data.appWindowRect; }
 		
 
 //#########################################################################

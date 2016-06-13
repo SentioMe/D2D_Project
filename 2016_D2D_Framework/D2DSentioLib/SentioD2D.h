@@ -23,14 +23,15 @@
 #include "Utility\Abstract\IUpdatable.h"
 #include "Utility\Abstract\IXMLSerializable.h"
 
+#include "Utility\Macro.h"
+#include "Utility\Path.h"
+#include "Utility\Directory.h"
+#include "Utility\Random.h"
+#include "Utility\XMLSerializer.h"
+
 #include "Utility\Extend\ExtendMath.h"
 #include "Utility\Extend\ExtendString.h"
 #include "Utility\Extend\ExtendCollection.h"
-
-#include "Utility\Macro.h"
-#include "Utility\Path.h"
-#include "Utility\Random.h"
-#include "Utility\XMLSerializer.h"
 #pragma endregion
 //###################################################################
 
@@ -41,10 +42,16 @@
 #include "System\Data\Size.h"
 #include "System\Data\Rect.h"
 
+#include "System\Asset\AssetFormat.h"
+#include "System\Asset\TextureAssetFormat.h"
+#include "System\Asset\SoundAssetFormat.h"
+
 #include "System\Director.h"
 #include "System\Application.h"
 
 #include "System\BagicNode.h"
+
+#include "System\Layer\Layer.h"
 
 #include "System\Sprite\Texture.h"
 #include "System\Sprite\TextureCashe.h"
