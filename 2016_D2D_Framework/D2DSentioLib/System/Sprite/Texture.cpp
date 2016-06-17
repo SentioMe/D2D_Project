@@ -1,12 +1,12 @@
 #include "SentioD2D.h"
 #include "Texture.h"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 	Texture::Texture(void)
-		: _d2dBitmap(nullptr), _drawingQuality(D2D1_BITMAP_INTERPOLATION_MODE_LINEAR),
-		_rowCount(0), _columnCount(0)
+		: _d2dBitmap(nullptr)
 	{
+		Reset();
 	}
 
 	Texture::~Texture(void)
@@ -14,10 +14,21 @@ namespace DXLib
 		SAFE_RELEASE(_d2dBitmap);
 	}
 
+	Texture* Texture::Create(const std::string& filePath, IWICImagingFactory* imagingFactory)
+	{
+		ALLOCATE(Texture, newTexture);
+
+		if (nullptr == newTexture 
+			|| false == newTexture->Initialize(filePath, imagingFactory))
+		{
+			SAFE_DELETE(newTexture);
+		}
+
+		return newTexture;
+	}
+
 	bool Texture::Initialize(const std::string& filePath, IWICImagingFactory* imagingFactory)
 	{
-		HRESULT ret = E_FAIL;
-
 		IWICBitmapDecoder* bitmapDecoder = nullptr;
 		IWICBitmapFrameDecode* frameDecode = nullptr;
 		IWICFormatConverter* convertor = nullptr;
@@ -60,16 +71,69 @@ namespace DXLib
 			releaseRamda();
 			return false;
 		}
-
-		////이미지 정보 구조체 할당
-		//m_ImageInfo = new ImageInfo();
-		////D2D형식의 Bitmap을 생성한다
-		//lHrMsg = D2D_Device->CreateBitmapFromWicBitmap(ipConvertor, nullptr, &m_ImageInfo->ipD2DBitmap);
-		//if (SUCCEEDED(lHrMsg))
-		//	m_ImageInfo->SetInfo(stImageInfo);
+		
+		//Create a bitmap & Check Meta Data
+		if (SUCCEEDED((D2DRenderTarget->CreateBitmapFromWicBitmap(convertor, nullptr, &this->_d2dBitmap))))
+		{
+			_CreateFormat(filePath);
+			_SetFromMetaData(filePath);
+		}	
 
 		releaseRamda();
 		return true;
 
+	}
+
+	void Texture::Reset(void)
+	{
+		_size = (_d2dBitmap != nullptr) ? _d2dBitmap->GetSize() : Size::One;
+		_columnCount = 1;
+		_rowCount = 1;
+		_drawingQuality = D2D1_BITMAP_INTERPOLATION_MODE::D2D1_BITMAP_INTERPOLATION_MODE_LINEAR;
+		_cellSize = _size;
+	}
+
+//#########################################################################
+#pragma region Serialize Function
+	bool Texture::Serialize(XMLSerializer* serializer)
+	{
+		assert(_d2dBitmap != nullptr, "Bitmap resource should not null");
+
+		serializer->Write("Size", _size);
+		serializer->Write("Column", _columnCount);
+		serializer->Write("Row", _rowCount);
+		serializer->Write("DrawingQuality", _drawingQuality);
+
+		return true;
+	}
+	bool Texture::Deserialize(XMLSerializer* serializer)
+	{
+		serializer->Read("Size", _size);
+
+		unsigned int column;
+		serializer->Read("Column", column, 1);
+		_columnCount = ExtendMath::Clamp(column, 1, 255);
+
+		unsigned int row;
+		serializer->Read("Row", row, 1);
+		_rowCount = ExtendMath::Clamp(row, 1, 255);
+
+		_cellSize = Size(_size.width / column, _size.height / row);
+
+		int quality;
+		serializer->Read("DrawingQuality", quality, D2D1_BITMAP_INTERPOLATION_MODE::D2D1_BITMAP_INTERPOLATION_MODE_LINEAR);
+		_drawingQuality = (D2D1_BITMAP_INTERPOLATION_MODE)quality;
+
+		return true;
+	}
+#pragma endregion
+//#########################################################################
+
+	const AssetFormat* Texture::_CreateFormat(const std::string& assetPath)
+	{
+		if (_format == nullptr)
+			_format = new TextureAssetFormat(assetPath);
+
+		return _format;
 	}
 }

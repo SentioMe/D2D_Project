@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_SOUND_ASSET_FORMAT_H__
-#define __DXLIB_SOUND_ASSET_FORMAT_H__
+#ifndef __SENTIO_D2DLIB_SOUND_ASSET_FORMAT_H__
+#define __SENTIO_D2DLIB_SOUND_ASSET_FORMAT_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	class SoundAssetFormat : public AssetFormat
 	{
@@ -21,4 +21,4 @@ namespace DXLib
 	};
 }
 
-#endif //!__DXLIB_SOUND_ASSET_FORMAT_H__
+#endif //!__SENTIO_D2DLIB_SOUND_ASSET_FORMAT_H__

@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_RANDOM_H__
-#define __DXLIB_RANDOM_H__
+#ifndef __SENTIO_D2DLIB_RANDOM_H__
+#define __SENTIO_D2DLIB_RANDOM_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	/**
 	@class Random
@@ -23,4 +23,4 @@ namespace DXLib
 		static float RangeFloat(float min, float max);
 	};
 }
-#endif //!__DXLIB_RANDOM_H__
+#endif //!__SENTIO_D2DLIB_RANDOM_H__

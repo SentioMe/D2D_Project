@@ -2,7 +2,7 @@
 #include "Path.h"
 
 
-namespace DXLib
+namespace SentioD2DLib
 {
 #define BUFFER_SIZE 256
 #define NPOS -1
@@ -107,6 +107,21 @@ namespace DXLib
 		}
 
 		return ExtendString::EMPTY;
+	}
+
+	std::string Path::ReplaceExtension(const std::string& path, const std::string& extension)
+	{
+		assert(path.empty() == false, "Passed path string is empty");
+		
+		std::string result = path;
+		int size = Path::Extension(path).size();
+
+		for (int i = 0; i < extension.size(); ++i)
+			result.pop_back();
+
+		result.assign(extension);
+
+		return result;
 	}
 
 	int Path::_GetFileNameStartPosition(const std::string& path)

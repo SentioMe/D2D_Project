@@ -23,6 +23,8 @@ bool SceneFactory::Deserialize(const char* filePath)
 	assert(_sceneManager != nullptr, "SceneManager should not null");
 
 	XMLSerializer* serializer = XMLSerializer::Load(filePath);
+	if (serializer == nullptr)
+		return false;
 
 	this->Deserialize(serializer);
 

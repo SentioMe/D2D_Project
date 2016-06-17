@@ -1,7 +1,7 @@
 #include "SentioD2D.h"
 #include "Size.h"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 	Size::Size(const Vector2& vec2)
 		: width(vec2.x), height(vec2.y)
@@ -137,6 +137,8 @@ namespace DXLib
 	bool Size::Deserialize(const char* filePath)
 	{
 		XMLSerializer* serializer = XMLSerializer::Load(filePath);
+		if (serializer == nullptr)
+			return false;
 
 		this->Deserialize(serializer);
 
@@ -153,4 +155,5 @@ namespace DXLib
 //#########################################################################
 
 	const Size Size::Zero(0.0f, 0.0f);
+	const Size Size::One(1.0f, 1.0f);
 }

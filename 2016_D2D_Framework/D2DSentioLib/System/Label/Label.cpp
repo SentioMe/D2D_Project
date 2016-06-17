@@ -2,6 +2,6 @@
 #include "Label.h"
 
 
-namespace DXLib
+namespace SentioD2DLib
 {
 }

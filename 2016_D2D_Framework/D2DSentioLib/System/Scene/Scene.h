@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_SCENE_H__
-#define __DXLIB_SCENE_H__
+#ifndef __SENTIO_D2DLIB_SCENE_H__
+#define __SENTIO_D2DLIB_SCENE_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 #define MAIN_LAYER_NAME "MainLayer"
 
@@ -57,4 +57,4 @@ namespace DXLib
 	};
 
 }
-#endif //!__DXLIB_SCENE_H__
+#endif //!__SENTIO_D2DLIB_SCENE_H__

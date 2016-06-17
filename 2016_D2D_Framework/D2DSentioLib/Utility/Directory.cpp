@@ -4,7 +4,7 @@
 
 #define ALL_FILE_FILTER "*.*"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 #define BUFFER_SIZE 256
 #define NPOS -1

@@ -1,6 +1,6 @@
 #include "SentioD2D.h"
 #include "SoundAssetFormat.h"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 }

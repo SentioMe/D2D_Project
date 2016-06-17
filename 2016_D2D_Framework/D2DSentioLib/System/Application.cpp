@@ -1,7 +1,7 @@
 ﻿#include "SentioD2D.h"
 #include "Application.h"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 	Application::Application(void)
 		: _isReplaceData(false), _isRunning(false),
@@ -160,6 +160,8 @@ namespace DXLib
 	bool Application::Deserialize(const char* filePath)
 	{
 		XMLSerializer* serializer = XMLSerializer::Load(filePath);
+		if (serializer == nullptr)
+			return false;
 
 		this->Deserialize(serializer);
 

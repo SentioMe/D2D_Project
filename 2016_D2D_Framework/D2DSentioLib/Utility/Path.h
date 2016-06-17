@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_PATH_H__
-#define __DXLIB_PATH_H__
+#ifndef __SENTIO_D2DLIB_PATH_H__
+#define __SENTIO_D2DLIB_PATH_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	/**
 	@class Path
@@ -31,8 +31,10 @@ namespace DXLib
 		static std::string FileNameWithoutExtension(const std::string& path);
 		/** 渡されたパスから拡張子を返します。*/
 		static std::string Extension(const std::string& path);
+
+		static std::string ReplaceExtension(const std::string& path, const std::string& extension);
 	};
 
 }
 
-#endif //!__DXLIB_PATH_H__
+#endif //!__SENTIO_D2DLIB_PATH_H__

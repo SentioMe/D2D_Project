@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TestApplication.h"
 
-using namespace DXLib;
+using namespace SentioD2DLib;
 
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 					   _In_opt_ HINSTANCE hPrevInstance,

@@ -1,43 +1,25 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_TEXTURE_CASHE_H__
-#define __DXLIB_TEXTURE_CASHE_H__
+#ifndef __SENTIO_D2DLIB_TEXTURE_CASHE_H__
+#define __SENTIO_D2DLIB_TEXTURE_CASHE_H__
 
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
-	class TextureCashe sealed :
-		public Singleton<TextureCashe>, public IXMLSerializable
+	class TextureCashe sealed : public Singleton<TextureCashe>
 	{
 	SL_CONSTRUCTOR_ACCESS_LEVEL:
-		TextureCashe(void)
-			: _imagingFactory(nullptr)
-		{
-			_loadedTextureMap.clear();
-		}
-		~TextureCashe(void) override
-		{
-			this->Release();
-		}
-
+		TextureCashe(void);
+		~TextureCashe(void) override;
+		
 	public:
-		void Release(void);
 
 		const Texture* LoadTexture(const std::string& filePath);
 		bool UnloadTexture(Texture* texture);
-
-//#########################################################################
-#pragma region Serialize Function
-		bool Serialize(const char* filePath){ return true; }
-		bool Serialize(XMLSerializer* serializer){ return true; }
-		bool Deserialize(const char* filePath){ return true; }
-		bool Deserialize(XMLSerializer* serializer){ return true; }
-#pragma endregion
-//#########################################################################
-	
+		bool UnloadTexture(const std::string& filePath);
 	private:
 		bool _CreateImagingFactory(void);
 
@@ -50,4 +32,4 @@ namespace DXLib
 
 }
 
-#endif //!__DXLIB_TEXTURE_CASHE_H__
+#endif //!__SENTIO_D2DLIB_TEXTURE_CASHE_H__

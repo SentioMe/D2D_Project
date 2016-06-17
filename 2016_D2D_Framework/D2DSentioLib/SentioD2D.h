@@ -42,6 +42,7 @@
 #include "System\Data\Size.h"
 #include "System\Data\Rect.h"
 
+#include "System\Asset\AssetBase.h"
 #include "System\Asset\AssetFormat.h"
 #include "System\Asset\TextureAssetFormat.h"
 #include "System\Asset\SoundAssetFormat.h"

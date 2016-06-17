@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_VECTOR2_H__
-#define __DXLIB_VECTOR2_H__
+#ifndef __SENTIO_D2DLIB_VECTOR2_H__
+#define __SENTIO_D2DLIB_VECTOR2_H__
 
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	class Vector2 : public IConvertible, public IXMLSerializable
 	{
@@ -88,4 +88,4 @@ namespace DXLib
 	typedef Vector2 Point, *Vec2Ptr, *PointPtr;
 }
 
-#endif //!__DXLIB_VECTOR2_H__
+#endif //!__SENTIO_D2DLIB_VECTOR2_H__

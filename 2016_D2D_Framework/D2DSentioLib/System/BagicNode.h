@@ -1,14 +1,14 @@
 ﻿#pragma once
 
 
-#ifndef __DXLIB_BAGIC_NODE_H__
-#define __DXLIB_BAGIC_NODE_H__
+#ifndef __SENTIO_D2DLIB_BAGIC_NODE_H__
+#define __SENTIO_D2DLIB_BAGIC_NODE_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
 
-namespace DXLib
+namespace SentioD2DLib
 {
 	
 	/**
@@ -102,4 +102,4 @@ namespace DXLib
 
 }
 
-#endif //!__DXLIB_BAGIC_NODE_H__
+#endif //!__SENTIO_D2DLIB_BAGIC_NODE_H__

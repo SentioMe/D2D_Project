@@ -1,25 +1,22 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_SCENE_MANAGER_H__
-#define __DXLIB_SCENE_MANAGER_H__
+#ifndef __SENTIO_D2DLIB_SCENE_MANAGER_H__
+#define __SENTIO_D2DLIB_SCENE_MANAGER_H__
 
 #include <stack>
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
-	class SceneManager sealed : 
-		public Singleton<SceneManager>, public IUpdatable
+	class SceneManager sealed : public Singleton<SceneManager>, public IUpdatable
 	{
 	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		SceneManager(void);
 		virtual~SceneManager(void) override;
 
-
 	public:
-		void Release(void);
 		void Update(float deltaTime);
 
 		inline bool IsWaitedNextScene(void){ return _nextScene != nullptr; }
@@ -31,14 +28,8 @@ namespace DXLib
 		void PushScene(Scene* scene);
 		void PopScene(void);
 
-		inline const Scene* GetLoadedScene(const std::string& sceneName)
-		{
-			Scene* scene = nullptr;
-			if (false == ExtendCollection::TryGetValue(_loadedSceneMap, sceneName, scene))
-				ExtendString::Format(""); //@todo : add to logger
+		const Scene* GetLoadedScene(const std::string& sceneName);
 
-			return scene;
-		}
 		const Scene* LoadScene(Scene* scene);
 		bool UnloadScene(Scene* scene);
 		bool UnloadScene(const std::string& sceneName);
@@ -58,4 +49,4 @@ namespace DXLib
 	};
 	
 }
-#endif //!__DXLIB_SCENE_MANAGER_H__
+#endif //!__SENTIO_D2DLIB_SCENE_MANAGER_H__

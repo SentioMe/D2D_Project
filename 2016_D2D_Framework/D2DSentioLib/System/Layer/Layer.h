@@ -1,14 +1,14 @@
 ﻿#pragma once
 
 
-#ifndef __DXLIB_LAYER_H__
-#define __DXLIB_LAYER_H__
+#ifndef __SENTIO_D2DLIB_LAYER_H__
+#define __SENTIO_D2DLIB_LAYER_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
 
-namespace DXLib
+namespace SentioD2DLib
 {
 
 	/**

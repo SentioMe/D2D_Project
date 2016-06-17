@@ -1,7 +1,7 @@
 ﻿#include "SentioD2D.h"
 #include "Layer.h"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 	Layer::Layer(void)
 	{

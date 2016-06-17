@@ -1,17 +1,17 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_TEXTURE_ASSET_FORMAT_H__
-#define __DXLIB_TEXTURE_ASSET_FORMAT_H__
+#ifndef __SENTIO_D2DLIB_TEXTURE_ASSET_FORMAT_H__
+#define __SENTIO_D2DLIB_TEXTURE_ASSET_FORMAT_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	class TextureAssetFormat : public AssetFormat
 	{
 	SL_CONSTRUCTOR_ACCESS_LEVEL:
-		TextureAssetFormat(const std::string& filePath, int aa)
+		TextureAssetFormat(const std::string& filePath)
 			: AssetFormat(filePath)
 		{
 			_assetType = ASSET_TYPE::TEXTURE;
@@ -24,4 +24,4 @@ namespace DXLib
 
 }
 
-#endif //!__DXLIB_TEXTURE_ASSET_FORMAT_H__
+#endif //!__SENTIO_D2DLIB_TEXTURE_ASSET_FORMAT_H__

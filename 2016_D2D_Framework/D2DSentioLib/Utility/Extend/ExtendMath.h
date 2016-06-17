@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_EXTEND_MATH_H__
-#define __DXLIB_EXTEND_MATH_H__
+#ifndef __SENTIO_D2DLIB_EXTEND_MATH_H__
+#define __SENTIO_D2DLIB_EXTEND_MATH_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	/**
 	@class ExtendMath
@@ -46,7 +46,8 @@ namespace DXLib
 //#########################################################
 
 		static bool Approximately(float lhs, float rhs);
-		
+		static int Clamp(int value, int min, int max);
+		static float Clamp(float value, float min, float max);
 	};
 }
-#endif //!__DXLIB_EXTEND_MATH_H__
+#endif //!__SENTIO_D2DLIB_EXTEND_MATH_H__

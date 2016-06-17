@@ -1,6 +1,6 @@
 #include "SentioD2D.h"
 #include "TextureAssetFormat.h"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 }

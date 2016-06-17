@@ -1,14 +1,14 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_ICONVERTIBLE_H__
-#define __DXLIB_ICONVERTIBLE_H__
+#ifndef __SENTIO_D2DLIB_ICONVERTIBLE_H__
+#define __SENTIO_D2DLIB_ICONVERTIBLE_H__
 
 #include <string>
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 
 	/**
@@ -21,4 +21,4 @@ namespace DXLib
 		std::string ToString(void) const;
 	};
 }
-#endif //!__DXLIB_ICONVERTIBLE_H__
+#endif //!__SENTIO_D2DLIB_ICONVERTIBLE_H__

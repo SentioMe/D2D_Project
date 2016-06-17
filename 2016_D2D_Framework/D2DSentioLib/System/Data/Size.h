@@ -1,14 +1,14 @@
 ﻿#pragma once
 
 
-#ifndef __DXLIB_SIZE_H__
-#define __DXLIB_SIZE_H__
+#ifndef __SENTIO_D2DLIB_SIZE_H__
+#define __SENTIO_D2DLIB_SIZE_H__
 
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	class Vector2;
 
@@ -67,10 +67,11 @@ namespace DXLib
 //#########################################################################
 	
 		static const Size Zero;
+		static const Size One;
 	public:
 		float width;
 		float height;
 	};
 
 }
-#endif //!__DXLIB_SIZE_H__
+#endif //!__SENTIO_D2DLIB_SIZE_H__

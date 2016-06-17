@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_IUPDATABLE_H__
-#define __DXLIB_IUPDATABLE_H__
+#ifndef __SENTIO_D2DLIB_IUPDATABLE_H__
+#define __SENTIO_D2DLIB_IUPDATABLE_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	/**
 	@interface IUpdatable
@@ -17,4 +17,4 @@ namespace DXLib
 		void Update(float deltaTime);
 	};
 }
-#endif //!__DXLIB_IUPDATABLE_H__
+#endif //!__SENTIO_D2DLIB_IUPDATABLE_H__

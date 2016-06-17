@@ -1,7 +1,7 @@
 #include "SentioD2D.h"
 #include "Random.h"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 	int Random::GetInt(void)
 	{

@@ -1,13 +1,13 @@
 ﻿#pragma once
 
 
-#ifndef __DXLIB_APPLICATION_H__
-#define __DXLIB_APPLICATION_H__
+#ifndef __SENTIO_D2DLIB_APPLICATION_H__
+#define __SENTIO_D2DLIB_APPLICATION_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 #define DEFAULT_FRAME 60.0f
 
@@ -187,4 +187,4 @@ namespace DXLib
 	typedef Application::ApplicationData AppData;
 }
 
-#endif //!__DXLIB_APPLICATION_H__
+#endif //!__SENTIO_D2DLIB_APPLICATION_H__

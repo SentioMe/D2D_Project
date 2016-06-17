@@ -1,7 +1,7 @@
 #include "SentioD2D.h"
 #include "XMLSerializer.h"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 	XMLSerializer::XMLSerializer(void)
 		: _document(nullptr), _filePath(nullptr)

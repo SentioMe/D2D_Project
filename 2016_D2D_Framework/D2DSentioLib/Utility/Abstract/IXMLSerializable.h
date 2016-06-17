@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_IXMLSERIALIZABLE_H__
-#define __DXLIB_IXMLSERIALIZABLE_H__
+#ifndef __SENTIO_D2DLIB_IXMLSERIALIZABLE_H__
+#define __SENTIO_D2DLIB_IXMLSERIALIZABLE_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	class XMLSerializer;
 
@@ -26,4 +26,4 @@ namespace DXLib
 		bool Deserialize(XMLSerializer* serializer);
 	};
 }
-#endif //!__DXLIB_IXMLSERIALIZABLE_H__
+#endif //!__SENTIO_D2DLIB_IXMLSERIALIZABLE_H__

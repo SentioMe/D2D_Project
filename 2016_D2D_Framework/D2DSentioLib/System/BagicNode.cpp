@@ -1,7 +1,7 @@
 #include "SentioD2D.h"
 #include "BagicNode.h"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 	typedef BagicNode::NodeContainer NodeContainer;
 

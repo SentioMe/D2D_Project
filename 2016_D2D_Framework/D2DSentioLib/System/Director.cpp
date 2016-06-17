@@ -2,7 +2,7 @@
 #include "Director.h"
 
 
-namespace DXLib
+namespace SentioD2DLib
 {
 	Director::Director(void)
 		: _d2dFactory(nullptr), _renderTarget(nullptr), _sceneManager(nullptr),

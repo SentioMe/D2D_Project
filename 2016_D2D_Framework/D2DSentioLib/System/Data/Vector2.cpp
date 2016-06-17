@@ -2,7 +2,7 @@
 #include "Vector2.h"
 
 
-namespace DXLib
+namespace SentioD2DLib
 {
 //#########################################################################
 #pragma region Operator Function
@@ -131,6 +131,8 @@ namespace DXLib
 	bool Vector2::Deserialize(const char* filePath)
 	{
 		XMLSerializer* serializer = XMLSerializer::Load(filePath);
+		if (serializer == nullptr)
+			return false;
 
 		this->Deserialize(serializer);
 

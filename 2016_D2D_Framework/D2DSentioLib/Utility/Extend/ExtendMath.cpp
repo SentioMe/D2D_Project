@@ -1,7 +1,7 @@
 #include "SentioD2D.h"
 #include "ExtendMath.h"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 	
 //#########################################################
@@ -56,5 +56,14 @@ namespace DXLib
 	bool ExtendMath::Approximately(float lhs, float rhs)
 	{
 		return abs(lhs - rhs) < ExtendMath::Epsilon ? true : false;
+	}
+
+	int ExtendMath::Clamp(int value, int min, int max)
+	{
+		return (value < min) ? min : (value > max) ? max : value;
+	}
+	float ExtendMath::Clamp(float value, float min, float max)
+	{
+		return (value < min) ? min : (value > max) ? max : value;
 	}
 }

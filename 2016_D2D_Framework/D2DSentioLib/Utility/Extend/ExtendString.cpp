@@ -2,7 +2,7 @@
 #include "ExtendString.h"
 #include <codecvt>
 
-namespace DXLib
+namespace SentioD2DLib
 {
 #define STRING_MAX_BUFFER_SIZE 256
 

@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_RECT_H__
-#define __DXLIB_RECT_H__
+#ifndef __SENTIO_D2DLIB_RECT_H__
+#define __SENTIO_D2DLIB_RECT_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	class Vector2;
 	class Size;

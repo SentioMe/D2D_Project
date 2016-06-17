@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_EXTEND_COLLECTION_H__
-#define __DXLIB_EXTEND_COLLECTION_H__
+#ifndef __SENTIO_D2DLIB_EXTEND_COLLECTION_H__
+#define __SENTIO_D2DLIB_EXTEND_COLLECTION_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	/**
 	@class ExtendCollection
@@ -197,4 +197,4 @@ namespace DXLib
 
 }
 
-#endif //!__DXLIB_EXTEND_COLLECTION_H__
+#endif //!__SENTIO_D2DLIB_EXTEND_COLLECTION_H__

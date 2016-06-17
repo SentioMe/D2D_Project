@@ -1,7 +1,7 @@
 ﻿#include "SentioD2D.h"
 #include "Scene.h"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 	Scene* Scene::Create(const std::string& name)
 	{

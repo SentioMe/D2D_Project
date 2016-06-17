@@ -126,6 +126,9 @@
     <ClInclude Include="Utility\Directory.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="System\Asset\AssetBase.h">
+      <Filter>System\Asset</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SentioD2D.cpp" />
@@ -200,6 +203,9 @@
     </ClCompile>
     <ClCompile Include="Utility\Directory.cpp">
       <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Asset\AssetBase.cpp">
+      <Filter>System\Asset</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

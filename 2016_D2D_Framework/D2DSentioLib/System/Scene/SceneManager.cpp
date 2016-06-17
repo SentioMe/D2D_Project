@@ -1,7 +1,7 @@
 #include "SentioD2D.h"
 #include "SceneManager.h"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 	SceneManager::SceneManager(void)
 		: _runningScene(nullptr), _nextScene(nullptr), _requestedExitScene(false)
@@ -10,11 +10,6 @@ namespace DXLib
 		_loadedSceneMap.clear();
 	}
 	SceneManager::~SceneManager(void)
-	{
-		this->Release();
-	}
-
-	void SceneManager::Release(void)
 	{
 		ExtendCollection::Clear(_sceneStack);
 
@@ -141,7 +136,14 @@ namespace DXLib
 		_nextScene = nullptr;
 	}
 
+	const Scene* SceneManager::GetLoadedScene(const std::string& sceneName)
+	{
+		Scene* scene = nullptr;
+		if (false == ExtendCollection::TryGetValue(_loadedSceneMap, sceneName, scene))
+			ExtendString::Format(""); //@todo : add to logger
 
+		return scene;
+	}
 
 	const Scene* SceneManager::LoadScene(Scene* scene)
 	{

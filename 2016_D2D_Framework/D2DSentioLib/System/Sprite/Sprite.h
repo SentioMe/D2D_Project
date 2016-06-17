@@ -1,13 +1,13 @@
 ﻿#pragma once
 
 
-#ifndef __DXLIB_SPRITE_H__
-#define __DXLIB_SPRITE_H__
+#ifndef __SENTIO_D2DLIB_SPRITE_H__
+#define __SENTIO_D2DLIB_SPRITE_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	class Sprite : public BagicNode
 	{
@@ -23,4 +23,4 @@ namespace DXLib
 	};
 
 }
-#endif //!__DXLIB_SPRITE_H__
+#endif //!__SENTIO_D2DLIB_SPRITE_H__

@@ -1,15 +1,15 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_SINGLETON_H__
-#define __DXLIB_SINGLETON_H__
+#ifndef __SENTIO_D2DLIB_SINGLETON_H__
+#define __SENTIO_D2DLIB_SINGLETON_H__
 
 #include <assert.h>
 #include "LibConfig.h"
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	template<typename T>
 	class Singleton
@@ -84,4 +84,4 @@ namespace DXLib
 	}
 }
 
-#endif //!__DXLIB_SINGLETON_H__
+#endif //!__SENTIO_D2DLIB_SINGLETON_H__

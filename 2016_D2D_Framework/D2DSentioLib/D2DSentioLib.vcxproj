@@ -23,6 +23,7 @@
     <ClInclude Include="SentioD2D.h" />
     <ClInclude Include="Share\tinyxml2.h" />
     <ClInclude Include="System\Application.h" />
+    <ClInclude Include="System\Asset\AssetBase.h" />
     <ClInclude Include="System\Asset\AssetFormat.h" />
     <ClInclude Include="System\Asset\SoundAssetFormat.h" />
     <ClInclude Include="System\Asset\TextureAssetFormat.h" />
@@ -61,6 +62,7 @@
     </ClCompile>
     <ClCompile Include="Share\tinyxml2.cpp" />
     <ClCompile Include="System\Application.cpp" />
+    <ClCompile Include="System\Asset\AssetBase.cpp" />
     <ClCompile Include="System\Asset\AssetFormat.cpp" />
     <ClCompile Include="System\Asset\SoundAssetFormat.cpp" />
     <ClCompile Include="System\Asset\TextureAssetFormat.cpp" />

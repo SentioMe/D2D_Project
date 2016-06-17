@@ -1,14 +1,14 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_XML_SERIALIZER_H__
-#define __DXLIB_XML_SERIALIZER_H__
+#ifndef __SENTIO_D2DLIB_XML_SERIALIZER_H__
+#define __SENTIO_D2DLIB_XML_SERIALIZER_H__
 
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
 
-namespace DXLib
+namespace SentioD2DLib
 {
 #define XML_ROOT "Root"
 
@@ -213,4 +213,4 @@ namespace DXLib
 	}
 }
 
-#endif //!__DXLIB_XML_SERIALIZER_H__
+#endif //!__SENTIO_D2DLIB_XML_SERIALIZER_H__

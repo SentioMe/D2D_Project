@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#ifndef __DXLIB_LABEL_H__
-#define __DXLIB_LABEL_H__
+#ifndef __SENTIO_D2DLIB_LABEL_H__
+#define __SENTIO_D2DLIB_LABEL_H__
 /**
-@namespace DXLib
+@namespace SentioD2DLib
 @brief  Direct2Dのライブラリーをなすコンテンツ達の集まり
 */
-namespace DXLib
+namespace SentioD2DLib
 {
 	class Label : public BagicNode
 	{
@@ -22,4 +22,4 @@ namespace DXLib
 	};
 
 }
-#endif //!__DXLIB_LABEL_H__
+#endif //!__SENTIO_D2DLIB_LABEL_H__

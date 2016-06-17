@@ -1,7 +1,7 @@
 #include "SentioD2D.h"
 #include "Rect.h"
 
-namespace DXLib
+namespace SentioD2DLib
 {
 	Rect::Rect(void)
 		: origin(0.0f, 0.0f), size(0.0f, 0.0f)
@@ -77,6 +77,8 @@ namespace DXLib
 	bool Rect::Deserialize(const char* filePath)
 	{
 		XMLSerializer* serializer = XMLSerializer::Load(filePath);
+		if (serializer == nullptr)
+			return false;
 
 		this->Deserialize(serializer);
 
