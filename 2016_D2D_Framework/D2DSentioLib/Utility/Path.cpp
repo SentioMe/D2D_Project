@@ -16,30 +16,6 @@ namespace SentioD2DLib
 		return path;
 	}
 
-	std::string Path::ResourcesPath(void)
-	{
-
-		std::string root = Directory::Root(Path::RunningPath());
-		std::string path = Path::RunningPath();
-
-		if (path.find(".exe") != std::string::npos)
-		{
-			path = Directory::Parent(path);
-			if (path.find("Debug") != std::string::npos || path.find("Release") != std::string::npos)
-			{
-				path = Directory::Parent(path);
-				if (path.find("x64") != std::string::npos || path.find("x86") != std::string::npos)
-				{
-					path = Directory::Parent(path);
-				}
-			}
-		}
-
-		path.append("\\Resources");
-
-		return path;
-	}
-
 	std::string Path::Directory(const std::string& path)
 	{
 		assert(path.empty() == false, "Passed path string is empty");

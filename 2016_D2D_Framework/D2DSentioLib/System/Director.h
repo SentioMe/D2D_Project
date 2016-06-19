@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#define D2DRenderTarget SentioD2DLib::Director::Instance()->GetRenderTarget()
+#define D2DRenderTarget SentioD2DLib::Director::Instance().GetRenderTarget()
 
 #ifndef __SENTIO_D2DLIB_DIRECTOR_H__
 #define __SENTIO_D2DLIB_DIRECTOR_H__

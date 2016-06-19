@@ -8,11 +8,12 @@ namespace SentioD2DLib
 		: _d2dFactory(nullptr), _renderTarget(nullptr), _sceneManager(nullptr),
 		_accumFrameCount(0), _deltaTime(0.0f), _accumDeltaTime(0.0f)
 	{
-
+		LOG("Create a instacne of Director");
 	}
 	Director::~Director(void)
 	{
 		this->Release();
+		LOG("Destroy a instacne of Director");
 	}
 
 	bool Director::Initialize(const HWND hWnd)

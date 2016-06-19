@@ -45,6 +45,29 @@ namespace SentioD2DLib
 		return ret;
 	}
 
+	std::string ExtendString::NumToString(int value, int digit)
+	{
+		if (digit < 2)
+			return ExtendString::Format("%d", value);
+
+		std::string numString;
+		numString.resize(digit);
+
+#define IntToASCII 48
+
+		for (int i = 0; i < digit; ++i)
+		{
+			int currentDigit = digit - i - 1;
+			int devider = pow(10, currentDigit);
+			int share = value / devider;
+			value -= (share * devider);
+
+			numString[i] = share + IntToASCII;
+		}
+
+		return numString;
+	}
+
 	/** 文字列の両断から必要ない空白を削除します。*/
 	void ExtendString::Trim(OUT std::string& output, OPTIONAL bool left, OPTIONAL bool right)
 	{

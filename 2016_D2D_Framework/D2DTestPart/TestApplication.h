@@ -11,6 +11,6 @@ public:
 protected:
 	virtual bool _OnInitialize(void) override;
 
-	bool _PreLoadScene(SceneManager* sceneManager, const std::string& sceneFile);
+	bool _PreLoadScene(SceneManager& sceneManager, const std::string& sceneFile);
 };
 

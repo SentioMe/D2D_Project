@@ -17,10 +17,10 @@ namespace SentioD2DLib
 
 	bool Scene::Initialize(const std::string& name)
 	{
-		Application* appInstance = Application::Instance();
+		Application& appInstance = Application::Instance();
 
 		Rect rect;
-		rect.size = appInstance->GetWinRect().size;
+		rect.size = appInstance.GetWinRect().size;
 
 		_mainLayer = Layer::Create(rect, MAIN_LAYER_NAME);
 

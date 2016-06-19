@@ -6,12 +6,11 @@ namespace SentioD2DLib
 	Application::Application(void)
 		: _isReplaceData(false), _isRunning(false),
 		_windowCaption(ExtendString::EMPTY), 
-		_resourceRootPath(ExtendString::EMPTY),
+		_resourcesPath(ExtendString::EMPTY),
 		_configDataPath(ExtendString::EMPTY),
 		_appInstanceHandler(nullptr), _winHandler(nullptr), _iconHandler(nullptr)
 	{
-		Singleton::_Overwrite(this);
-
+		_Overwrite(this);
 		memset(&_renderingInterval, 0, sizeof(LARGE_INTEGER));
 	}
 
@@ -29,29 +28,40 @@ namespace SentioD2DLib
 		}
 
 		if (_isReplaceData)
-			this->Serialize(ExtendString::Format("%s/%s", _resourceRootPath.c_str(), _configDataPath.c_str()).c_str());
+			this->Serialize(ExtendString::Format("%s/%s", _resourcesPath.c_str(), _configDataPath.c_str()).c_str());
+
+		Logger::Instance().Destroy();
 	}
 
 	bool Application::Initialize(const std::string& configDataPath, OPTIONAL HINSTANCE appInstanceHandler)
 	{
-		this->_resourceRootPath = Path::ResourcesPath();
+		this->_SetResourcesPath();
 		this->_configDataPath = configDataPath;
 
-		if (false == Deserialize(ExtendString::Format("%s\\%s", _resourceRootPath.c_str(), _configDataPath.c_str()).c_str()))
+		auto logger = Logger::Create();
+
+		if (false == Deserialize(ExtendString::Format("%s\\%s", _resourcesPath.c_str(), _configDataPath.c_str()).c_str()))
+		{
+			LOG_ERROR("Failed to deserialize a Application");
 			return false;
+		}
 
 		_isReplaceData = true;
 
 		if (false == _CreateWindow((nullptr == appInstanceHandler) ? GetModuleHandle(nullptr) : appInstanceHandler))
+		{
+			LOG_ERROR("Failed to create a WinAPI");
 			return false;
+		}
 
 		auto director = Director::Create();
 		if (false == director->Initialize(_winHandler))
 		{
+			LOG_ERROR("Failed to initialize a Director");
 			director->Destroy();
 			return false;
 		}
-
+		
 		return _OnInitialize();
 	}
 
@@ -70,7 +80,10 @@ namespace SentioD2DLib
 
 		QueryPerformanceCounter(&last);
 		
-		Director* director = Director::Instance();
+		Director& director = Director::Instance();
+
+		LOG("Start a Application loop");
+		auto value = SceneManager::Instance().GetLoadedScene("sdflkjslfdkjsdf");
 
 		while (_isRunning)
 		{
@@ -97,16 +110,16 @@ namespace SentioD2DLib
 				float elapsedTime = delta / (float)performanceFrequency.QuadPart;
 				_UpdateWindowCaption(elapsedTime);
 
-				if (false != director->BeginFrame(elapsedTime))
+				if (false != director.BeginFrame(elapsedTime))
 				{
-					director->DrawFrame();
-					director->EndFrame();
+					director.DrawFrame();
+					director.EndFrame();
 				}
 			}
 		}
+		LOG("End a Application loop");
 
-		director->Destroy();
-		director = nullptr;
+		director.Destroy();
 
 		return 0;
 	}
@@ -185,7 +198,7 @@ namespace SentioD2DLib
 		GetWindowRect(::GetDesktopWindow(), &userWindowRect);
 
 		_iconHandler = (_data.IsShowingCaptionMode(AppCaptionMode::ICON) && _data.IsEmptyIconPath() == false)
-			? ExtractIcon(_appInstanceHandler, ExtendString::Format("%s\\%s", _resourceRootPath.c_str(), _data.GetIconPath()).c_str(), 0)
+			? ExtractIcon(_appInstanceHandler, ExtendString::Format("%s\\%s", _resourcesPath.c_str(), _data.GetIconPath()).c_str(), 0)
 			: nullptr;
 
 		const char* caption = _data.GetCaption();
@@ -266,6 +279,27 @@ namespace SentioD2DLib
 		return true;
 	}
 
+	void Application::_SetResourcesPath(void)
+	{
+		std::string path = Path::RunningPath();
+
+		if (path.find(".exe") != std::string::npos)
+		{
+			path = Directory::Parent(path);
+			if (path.find("Debug") != std::string::npos || path.find("Release") != std::string::npos)
+			{
+				path = Directory::Parent(path);
+				if (path.find("x64") != std::string::npos || path.find("x86") != std::string::npos)
+				{
+					path = Directory::Parent(path);
+				}
+			}
+		}
+
+		path.append("\\Resources");
+		_resourcesPath = path;
+	}
+
 	void Application::_UpdateWindowCaption(float elapsedTime)
 	{
 		/**
@@ -292,7 +326,7 @@ namespace SentioD2DLib
 	LRESULT CALLBACK Application::_WinProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 	{
 
-		Application* instance = Application::Instance();
+		Application& instance = Application::Instance();
 
 		switch (Msg)
 		{
@@ -304,7 +338,7 @@ namespace SentioD2DLib
 			}
 			else
 			{
-				RECT rc = const_cast<Rect&>(instance->GetClippingRect());
+				RECT rc = const_cast<Rect&>(instance.GetClippingRect());
 
 				if (!IsRectEmpty(&rc))
 					ClipCursor(&rc);

@@ -48,6 +48,7 @@
     <ClInclude Include="Utility\Extend\ExtendCollection.h" />
     <ClInclude Include="Utility\Extend\ExtendMath.h" />
     <ClInclude Include="Utility\Extend\ExtendString.h" />
+    <ClInclude Include="Utility\Logger.h" />
     <ClInclude Include="Utility\Macro.h" />
     <ClInclude Include="Utility\Path.h" />
     <ClInclude Include="Utility\Random.h" />
@@ -82,6 +83,7 @@
     <ClCompile Include="Utility\Extend\ExtendCollection.cpp" />
     <ClCompile Include="Utility\Extend\ExtendMath.cpp" />
     <ClCompile Include="Utility\Extend\ExtendString.cpp" />
+    <ClCompile Include="Utility\Logger.cpp" />
     <ClCompile Include="Utility\Path.cpp" />
     <ClCompile Include="Utility\Random.cpp" />
     <ClCompile Include="Utility\XMLSerializer.cpp" />

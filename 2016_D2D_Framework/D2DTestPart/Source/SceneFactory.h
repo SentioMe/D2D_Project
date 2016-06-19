@@ -5,8 +5,8 @@ USING_SDL;
 class SceneFactory : public IXMLSerializable
 {
 public:
-	SceneFactory(SceneManager* sceneManager)
-		: _sceneManager(sceneManager)
+	SceneFactory(SceneManager& sceneManager)
+		: _sceneManager(&sceneManager)
 	{
 	}
 	~SceneFactory(void)

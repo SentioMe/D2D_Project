@@ -32,6 +32,8 @@
 #include "Utility\Extend\ExtendMath.h"
 #include "Utility\Extend\ExtendString.h"
 #include "Utility\Extend\ExtendCollection.h"
+
+#include "Utility\Logger.h"
 #pragma endregion
 //###################################################################
 

@@ -146,6 +146,7 @@ namespace SentioD2DLib
 
 		inline const Rect& GetWinRect(void) const { return _data.appWindowRect; }
 		
+		inline std::string GetProjectPath(void) const{ return Directory::Parent(_resourcesPath); }
 
 //#########################################################################
 #pragma region Serialize Function
@@ -159,23 +160,29 @@ namespace SentioD2DLib
 	private:
 		static LRESULT CALLBACK _WinProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 		
+		/** ソリューション以下のリソースのフォルダまでのパスを設定します。*/
+		void _SetResourcesPath(void);
+
 		bool _CreateWindow(HINSTANCE appInstanceHandler);
 		/** トップキャプションを更新します。*/
 		void _UpdateWindowCaption(float elapsedTime);
 	protected:
+		
+
 		/** 継承したクラスでオーバーライド可能な初期化の関数*/
 		virtual bool _OnInitialize(void){ return true; }
 
 	private:
 		std::string		_configDataPath;
 		bool			_isReplaceData;
+
 	protected:
 		bool			_isRunning;
 		LARGE_INTEGER	_renderingInterval;
 		std::string		_windowCaption;
 		ApplicationData _data;
 		
-		PropertyReadonly(std::string, _resourceRootPath, ResourceRootPath);
+		PropertyReadonly(std::string, _resourcesPath, ResourcesPath);
 		PropertyReadonly(Rect, _clippingRect, ClippingRect);
 
 		PropertyReadonly(HINSTANCE, _appInstanceHandler, AppInstanceHandler);

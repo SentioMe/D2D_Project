@@ -16,6 +16,8 @@ namespace SentioD2DLib
 		}
 #endif
 		_loadedTextureMap.clear();
+
+		LOG("Create a instacne of TextureCashe");
 	}
 	TextureCashe::~TextureCashe(void)
 	{
@@ -24,6 +26,8 @@ namespace SentioD2DLib
 		ULONG message = _imagingFactory->Release();
 		assert(message == 0 && "There are objects that have not been deallocated in the objects allocated in the WIC factory");
 		_imagingFactory = nullptr;
+
+		LOG("Destroy a instacne of TextureCashe");
 	}
 
 	const Texture* TextureCashe::LoadTexture(const std::string& filePath)
@@ -35,7 +39,10 @@ namespace SentioD2DLib
 		{
 			texture = Texture::Create(filePath, _imagingFactory);
 			if (texture == nullptr)
+			{
+				LOG_WARNING(ExtendString::Format("Failed to create a texture : ", filePath.c_str()).c_str());
 				return nullptr;
+			}
 
 			_loadedTextureMap.insert(std::pair<std::string, Texture*>(filePath, texture));
 		}
@@ -58,6 +65,7 @@ namespace SentioD2DLib
 			return true;
 		}
 
+		LOG_WARNING(ExtendString::Format("Is not found a texture : ", filePath.c_str()).c_str());
 		return false;
 	}
 

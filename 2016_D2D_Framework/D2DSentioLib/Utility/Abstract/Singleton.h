@@ -20,7 +20,6 @@ namespace SentioD2DLib
 	SL_CONSTRUCTOR_ACCESS_LEVEL:
 		Singleton(void)
 		{
-
 		}
 		virtual ~Singleton(void)
 		{
@@ -34,7 +33,7 @@ namespace SentioD2DLib
 
 		bool Destroy(void);
 
-		static T* Instance(void);
+		static T& Instance(void);
 
 
 	};
@@ -45,10 +44,7 @@ namespace SentioD2DLib
 	template<typename T>
 	void Singleton<T>::_Overwrite(T* instance)
 	{
-		if (_instance != nullptr)
-			_instance->Destroy();
-
-		assert(instance != nullptr && "Passed instance is null");
+		assert(_instance == nullptr && "A instance of singleton is already created");
 		_instance = instance;
 	}
 
@@ -64,12 +60,12 @@ namespace SentioD2DLib
 	template<typename T>
 	bool Singleton<T>::Destroy(void)
 	{
-		if (!_instance)
-		{
-			assert(_instance != nullptr && "A instance of singleton is already destroyed");
+#ifdef DEBUG
+		assert(_instance != nullptr && "A instance of singleton is already destroyed");
+#else
+		if (_instance == nullptr)
 			return false;
-		}
-
+#endif
 		delete _instance;
 		_instance = nullptr;
 
@@ -77,10 +73,10 @@ namespace SentioD2DLib
 	}
 
 	template<typename T>
-	T* Singleton<T>::Instance(void)
+	T& Singleton<T>::Instance(void)
 	{
 		assert(_instance != nullptr && "Maybe, You didn't create this singleton class or, This class was destroyed by your called methode");
-		return _instance;
+		return *_instance;
 	}
 }
 

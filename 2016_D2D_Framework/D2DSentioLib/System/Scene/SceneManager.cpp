@@ -8,6 +8,8 @@ namespace SentioD2DLib
 	{
 		ExtendCollection::Clear(_sceneStack);
 		_loadedSceneMap.clear();
+
+		LOG("Create a instacne of SceneManager");
 	}
 	SceneManager::~SceneManager(void)
 	{
@@ -21,6 +23,8 @@ namespace SentioD2DLib
 		_ExitNextScene();
 
 		ExtendCollection::Destroy(_loadedSceneMap);
+
+		LOG("Destroy a instacne of SceneManager");
 	}
 
 	void SceneManager::Update(float deltaTime)
@@ -52,7 +56,10 @@ namespace SentioD2DLib
 
 		Scene* scene = nullptr;
 		if (false == ExtendCollection::TryGetValue(_loadedSceneMap, sceneName, scene))
+		{
+			LOG_WARNING(ExtendString::Format("Is not found a scene : %s", sceneName.c_str()).c_str());
 			return;
+		}
 
 		if (scene == _nextScene)
 			return;
@@ -85,7 +92,10 @@ namespace SentioD2DLib
 
 		Scene* scene = nullptr;
 		if (false == ExtendCollection::TryGetValue(_loadedSceneMap, sceneName, scene))
+		{
+			LOG_WARNING(ExtendString::Format("Is not found a scene : %s", sceneName.c_str()).c_str());
 			return;
+		}
 
 		_UpdateSceneStack(scene, false);
 	}
@@ -107,7 +117,7 @@ namespace SentioD2DLib
 
 		if (_sceneStack.empty())
 		{
-			Application::Instance()->Stop();
+			Application::Instance().Stop();
 			return;
 		}
 
@@ -140,7 +150,7 @@ namespace SentioD2DLib
 	{
 		Scene* scene = nullptr;
 		if (false == ExtendCollection::TryGetValue(_loadedSceneMap, sceneName, scene))
-			ExtendString::Format(""); //@todo : add to logger
+			LOG_WARNING(ExtendString::Format("Is not found a scene : %s", sceneName.c_str()).c_str());
 
 		return scene;
 	}
@@ -172,6 +182,7 @@ namespace SentioD2DLib
 			return true;
 		}
 
+		LOG_WARNING(ExtendString::Format("Is not found a scene : %s", sceneName.c_str()).c_str());
 		return false;
 	}
 }

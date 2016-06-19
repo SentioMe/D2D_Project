@@ -20,8 +20,6 @@ namespace SentioD2DLib
 	public:
 		/** アプリケーションが実行されたパスを返します。*/
 		static std::string RunningPath(void);
-		/** ソリューション以下のリソースのフォルダまでのパスを返します。*/
-		static std::string ResourcesPath(void);
 
 		/** 渡されたパスからファイル名を除いたパスを返します。*/
 		static std::string Directory(const std::string& path);

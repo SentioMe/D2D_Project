@@ -12,13 +12,10 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
 	TestApplication app;
+	auto& appInstance = TestApplication::Instance();
 
-	auto appInstance = Application::Instance();
-
-	if (appInstance->Initialize("Datas\\AppData.xml"))
-		appInstance->Run();
-
-	appInstance = nullptr;
+	if (appInstance.Initialize("Datas\\AppData.xml"))
+		appInstance.Run();
 
 	return 0;
 
